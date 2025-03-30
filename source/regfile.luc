@@ -28,14 +28,65 @@ module regfile (
             dff p2_score[32](#INIT(0))
             dff p1_button_press[32](#INIT(0))
             dff p2_button_press[32](#INIT(0))
-            dff lower_number[32](#INIT(0))
-            dff higher_number[32](#INIT(0))
-            dff generated_number[32](#INIT(0))
+            dff low_number[32](#INIT(0))
+            dff high_number[32](#INIT(0))
+            dff gen_number[32](#INIT(0))
             dff current_timer[32](#INIT(0))
             dff temp_var[32](#INIT(0))
         }
     }
     always {
-        out = 0
+        
+        // Write Port
+        if (we) {
+            case (we) {
+                d0: p1_score.d = data
+                d1: p2_score.d = data
+                d2: p1_button_press.d = data
+                d3: p2_button_press.d = data
+                d4: low_number.d = data
+                d5: high_number.d = data
+                d6: gen_number.d = data
+                d7: current_timer.d = data
+                d8: temp_var.d = data
+            }
+        }
+        
+        // Read Port A
+        case (ra1) {
+            d0 : rd1 = p1_score.q
+            d1 : rd1 = p2_score.q
+            d2 : rd1 = p1_button_press.q
+            d3 : rd1 = p2_button_press.q
+            d4 : rd1 = low_number.q
+            d5 : rd1 = high_number.q
+            d6 : rd1 = gen_number.q
+            d7 : rd1 = current_timer.q
+            d8 : rd1 = temp_var.q
+            default : rd1 = 0
+        }
+        
+        // Read Port B
+        case (ra2) {
+            d0 : rd2 = p1_score.q
+            d1 : rd2 = p2_score.q
+            d2 : rd2 = p1_button_press.q
+            d3 : rd2 = p2_button_press.q
+            d4 : rd2 = low_number.q
+            d5 : rd2 = high_number.q
+            d6 : rd2 = gen_number.q
+            d7 : rd2 = current_timer.q
+            d8 : rd2 = temp_var.q
+            default : rd2 = 0
+        }
+        
+        p1_score_out = p1_score.q
+        p2_score_out = p2_score.q
+        p1_button_out = p1_button_press.q
+        p2_button_out = p2_button_press.q
+        lower_bound_out = low_number.q
+        higher_bound_out = high_number.q
+        gen_num_out = gen_number.q
+        timer_out = current_timer.q
     }
 }

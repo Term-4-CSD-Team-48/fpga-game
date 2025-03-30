@@ -1,0 +1,41 @@
+module regfile (
+    input clk,  // clock
+    input rst,  // reset
+    input wa[4], // write address
+    input we, // write enable signal
+    input data[32], // data in
+    
+    input ra1[4], // read address port 1
+    input ra2[4], // read address port 2
+    output rd1[32], // read data port 1
+    output rd2[32], // read data port 2
+    
+    // States
+    output p1_score_out[32], // 0x0 P1 Score Reg
+    output p2_score_out[32], // 0x1 P2 Score Reg
+    output p1_button_out[32], // 0x2 P1 Button Reg
+    output p2_button_out[32],
+    output lower_bound_out[32],
+    output higher_bound_out[32],
+    output gen_num_out[32],
+    output timer_out[32]
+ 
+) 
+{
+    .clk(clk) {
+        .rst(rst) {
+            dff p1_score[32](#INIT(0))
+            dff p2_score[32](#INIT(0))
+            dff p1_button_press[32](#INIT(0))
+            dff p2_button_press[32](#INIT(0))
+            dff lower_number[32](#INIT(0))
+            dff higher_number[32](#INIT(0))
+            dff generated_number[32](#INIT(0))
+            dff current_timer[32](#INIT(0))
+            dff temp_var[32](#INIT(0))
+        }
+    }
+    always {
+        out = 0
+    }
+}

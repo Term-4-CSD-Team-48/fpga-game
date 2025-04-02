@@ -39,7 +39,7 @@ module regfile (
         
         // Write Port
         if (we) {
-            case (we) {
+            case (wa) {
                 d0: p1_score.d = data
                 d1: p2_score.d = data
                 d2: p1_button_press.d = data

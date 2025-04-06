@@ -2,24 +2,97 @@ module alchitry_top (
     input clk,              // 100MHz clock
     input rst_n,            // reset button (active low)
     output led[8],          // 8 user controllable LEDs
-    input usb_rx,           // USB->Serial input
-    output usb_tx           // USB->Serial output
+    input usb_rx,            // USB->Serial input
+    output usb_tx,           // USB->Serial output
+    output io_led[3][8],     // LEDs on IO Shield
+    output io_segment[8],        // 7-segment LEDs on IO Shield
+    output io_select[4],        // Digit select on IO Shield
+    input io_button[5],      // 5 buttons on IO Shield
+    input io_dip[3][8]       // DIP switches on IO Shield
 ) {
 
     sig rst                 // reset signal
+    sig first[32]
+    sig second[32]
+    const CLOCK_DIVIDER = $is_sim() ? 11 : 26
+    const CLK_FREQ = $is_sim() ? 1000 : 100000000 // put 1000 for sim, 100M for hardware 
+    const SEVEN_SEG_DIV = $is_sim() ? 3 : 16 // put 3 for sim, 16 for hardware
 
     .clk(clk) {
-        // The reset conditioner is used to synchronize the reset signal to the FPGA
-        // clock. This ensures the entire FPGA comes out of reset at the same time.
         reset_conditioner reset_cond
+        button_conditioner io_button_cond[5](#CLK_FREQ(5x{{CLK_FREQ}})) 
+        .rst(rst){
+             multi_seven_seg seg(#DIV(SEVEN_SEG_DIV))
+             counter slow_clk(#SIZE(1), #DIV(CLOCK_DIVIDER))
+            dff low[32]
+            dff high[32]
+            dff guess[32]
+            dff temp1[32]
+            dff temp2[32]
+            dff out[32]
+            dff light[8]
+        }
+        edge_detector io_button_edge[5](#RISE(5x{{1}}), #FALL(5x{{0}}))
+        random_number_generator generator(.slow_clk(slow_clk.value), .refresh(io_button_edge.out[0]))
     }
+    
+    bin_to_dec bin_to_dec_converter(#DIGITS(4))
 
     always {
         reset_cond.in = ~rst_n  // input raw inverted reset signal
         rst = reset_cond.out    // conditioned reset
+        low.d = low.q
+        high.d = high.q
+        temp1.d = temp1.q
+        temp2.d = temp2.q
+        out.d = out.q
+        light.d = light.q
+        guess.d = guess.q
+        first = 0
+        second = 0
+        
+        io_button_cond.in = io_button
+        io_button_edge.in = io_button_cond.out
+        
+        if (io_button_edge.out[0]) {
+            temp1.d = generator.out
+            light.d = 8b01
+        }
+        
+        if (io_button_edge.out[1]) {
+            temp2.d = generator.out
+            light.d = 8b10
+        }
+        
+        if (io_button_edge.out[2]) {
+            first = temp1.q
+            second = temp2.q
+            if (first < second) {
+                low.d = temp1.q
+                high.d = temp2.q
+            } else {
+                low.d = temp2.q
+                high.d = temp1.q
+            }
+            guess.d = generator.out
+            light.d = 8b11
+        }
+        if (io_button_edge.out[4]) {
+            out.d = high.q
+        } else if (io_button_edge.out[3]) {
+            out.d = low.q
+        }
 
-        led = 8h00              // turn LEDs off
+        led = light.q              // turn LEDs off
+        
+        //update 7segments
+        seg.values = 4x{{4b0}} // default to all 0 first
+        bin_to_dec_converter.value = out.q
+        seg.values = bin_to_dec_converter.digits
 
         usb_tx = usb_rx         // echo the serial data
+        io_led = 3x{{8b0}}
+        io_segment = ~seg.seg
+        io_select = ~seg.sel
     }
 }

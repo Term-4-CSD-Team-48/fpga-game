@@ -5,6 +5,9 @@ module regfile (
     input we, // write enable signal
     input data[32], // data in
     
+    input rngout[4], // RNG Module Output
+    input rngsel, // RNG Storage Selector
+    
     input ra1[4], // read address port 1
     input ra2[4], // read address port 2
     output rd1[32], // read data port 1
@@ -22,6 +25,8 @@ module regfile (
  
 ) 
 {
+    sig out[32]
+    
     .clk(clk) {
         .rst(rst) {
             dff p1_score[32](#INIT(0))
@@ -32,23 +37,30 @@ module regfile (
             dff high_number[32](#INIT(0))
             dff gen_number[32](#INIT(0))
             dff current_timer[32](#INIT(0))
-            dff temp_var[32](#INIT(0))
+            dff temp_var1[32](#INIT(0))
+            dff temp_var2[32](#INIT(0))
         }
     }
+    
     always {
-        
+        out = data
         // Write Port
         if (we) {
+            // RNGSEL on 1, write the rng output to regfile
+            if (rngsel) {
+                out = rngout
+            }
             case (wa) {
-                d0: p1_score.d = data
-                d1: p2_score.d = data
-                d2: p1_button_press.d = data
-                d3: p2_button_press.d = data
-                d4: low_number.d = data
-                d5: high_number.d = data
-                d6: gen_number.d = data
-                d7: current_timer.d = data
-                d8: temp_var.d = data
+                d0: p1_score.d = out
+                d1: p2_score.d = out
+                d2: p1_button_press.d = out
+                d3: p2_button_press.d = out
+                d4: low_number.d = out
+                d5: high_number.d = out
+                d6: gen_number.d = out
+                d7: current_timer.d = out
+                d8: temp_var1.d = out
+                d9: temp_var2.d = out
             }
         }
         
@@ -62,7 +74,8 @@ module regfile (
             d5 : rd1 = high_number.q
             d6 : rd1 = gen_number.q
             d7 : rd1 = current_timer.q
-            d8 : rd1 = temp_var.q
+            d8 : rd1 = temp_var1.q
+            d9 : rd1 = temp_var2.q
             default : rd1 = 0
         }
         
@@ -76,7 +89,8 @@ module regfile (
             d5 : rd2 = high_number.q
             d6 : rd2 = gen_number.q
             d7 : rd2 = current_timer.q
-            d8 : rd2 = temp_var.q
+            d8 : rd2 = temp_var1.q
+            d9 : rd2 = temp_var2.q
             default : rd2 = 0
         }
         

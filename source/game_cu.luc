@@ -152,6 +152,7 @@ module game_cu (
                     game_fsm.d = GameStates.IDLE
                 
                 GameStates.IDLE:
+                    rngsel = 0    // Make sure RNGSEL set to 0 so datapath is correct
                     if (decrease_timer){
                         game_fsm.d = GameStates.CHECK_GAMETIMER
                     }
@@ -178,164 +179,138 @@ module game_cu (
                     }
                 
                 GameStates.CHECK_P1HIGHBUTTONPRESS:
-                    alufn = b110101
-                    asel = b00
-                    bsel = b00
-                    regfile_ra1 = d5
-                    regfile_ra2 = d6
+                    alufn = b110011    // CMPEQ
+                    asel = b00        
+                    bsel = b11        // Value == 15
+                    regfile_ra1 = d2    // P1 Button Click Reg
                     wdsel = b00
                     regfile_we = 1
-                    regfile_wa = d8
+                    regfile_wa = d9    // Store the value of comparison in Temp Reg
                     game_fsm.d = GameStates.BRANCH_P1HIGHBUTTONPRESS
                 
                 GameStates.BRANCH_P1HIGHBUTTONPRESS:
-                    regfile_ra2 = d8
-                    if (regfile_rd2[0]){
+                    regfile_ra2 = d9    // Temp Reg
+                    if (regfile_rd2[9]){    // If Current Button Input is High
                         game_fsm.d = GameStates.INCREASE_P1SCORE
                     }
-                    else{
-                        game_fsm.d = GameStates.CHECK_ROUND_OVER
-                    }
-                
-                GameStates.CHECK_P1INBETWEENBUTTONPRESS:
-                    alufn = b110011
-                    asel = b00
-                    bsel = b00
-                    regfile_ra1 = d4
-                    regfile_ra2 = d6
-                    wdsel = b00
-                    regfile_we = 1
-                    regfile_wa = d8
-                    game_fsm.d = GameStates.BRANCH_P1INBETWEENBUTTONPRESS
-                
-                GameStates.BRANCH_P1INBETWEENBUTTONPRESS:
-                    alufn = b110011
-                    asel = b00
-                    bsel = b00
-                    regfile_ra1 = d5
-                    regfile_ra2 = d6
-                    regfile_we = 1
-                    regfile_wa = d9
-                    
-                    regfile_ra1 = d8
-                    regfile_ra2 = d9
-                    
-                    if (!regfile_rd2[0] && !regfile_rd2[0]){
-                        game_fsm.d = GameStates.INCREASE_P1SCORE
-                    }
-                    else{
-                        game_fsm.d = GameStates.CHECK_ROUND_OVER
+                    else{    // Go and check for low
+                        game_fsm.d = GameStates.CHECK_P1LOWBUTTONPRESS
                     }
                 
                 GameStates.CHECK_P1LOWBUTTONPRESS:
-                    alufn = b110101
+                    alufn = b110011    // CMPEQ
                     asel = b00
-                    bsel = b00
-                    regfile_ra1 = d6
-                    regfile_ra2 = d4
+                    bsel = b10    // Value == 0
+                    regfile_ra1 = d2    // P1 Button Click Reg
                     wdsel = b00
                     regfile_we = 1
-                    regfile_wa = d8
+                    regfile_wa = d9    // Store the value of comparison in Temp Reg
                     game_fsm.d = GameStates.BRANCH_P1LOWBUTTONPRESS
                 
                 GameStates.BRANCH_P1LOWBUTTONPRESS:
-                    regfile_ra2 = d8
-                    if (regfile_rd2[0]){
+                    regfile_ra2 = d9    // Temp Reg
+                    if (regfile_rd2[9]){    // If current input is low button
                         game_fsm.d = GameStates.INCREASE_P1SCORE
                     }
                     else{
-                        game_fsm.d = GameStates.CHECK_ROUND_OVER
+                        game_fsm.d = GameStates.CHECK_P1INBETWEENBUTTONPRESS
+                    }
+                
+                GameStates.CHECK_P1INBETWEENBUTTONPRESS:
+                    alufn = b110011    // CMPEQ
+                    asel = b00
+                    bsel = b01    // Value == 1
+                    regfile_ra1 = d2    // P1 Button Click Reg
+                    wdsel = b00
+                    regfile_we = 1
+                    regfile_wa = d9    // Temp Reg
+                    game_fsm.d = GameStates.BRANCH_P1INBETWEENBUTTONPRESS
+                
+                GameStates.BRANCH_P1INBETWEENBUTTONPRESS:
+                    regfile_ra2 = d9    // Temp Reg
+                    if (regfile_rd2[9]){    // If current input is in between button
+                        game_fsm.d = GameStates.INCREASE_P1SCORE
+                    }
+                    else{
+                        game_fsm.d = GameStates.IDLE
                     }
                 
                 GameStates.INCREASE_P1SCORE:
-                    alufn = b000000
+                    alufn = b000000    // ADD
                     asel = b00
-                    bsel = b01
+                    bsel = b01    // ADD 1 to current score
                     regfile_ra1 = d0
                     wdsel = b00
                     regfile_we = 1
                     regfile_wa = d0
-                    game_fsm.d = GameStates.CHECK_WINNER
+                    game_fsm.d = GameStates.RESET_LOWER
                 
                 GameStates.CHECK_P2HIGHBUTTONPRESS:
-                    alufn = b110101
-                    asel = b00
-                    bsel = b00
-                    regfile_ra1 = d5
-                    regfile_ra2 = d6
+                    alufn = b110011    // CMPEQ
+                    asel = b00        
+                    bsel = b11        // Value == 15
+                    regfile_ra1 = d3    // P2 Button Click Reg
                     wdsel = b00
                     regfile_we = 1
-                    regfile_wa = d8
+                    regfile_wa = d8    // Store the value of comparison in Temp Reg
                     game_fsm.d = GameStates.BRANCH_P2HIGHBUTTONPRESS
                 
                 GameStates.BRANCH_P2HIGHBUTTONPRESS:
-                    regfile_ra2 = d8
-                    if (regfile_rd2[0]){
+                    regfile_ra2 = d8    // Temp Reg
+                    if (regfile_rd2[8]){    // If Current Button Input is High
                         game_fsm.d = GameStates.INCREASE_P2SCORE
                     }
-                    else{
-                        game_fsm.d = GameStates.CHECK_ROUND_OVER
-                    }
-                
-                GameStates.CHECK_P2INBETWEENBUTTONPRESS:
-                    alufn = b110011
-                    asel = b00
-                    bsel = b00
-                    regfile_ra1 = d4
-                    regfile_ra2 = d6
-                    wdsel = b00
-                    regfile_we = 1
-                    regfile_wa = d8
-                    game_fsm.d = GameStates.BRANCH_P2INBETWEENBUTTONPRESS
-                
-                GameStates.BRANCH_P2INBETWEENBUTTONPRESS:
-                    alufn = b110011
-                    asel = b00
-                    bsel = b00
-                    regfile_ra1 = d5
-                    regfile_ra2 = d6
-                    regfile_we = 1
-                    regfile_wa = d9
-                    
-                    regfile_ra1 = d8
-                    regfile_ra2 = d9
-                    
-                    if (!regfile_rd2[0] && !regfile_rd2[0]){
-                        game_fsm.d = GameStates.INCREASE_P2SCORE
-                    }
-                    else{
-                        game_fsm.d = GameStates.CHECK_ROUND_OVER
+                    else{    // Go and check for low
+                        game_fsm.d = GameStates.CHECK_P2LOWBUTTONPRESS
                     }
                 
                 GameStates.CHECK_P2LOWBUTTONPRESS:
-                    alufn = b110101
+                    alufn = b110011    // CMPEQ
                     asel = b00
-                    bsel = b00
-                    regfile_ra1 = d6
-                    regfile_ra2 = d4
+                    bsel = b10    // Value == 0
+                    regfile_ra1 = d3    // P2 Button Click Reg
                     wdsel = b00
                     regfile_we = 1
-                    regfile_wa = d8
-                    game_fsm.d = GameStates.BRANCH_P2LOWBUTTONPRESS
+                    regfile_wa = d8    // Store the value of comparison in Temp Reg
+                    game_fsm.d = GameStates.BRANCH_P1LOWBUTTONPRESS
                 
                 GameStates.BRANCH_P2LOWBUTTONPRESS:
-                    regfile_ra2 = d8
-                    if (regfile_rd2[0]){
+                    regfile_ra2 = d8    // Temp Reg
+                    if (regfile_rd2[8]){    // If current input is low button
                         game_fsm.d = GameStates.INCREASE_P2SCORE
                     }
                     else{
-                        game_fsm.d = GameStates.CHECK_ROUND_OVER
+                        game_fsm.d = GameStates.CHECK_P2INBETWEENBUTTONPRESS
+                    }
+                
+                GameStates.CHECK_P2INBETWEENBUTTONPRESS:
+                    alufn = b110011    // CMPEQ
+                    asel = b00
+                    bsel = b01    // Value == 1
+                    regfile_ra1 = d3    // P1 Button Click Reg
+                    wdsel = b00
+                    regfile_we = 1
+                    regfile_wa = d8    // Temp Reg
+                    game_fsm.d = GameStates.BRANCH_P2INBETWEENBUTTONPRESS
+                
+                GameStates.BRANCH_P2INBETWEENBUTTONPRESS:
+                    regfile_ra2 = d8    // Temp Reg
+                    if (regfile_rd2[8]){    // If current input is in between button
+                        game_fsm.d = GameStates.INCREASE_P2SCORE
+                    }
+                    else{
+                        game_fsm.d = GameStates.IDLE
                     }
                 
                 GameStates.INCREASE_P2SCORE:
-                    alufn = b000000
+                    alufn = b000000    // ADD
                     asel = b00
-                    bsel = b01
+                    bsel = b01    // ADD 1 to current score
                     regfile_ra1 = d1
                     wdsel = b00
                     regfile_we = 1
                     regfile_wa = d1
-                    game_fsm.d = GameStates.CHECK_WINNER
+                    game_fsm.d = GameStates.RESET_LOWER
                 
                 GameStates.CHECK_GAMETIMER:
                     alufn = b000001

@@ -3,6 +3,7 @@ module game_cu (
     input rst,  // reset
     input regfile_rd2[32], //direct reading of regfile data from rd2
     input rngmodule,
+    input decrease_timer,
     
     input p1_button_high,
     input p1_button_low,
@@ -311,6 +312,292 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d10    // Temp Reg 3
                     game_fsm.d = GameStates.IDLE
+                
+                GameStates.IDLE:
+                    if (decrease_timer) {
+                        game_fsm.d = GameStates.DECREASE_GAME_TIMER
+                    } else if (p1_button_low) {
+                        game_fsm.d = GameStates.SET_P1_BUTTON_LOW
+                    } else if (p1_button_high) {
+                        game_fsm.d = GameStates.SET_P1_BUTTON_HIGH
+                    } else if (p1_button_between) {
+                        game_fsm.d = GameStates.SET_P1_BUTTON_IN_BETWEEN
+                    } else if (p2_button_high) {
+                        game_fsm.d = GameStates.SET_P2_BUTTON_HIGH
+                    } else if (p2_button_low) {
+                        game_fsm.d = GameStates.SET_P2_BUTTON_LOW
+                    } else if (p2_button_between) {
+                        game_fsm.d = GameStates.SET_P2_BUTTON_IN_BETWEEN
+                    }
+                
+                GameStates.SET_P1_BUTTON_LOW:
+                    alufn = b000000    // ADD 
+                    asel = b10        // Bit 0
+                    bsel = b01        // Bit 1
+                    regfile_we = b1
+                    regfile_wa = d2    // P1 Button Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.IDLE
+                
+                GameStates.SET_P1_BUTTON_HIGH:
+                    alufn = b000000    // ADD 
+                    asel = b10        // Bit 0
+                    bsel = b11        // Bit 15
+                    regfile_we = b1
+                    regfile_wa = d2    // P1 Button Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.IDLE
+                
+                GameStates.SET_P1_BUTTON_IN_BETWEEN:
+                    alufn = b000000    // ADD 
+                    asel = b01        // Bit 1
+                    bsel = b01        // Bit 1
+                    regfile_we = b1
+                    regfile_wa = d2    // P1 Button Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.IDLE
+                
+                GameStates.SET_P2_BUTTON_LOW:
+                    alufn = b000000    // ADD 
+                    asel = b10        // Bit 0
+                    bsel = b01        // Bit 1
+                    regfile_we = b1
+                    regfile_wa = d3    // P2 Button Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.IDLE
+                
+                GameStates.SET_P2_BUTTON_HIGH:
+                    alufn = b000000    // ADD 
+                    asel = b10        // Bit 0
+                    bsel = b11        // Bit 15
+                    regfile_we = b1
+                    regfile_wa = d3    // P2 Button Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.IDLE
+                
+                GameStates.SET_P2_BUTTON_IN_BETWEEN:
+                    alufn = b000000    // ADD 
+                    asel = b01        // Bit 1
+                    bsel = b01        // Bit 1
+                    regfile_we = b1
+                    regfile_wa = d3   // P2 Button Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.IDLE
+                
+                GameStates.DECREASE_GAME_TIMER:
+                    alufn = b000001    // SUBTRACT
+                    asel = b00
+                    bsel = b01        // Bit 1
+                    regfile_we = b1
+                    regfile_wa = d7   // Timer Reg
+                    regfile_ra1 = d7    // Timer Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.CHECK_TIMER
+                
+                GameStates.CHECK_TIMER:
+                    alufn = b110011    // CMPEQ
+                    asel = b00
+                    bsel = b10        // Bit 0
+                    regfile_we = b1
+                    regfile_wa = d8   // Temp Reg to store Result of Comparison
+                    regfile_ra1 = d7    // Timer Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.BRANCH_CHECK_TIMER
+                
+                GameStates.BRANCH_CHECK_TIMER:
+                    regfile_ra2 = d8   // Temp Reg 1, storing value of comparison
+                    if (regfile_rd2[0]) {    // If timer == 0, check inputs
+                        game_fsm.d = GameStates.CHECK_P1_BUTTON_PRESS
+                    } else {
+                        game_fsm.d = GameStates.IDLE
+                    }
+                
+                GameStates.CHECK_P1_BUTTON_PRESS:
+                    alufn = b110011    // CMPEQ
+                    asel = b00
+                    bsel = b00        
+                    regfile_we = b1
+                    regfile_wa = d9   // Temp Reg 2 to store Result of Comparison
+                    regfile_ra1 = d2    // P1 Button Count Reg
+                    regfile_ra2 = d10    // Temp Reg 3, storing result of guess
+                    wdsel = b00
+                    game_fsm.d = GameStates.BRANCH_P1_BUTTON_PRESS
+                
+                GameStates.BRANCH_P1_BUTTON_PRESS:
+                    regfile_ra2 = d9   // Temp Reg 2, storing value of comparison
+                    if (regfile_rd2[0]) {    // If P1 input is same as result, increase P1 score
+                        game_fsm.d = GameStates.INCREASE_P1_SCORE
+                    } else {
+                        game_fsm.d = GameStates.CHECK_P2_BUTTON_PRESS
+                    }
+                
+                GameStates.INCREASE_P1_SCORE:
+                    alufn = b000000    // ADD
+                    asel = b00
+                    bsel = b01    // Bit 1       
+                    regfile_we = b1
+                    regfile_wa = d0   // P1 Score Reg
+                    regfile_ra1 = d0    // P1 Score Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.CHECK_P2_BUTTON_PRESS
+                
+                GameStates.CHECK_P2_BUTTON_PRESS:
+                    alufn = b110011    // CMPEQ
+                    asel = b00
+                    bsel = b00        
+                    regfile_we = b1
+                    regfile_wa = d8   // Temp Reg 1 to store Result of Comparison
+                    regfile_ra1 = d3    // P2 Button Count Reg
+                    regfile_ra2 = d10    // Temp Reg 3, storing result of guess
+                    wdsel = b00
+                    game_fsm.d = GameStates.BRANCH_P2_BUTTON_PRESS
+                
+                GameStates.BRANCH_P2_BUTTON_PRESS:
+                    regfile_ra2 = d8   // Temp Reg 1, storing value of comparison
+                    if (regfile_rd2[0]) {    // If P2 input is same as result, increase P1 score
+                        game_fsm.d = GameStates.INCREASE_P2_SCORE
+                    } else {
+                        game_fsm.d = GameStates.COMPARE_SCORES
+                    }
+                
+                GameStates.INCREASE_P2_SCORE:
+                    alufn = b000000    // ADD
+                    asel = b00
+                    bsel = b01    // Bit 1       
+                    regfile_we = b1
+                    regfile_wa = d1   // P2 Score Reg
+                    regfile_ra1 = d1    // P2 Score Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.COMPARE_SCORES
+                
+                GameStates.COMPARE_SCORES:
+                    alufn = b110101    // CMPLT, Check is P1 Score < P2 Score
+                    asel = b00
+                    bsel = b00
+                    regfile_we = b1
+                    regfile_wa = d8   // Temp Reg 1
+                    regfile_ra1 = d0    // P1 Score Reg
+                    regfile_ra2 = d1    // P2 Score Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.BRANCH_COMPARE_SCORES
+                
+                GameStates.BRANCH_COMPARE_SCORES:
+                    regfile_ra2 = d8   // Temp Reg 1, storing value of comparison
+                    if (regfile_rd2[0]) {    // If P1 Score < P2 Score, look at value of P2 Score
+                        game_fsm.d = GameStates.CHECK_P2_SCORE
+                    } else {
+                        game_fsm.d = GameStates.CHECK_P1_SCORE
+                    }
+                
+                GameStates.CHECK_P1_SCORE:
+                    alufn = b110011    // CMPEQ
+                    asel = b11        // Bit 5
+                    bsel = b00        
+                    regfile_we = b1
+                    regfile_wa = d8   // Temp Reg 1 to store Result of Comparison
+                    regfile_ra2 = d0    // P1 Score Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.BRANCH_CHECK_P1_SCORE
+                
+                GameStates.BRANCH_CHECK_P1_SCORE:
+                    regfile_ra2 = d8   // Temp Reg 1, storing value of comparison
+                    if (regfile_rd2[0]) {    // If P1 Score == 5, game over, go to check results
+                        game_fsm.d = GameStates.CHECK_DRAW
+                    } else {
+                        game_fsm.d = GameStates.RESET_TIMER
+                    }
+                
+                GameStates.CHECK_P2_SCORE:
+                    alufn = b110011    // CMPEQ
+                    asel = b11        // Bit 5
+                    bsel = b00        
+                    regfile_we = b1
+                    regfile_wa = d8   // Temp Reg 1 to store Result of Comparison
+                    regfile_ra2 = d1    // P2 Score Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.BRANCH_CHECK_P2_SCORE
+                
+                GameStates.BRANCH_CHECK_P2_SCORE:
+                    regfile_ra2 = d8   // Temp Reg 1, storing value of comparison
+                    if (regfile_rd2[0]) {    // If P2 Score == 5, game over, go to check results
+                        game_fsm.d = GameStates.CHECK_DRAW
+                    } else {
+                        game_fsm.d = GameStates.RESET_TIMER
+                    }
+                
+                GameStates.CHECK_DRAW:
+                    alufn = b110011    // CMPEQ
+                    asel = b00
+                    bsel = b00        
+                    regfile_we = b1
+                    regfile_wa = d8   // Temp Reg 1 to store Result of Comparison
+                    regfile_ra1 = d0    // P1 Score Reg
+                    regfile_ra2 = d1    // P2 Score Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.BRANCH_DRAW
+                
+                GameStates.BRANCH_DRAW:
+                    regfile_ra2 = d8   // Temp Reg 1, storing value of comparison
+                    if (regfile_rd2[0]) {    // If P1 Score == P2 Score, draw
+                        wdsel = b10
+                        regfile_we = b1
+                        regfile_wa = b0        // P1 Score Register
+                        game_fsm.d = GameStates.DRAW
+                    } else {
+                        game_fsm.d = GameStates.CHECK_WINNER
+                    }
+                
+                GameStates.DRAW:
+                    wdsel = b10                // Draw Signal
+                    regfile_we = 1 
+                    regfile_wa = d1          // P2 score reg
+                    game_fsm.d = GameStates.GAMEOVER  
+                
+                GameStates.CHECK_WINNER:
+                    alufn = b110101    // CMPLT, Check if P1 Score < P2 Score
+                    asel = b00
+                    bsel = b00        
+                    regfile_we = b1
+                    regfile_wa = d8   // Temp Reg 1 to store Result of Comparison
+                    regfile_ra1 = d0    // P1 Score Reg
+                    regfile_ra2 = d1    // P2 Score Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.BRANCH_WINNER
+                
+                GameStates.BRANCH_WINNER:
+                    regfile_ra2 = d8   // Temp Reg 1, storing value of comparison
+                    if (regfile_rd2[0]) {    // If P2 Wins
+                        game_fsm.d = GameStates.P2_WINS
+                    } else {
+                        game_fsm.d = GameStates.P1_WINS
+                    }
+                
+                GameStates.P2_WINS:
+                    regfile_we = 1
+                    regfile_wa = d1     // P2 score reg
+                    wdsel = b01           // winning signal
+                    game_fsm.d = GameStates.P1_LOSE 
+                
+                GameStates.P1_LOSE:
+                    regfile_we = 1
+                    regfile_wa = d0     // P1 score reg
+                    wdsel = b11           // losing signal
+                    game_fsm.d = GameStates.GAMEOVER 
+                
+                GameStates.P1_WINS:
+                    regfile_we = 1
+                    regfile_wa = d0     // P1 score reg
+                    wdsel = b01           // winning signal
+                    game_fsm.d = GameStates.P2_LOSE 
+                
+                GameStates.P2_LOSE:
+                    regfile_we = 1
+                    regfile_wa = d0     // P1 score reg
+                    wdsel = b11           // losing signal
+                    game_fsm.d = GameStates.GAMEOVER 
+                
+                GameStates.GAMEOVER:
+                    game_fsm.d = GameStates.GAMEOVER
             }
         }
     }

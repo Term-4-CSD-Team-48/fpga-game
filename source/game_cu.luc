@@ -2,6 +2,7 @@ module game_cu (
     input clk,  // clock
     input rst,  // reset
     input regfile_rd2[32], //direct reading of regfile data from rd2
+    input rngmodule,
     
     input p1_button_high,
     input p1_button_low,
@@ -19,7 +20,8 @@ module game_cu (
     output regfile_ra2[4],
     output regfile_we,
     output debug[4],
-    output rngsel[2]
+    output rngsel[2],
+    output rngout[4]
 ) {
     enum GameStates{
         RESET_P1SCORE,
@@ -41,7 +43,7 @@ module game_cu (
         CHECK_GUESS_LOW,
         BRANCH_GUESS_LOW,
         STORE_LOW_GUESS,
-        CHECK_HIGH_GUESS,
+        CHECK_GUESS_HIGH,
         BRANCH_GUESS_HIGH,
         STORE_HIGH_GUESS,
         STORE_IN_BETWEEN,
@@ -92,6 +94,7 @@ module game_cu (
         regfile_ra1 = d0
         regfile_ra2 = d0
         rngsel = 0
+        rngout = rngmodule
         
         debug = b0000
                 
@@ -110,6 +113,7 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d0    // P1 Score Reg
                     wdsel = b00
+                    game_fsm.d = GameStates.RESET_P2SCORE
                     
                 GameStates.RESET_P2SCORE: 
                     alufn = b000000    //ADD 
@@ -118,6 +122,7 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d1    // P2 Score Reg
                     wdsel = b00
+                    game_fsm.d = GameStates.RESET_TIMER
                 
                 GameStates.RESET_TIMER: 
                     alufn = b000000    //ADD 
@@ -126,6 +131,7 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d7    // Timer Reg
                     wdsel = b00
+                    game_fsm.d = GameStates.RESET_LOW
                 
                 GameStates.RESET_LOW: 
                     alufn = b000000    //ADD 
@@ -134,6 +140,7 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d4    // Low Bound Reg
                     wdsel = b00
+                    game_fsm.d = GameStates.RESET_HIGH
                 
                 GameStates.RESET_HIGH: 
                     alufn = b000000    //ADD 
@@ -142,6 +149,7 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d5    // High Bound Reg
                     wdsel = b00
+                    game_fsm.d = GameStates.RESET_GUESS
                 
                 GameStates.RESET_GUESS: 
                     alufn = b000000    //ADD 
@@ -150,6 +158,7 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d6    // Guess Number Reg
                     wdsel = b00
+                    game_fsm.d = GameStates.START_TIMER
                 
                 GameStates.START_TIMER: 
                     alufn = b000000    //ADD 
@@ -159,11 +168,149 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d7    // Store to Timer Reg
                     wdsel = b00
+                    game_fsm.d = GameStates.GENERATE_FIRST
                 
                 GameStates.GENERATE_FIRST: 
                     regfile_we = b1
                     regfile_wa = d8    // Store to Temp Reg 1
                     rngsel = b1
+                    game_fsm.d = GameStates.GENERATE_SECOND
+                
+                GameStates.GENERATE_SECOND: 
+                    regfile_we = b1
+                    regfile_wa = d9    // Store to Temp Reg 2
+                    rngsel = b1
+                    game_fsm.d = GameStates.COMPARE_NUMBERS
+                
+                GameStates.COMPARE_NUMBERS: 
+                    alufn = b110101    // CMPLT
+                    asel = b00
+                    bsel = b00
+                    regfile_ra1 = d8    // Temp Reg 1, Storing First Number
+                    regfile_ra2 = d9    // Temp Reg 2, Storing Second Number
+                    regfile_we = b1
+                    regfile_wa = d10    // Store to Temp Reg 3
+                    wdsel = b00
+                    rngsel = b0
+                    game_fsm.d = GameStates.BRANCH_COMPARE_NUMBERS
+                
+                GameStates.BRANCH_COMPARE_NUMBERS: 
+                    regfile_ra2 = d10    // Temp Reg 3, containing the result of comparison, 1 means reg8 < reg9
+                    if (regfile_rd2[0]) {    // If value in Reg 8 is lower than Reg 9, store low first
+                        game_fsm.d = GameStates.STORE_LOW_FIRST
+                    } else {
+                        game_fsm.d = GameStates.STORE_HIGH_FIRST
+                    }
+                
+                GameStates.STORE_LOW_FIRST:
+                    alufn = b000000    //ADD 
+                    asel = b00
+                    bsel = b10        // Bit 0
+                    regfile_we = b1
+                    regfile_ra1 = d8    // Temp Reg 1, Storing First Number
+                    regfile_wa = d4    // Low Bound Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.STORE_HIGH_SECOND
+                
+                GameStates.STORE_HIGH_SECOND:
+                    alufn = b000000    //ADD 
+                    asel = b00
+                    bsel = b10        // Bit 0
+                    regfile_we = b1
+                    regfile_ra1 = d9    // Temp Reg 2, Storing Second Number
+                    regfile_wa = d5    // High Bound Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.GENERATE_GUESS
+                
+                GameStates.STORE_HIGH_FIRST:
+                    alufn = b000000    //ADD 
+                    asel = b00
+                    bsel = b10        // Bit 0
+                    regfile_we = b1
+                    regfile_ra1 = d8    // Temp Reg 1, Storing First Number
+                    regfile_wa = d5    // High Bound Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.STORE_LOW_SECOND
+                
+                GameStates.STORE_LOW_SECOND:
+                    alufn = b000000    //ADD 
+                    asel = b00
+                    bsel = b10        // Bit 0
+                    regfile_we = b1
+                    regfile_ra1 = d9    // Temp Reg 2, Storing Second Number
+                    regfile_wa = d4    // Low Bound Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.GENERATE_GUESS
+                
+                GameStates.GENERATE_GUESS: 
+                    regfile_we = b1
+                    regfile_wa = d6    // Store to Guess Reg
+                    rngsel = b1
+                    game_fsm.d = GameStates.CHECK_GUESS_LOW
+                
+                GameStates.CHECK_GUESS_LOW:
+                    alufn = b110101    // CMPLT, Check if Guess Reg < Low Bound Reg
+                    asel = b00
+                    bsel = b00        
+                    regfile_we = b1
+                    regfile_ra1 = d6    // Guess Reg
+                    regfile_ra2 = d4    // Low Bound Reg
+                    regfile_wa = d10    // Temp Reg 3
+                    wdsel = b00
+                    rngsel = 0
+                    game_fsm.d = GameStates.BRANCH_GUESS_LOW
+                
+                GameStates.BRANCH_GUESS_LOW: 
+                    regfile_ra2 = d10    // Temp Reg 3, 1 means guess number is smaller than low bound
+                    if (regfile_rd2[0]) {
+                        game_fsm.d = GameStates.STORE_LOW_GUESS
+                    } else {
+                        game_fsm.d = GameStates.CHECK_GUESS_HIGH
+                    }
+                
+                GameStates.STORE_LOW_GUESS:    // Set register as bit 0, indicating guess is lower than lower bound.
+                    alufn = b000000    //ADD 
+                    asel = b01        // Bit 1
+                    bsel = b10        // Bit 0
+                    regfile_we = b1
+                    regfile_wa = d10    // Temp Reg 3
+                    game_fsm.d = GameStates.IDLE
+                
+                GameStates.CHECK_GUESS_HIGH:
+                    alufn = b110101    // CMPLT, Check is High Reg < Guess Reg
+                    asel = b00
+                    bsel = b00        
+                    regfile_we = b1
+                    regfile_ra1 = d5    // High Bound Reg
+                    regfile_ra2 = d6    // Guess Reg
+                    regfile_wa = d10    // Temp Reg 3
+                    wdsel = b00
+                    rngsel = 0
+                    game_fsm.d = GameStates.BRANCH_GUESS_LOW
+                
+                GameStates.BRANCH_GUESS_HIGH: 
+                    regfile_ra2 = d10    // Temp Reg 3, 1 means guess number is smaller than low bound
+                    if (regfile_rd2[0]) {
+                        game_fsm.d = GameStates.STORE_HIGH_GUESS
+                    } else {
+                        game_fsm.d = GameStates.STORE_IN_BETWEEN
+                    }
+                
+                GameStates.STORE_HIGH_GUESS:    // Set register as bit 15, indicating guess is higher than high bound.
+                    alufn = b000000    // ADD 
+                    asel = b10        // Bit 0
+                    bsel = b11        // Bit 15
+                    regfile_we = b1
+                    regfile_wa = d10    // Temp Reg 3
+                    game_fsm.d = GameStates.IDLE
+                
+                GameStates.STORE_IN_BETWEEN:    // Set register as bit 2, indicating guess is in between bounds.
+                    alufn = b000000    // ADD 
+                    asel = b01        // Bit 1
+                    bsel = b01        // Bit 1
+                    regfile_we = b1
+                    regfile_wa = d10    // Temp Reg 3
+                    game_fsm.d = GameStates.IDLE
             }
         }
     }

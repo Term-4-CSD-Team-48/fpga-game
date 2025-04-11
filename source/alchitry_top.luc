@@ -14,7 +14,7 @@ module alchitry_top (
     sig rst                 // reset signal
     const CLK_FREQ = $is_sim() ? 1000 : 100000000 // put 1000 for sim, 100M for hardware
     const CLOCK_DIVIDER = $is_sim() ? 11 : 26
-    const SLOW_CLOCK_DIV = $is_sim() ? 11 : 26
+    const SLOW_CLOCK_DIV = $is_sim() ? 9 : 26
     const SEVEN_SEG_DIV = $is_sim() ? 3 : 16 // put 3 for sim, 16 for hardware
 
     .clk(clk) {
@@ -32,7 +32,7 @@ module alchitry_top (
         edge_detector io_button_edge[5](#RISE(5x{{1}}), #FALL(5x{{0}}))
         edge_detector edge_detector_game_timer(#RISE(1), #FALL(0), .in(game_timer_clock.value))
 
-        random_number_generator generator(.slow_clk(slow_clk.value), .refresh(io_button_edge.out[0]))
+        random_number_generator generator(.slow_clk(slow_clk.value), .refresh(1))
     }
     
     bin_to_dec bin_to_dec_converter(#DIGITS(4))
@@ -60,7 +60,7 @@ module alchitry_top (
         
         //update 7segments
         seg.values = 4x{{4b0}} // default to all 0 first
-        bin_to_dec_converter.value = game_datapath.debug_out
+        bin_to_dec_converter.value = game_datapath.timer_out
         seg.values = bin_to_dec_converter.digits
 
         usb_tx = usb_rx         // echo the serial data

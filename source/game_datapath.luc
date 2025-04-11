@@ -64,21 +64,21 @@ module game_datapath#(
     }
     
     always {
-        // bootstrap rd2 output to CU for convenient branching conditions
+        // Bootstrap rd2 output to CU for convenient branching conditions
         game_cu.regfile_rd2 = game_regfiles.rd2
         debug_out = game_cu.state_debug_out
         
-        // Debugging Stuffs
+        // Debugging Signals
         game_cu.fsm_clk = debugbutton1
-        game_cu.fsm_clk2 = debugbutton2
+        //game_cu.fsm_clk2 = debugbutton2
         
         // asel mux
         case(game_cu.asel){
             b00  : input_alu_a = game_regfiles.rd1
             b01  : input_alu_a = 1 
             b10  : input_alu_a = 0
-            b11  : input_alu_a = 5
-            default : //b10 unused
+            b11  : input_alu_a = 3    // Change this value to set the timer and max score
+            default :
                 input_alu_a = 0
         }
         

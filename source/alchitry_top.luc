@@ -2,37 +2,34 @@ module alchitry_top (
     input clk,              // 100MHz clock
     input rst_n,            // reset button (active low)
     output led[8],          // 8 user controllable LEDs
-    input usb_rx,            // USB->Serial input
+    input usb_rx,           // USB->Serial input
     output usb_tx,           // USB->Serial output
     output io_led[3][8],     // LEDs on IO Shield
-    output io_segment[8],        // 7-segment LEDs on IO Shield
-    output io_select[4],        // Digit select on IO Shield
     input io_button[5],      // 5 buttons on IO Shield
-    input io_dip[3][8]       // DIP switches on IO Shield
+    input io_dip[3][8],       // DIP switches on IO Shield
+    output io_segment[8],        // 7-segment LEDs on IO Shield
+    output io_select[4]        // Digit select on IO Shield
 ) {
 
     sig rst                 // reset signal
-    sig first[32]
-    sig second[32]
+    const CLK_FREQ = $is_sim() ? 1000 : 100000000 // put 1000 for sim, 100M for hardware
     const CLOCK_DIVIDER = $is_sim() ? 11 : 26
-    const CLK_FREQ = $is_sim() ? 1000 : 100000000 // put 1000 for sim, 100M for hardware 
+    const SLOW_CLOCK_DIV = $is_sim() ? 11 : 26
     const SEVEN_SEG_DIV = $is_sim() ? 3 : 16 // put 3 for sim, 16 for hardware
 
     .clk(clk) {
         reset_conditioner reset_cond
         button_conditioner io_button_cond[5](#CLK_FREQ(5x{{CLK_FREQ}})) 
-        .rst(rst){
-             multi_seven_seg seg(#DIV(SEVEN_SEG_DIV))
-             counter slow_clk(#SIZE(1), #DIV(CLOCK_DIVIDER))
-            dff low[32]
-            dff high[32]
-            dff guess[32]
-            dff temp1[32]
-            dff temp2[32]
-            dff out[32]
-            dff light[8]
+        counter game_timer_clock(#SIZE(1),#DIV(SLOW_CLOCK_DIV), .rst(rst)) 
+        .rst(rst) {
+            counter slow_clk(#SIZE(1), #DIV(CLOCK_DIVIDER))
+            multi_seven_seg seg(#DIV(SEVEN_SEG_DIV))
+            game_datapath game_datapath(#SLOW_CLOCK_DIV(SLOW_CLOCK_DIV))
         }
+        
         edge_detector io_button_edge[5](#RISE(5x{{1}}), #FALL(5x{{0}}))
+        edge_detector edge_detector_game_timer(#RISE(1), #FALL(0), .in(game_timer_clock.value))
+
         random_number_generator generator(.slow_clk(slow_clk.value), .refresh(io_button_edge.out[0]))
     }
     
@@ -83,15 +80,35 @@ module alchitry_top (
             out.d = low.q
         }
 
-        led = light.q              // turn LEDs off
+        usb_tx = usb_rx         // echo the serial data
+        
+        io_button_cond.in = io_button
+        io_button_edge.in = io_button_cond.out
+        
+        // Debug Buttons to drive FSM
+        game_datapath.debugbutton1 = io_button_edge.out[0]
+        game_datapath.debugbutton2 = io_button_edge.out[1]
+        
+        game_datapath.p1_button_between = io_dip[2][6]
+        game_datapath.p1_button_low = io_dip[2][7]
+        game_datapath.p1_button_high = io_dip[2][5]
+        game_datapath.p2_button_low = io_dip[0][2]
+        game_datapath.p2_button_between = io_dip[0][1]
+        game_datapath.p2_button_high = io_dip[0][0]
+        game_datapath.rngmodule = generator.out
         
         //update 7segments
         seg.values = 4x{{4b0}} // default to all 0 first
-        bin_to_dec_converter.value = out.q
+        bin_to_dec_converter.value = game_datapath.debug_out
         seg.values = bin_to_dec_converter.digits
 
         usb_tx = usb_rx         // echo the serial data
-        io_led = 3x{{8b0}}
+        io_led[2] = game_datapath.low_num_out
+        io_led[1] = game_datapath.guess_num_out
+        io_led[0] = game_datapath.high_num_out
+        led[2:0] = game_datapath.p1_score_out
+        led[7:5] = game_datapath.p2_score_out
+        led[4:3] = b00
         io_segment = ~seg.seg
         io_select = ~seg.sel
     }

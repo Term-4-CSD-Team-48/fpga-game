@@ -18,8 +18,6 @@ module alchitry_top (
     const SEVEN_SEG_DIV = $is_sim() ? 3 : 16 // put 3 for sim, 16 for hardware
 
     .clk(clk) {
-        // The reset conditioner is used to synchronize the reset signal to the FPGA
-        // clock. This ensures the entire FPGA comes out of reset at the same time.
         reset_conditioner reset_cond
         button_conditioner io_button_cond[5](#CLK_FREQ(5x{{CLK_FREQ}})) 
         counter game_timer_clock(#SIZE(1),#DIV(SLOW_CLOCK_DIV), .rst(rst)) 
@@ -40,6 +38,47 @@ module alchitry_top (
     always {
         reset_cond.in = ~rst_n  // input raw inverted reset signal
         rst = reset_cond.out    // conditioned reset
+        low.d = low.q
+        high.d = high.q
+        temp1.d = temp1.q
+        temp2.d = temp2.q
+        out.d = out.q
+        light.d = light.q
+        guess.d = guess.q
+        first = 0
+        second = 0
+        
+        io_button_cond.in = io_button
+        io_button_edge.in = io_button_cond.out
+        
+        if (io_button_edge.out[0]) {
+            temp1.d = generator.out
+            light.d = 8b01
+        }
+        
+        if (io_button_edge.out[1]) {
+            temp2.d = generator.out
+            light.d = 8b10
+        }
+        
+        if (io_button_edge.out[2]) {
+            first = temp1.q
+            second = temp2.q
+            if (first < second) {
+                low.d = temp1.q
+                high.d = temp2.q
+            } else {
+                low.d = temp2.q
+                high.d = temp1.q
+            }
+            guess.d = generator.out
+            light.d = 8b11
+        }
+        if (io_button_edge.out[4]) {
+            out.d = high.q
+        } else if (io_button_edge.out[3]) {
+            out.d = low.q
+        }
 
         usb_tx = usb_rx         // echo the serial data
         

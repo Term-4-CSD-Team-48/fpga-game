@@ -22,7 +22,7 @@ module game_regfiles (
     output debug_ra1[4],
     output debug_ra2[4],
     output debug_wa[4],
-    output debug_result
+    output debug_result[32]
  
 ) 
 {

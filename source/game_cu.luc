@@ -195,10 +195,7 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d7    // Store to Timer Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.GENERATE_FIRST
-                    }
+                    game_fsm.d = GameStates.GENERATE_FIRST
                     debug.d = 8d6
                 
                 GameStates.GENERATE_FIRST: 
@@ -503,10 +500,7 @@ module game_cu (
                     regfile_wa = d7   // Timer Reg
                     regfile_ra1 = d7    // Timer Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.CHECK_TIMER
-                    }
+                    game_fsm.d = GameStates.CHECK_TIMER
                     debug.d = 8d30
                 
                 GameStates.CHECK_TIMER:

@@ -30,7 +30,7 @@ module game_datapath#(
     output debug_ra2[4],
     output debug_wa[4],
     output debug_rng[4],
-    output debug_result
+    output debug_result[32]
 ) {
     
     //temp variables
@@ -86,8 +86,8 @@ module game_datapath#(
         case(game_cu.bsel){
             b00 : input_alu_b = game_regfiles.rd2
             b01 : input_alu_b = 1
-            b11 : input_alu_b = 0
-            b10 : input_alu_b = 15
+            b10 : input_alu_b = 0
+            b11 : input_alu_b = 15
             default: //necessary to init
                 input_alu_b = 0           
         }

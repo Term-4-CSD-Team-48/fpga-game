@@ -65,7 +65,7 @@ module alchitry_top (
 
         usb_tx = usb_rx         // echo the serial data
         io_led[2] = game_datapath.low_num_out
-        io_led[1] = game_datapath.timer_out
+        io_led[1] = game_datapath.guess_num_out
         io_led[0] = game_datapath.high_num_out
         led[2:0] = game_datapath.p1_score_out
         led[7:5] = game_datapath.p2_score_out

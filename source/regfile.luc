@@ -11,11 +11,11 @@ module regfile (
     output rd2[32], // read data port 2
     
     // States
-    output p1_score_out[32], // 0x0 P1 Score Reg
-    output p2_score_out[32], // 0x1 P2 Score Reg
-    output p1_button_out[32], // 0x2 P1 Button Reg
-    output p2_button_out[32],
-    output lower_bound_out[32],
+    output p1_score_out[32],
+    output p2_score_out[32], 
+    output p1_button_out[32], 
+    output p2_button_out[32], 
+    output lower_bound_out[32], 
     output higher_bound_out[32],
     output gen_num_out[32],
     output timer_out[32]
@@ -31,8 +31,10 @@ module regfile (
             dff low_number[32](#INIT(0))
             dff high_number[32](#INIT(0))
             dff gen_number[32](#INIT(0))
-            dff current_timer[32](#INIT(0))
-            dff temp_var[32](#INIT(0))
+            dff timer[32](#INIT(0))
+            dff temp_var1[32](#INIT(0))
+            dff temp_var2[32](#INIT(0))
+            dff temp_var3[32](#INIT(0))
         }
     }
     always {
@@ -47,8 +49,10 @@ module regfile (
                 d4: low_number.d = data
                 d5: high_number.d = data
                 d6: gen_number.d = data
-                d7: current_timer.d = data
-                d8: temp_var.d = data
+                d7: timer.d = data
+                d8: temp_var1.d = data
+                d9: temp_var2.d = data
+                d10: temp_var3.d = data
             }
         }
         
@@ -61,8 +65,10 @@ module regfile (
             d4 : rd1 = low_number.q
             d5 : rd1 = high_number.q
             d6 : rd1 = gen_number.q
-            d7 : rd1 = current_timer.q
-            d8 : rd1 = temp_var.q
+            d7 : rd1 = timer.q
+            d8 : rd1 = temp_var1.q
+            d9 : rd1 = temp_var2.q
+            d10 : rd1 = temp_var3.q
             default : rd1 = 0
         }
         
@@ -75,8 +81,10 @@ module regfile (
             d4 : rd2 = low_number.q
             d5 : rd2 = high_number.q
             d6 : rd2 = gen_number.q
-            d7 : rd2 = current_timer.q
-            d8 : rd2 = temp_var.q
+            d7 : rd2 = timer.q
+            d8 : rd2 = temp_var1.q
+            d9 : rd2 = temp_var2.q
+            d10 : rd2 = temp_var3.q
             default : rd2 = 0
         }
         
@@ -87,6 +95,6 @@ module regfile (
         lower_bound_out = low_number.q
         higher_bound_out = high_number.q
         gen_num_out = gen_number.q
-        timer_out = current_timer.q
+        timer_out = timer.q
     }
 }

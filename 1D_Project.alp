@@ -68,12 +68,6 @@
             {
                 "file": {
                     "type": "Component",
-                    "path": "Miscellaneous/encoder.luc"
-                }
-            },
-            {
-                "file": {
-                    "type": "Component",
                     "path": "Miscellaneous/counter.luc"
                 }
             },
@@ -99,6 +93,12 @@
                 "file": {
                     "type": "DiskFile",
                     "path": "source/alu.luc"
+                }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/game_datapath.luc"
                 }
             }
         ],

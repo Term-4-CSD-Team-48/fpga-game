@@ -26,18 +26,13 @@ module alchitry_top (
         .rst(rst) {
             counter slow_clk(#SIZE(1), #DIV(CLOCK_DIVIDER))
             multi_seven_seg seg(#DIV(SEVEN_SEG_DIV))
+            game_datapath game_datapath(#SLOW_CLOCK_DIV(SLOW_CLOCK_DIV))
         }
         
         edge_detector io_button_edge[5](#RISE(5x{{1}}), #FALL(5x{{0}}))
         edge_detector edge_detector_game_timer(#RISE(1), #FALL(0), .in(game_timer_clock.value))
-        
-        game_cu game_cu(
-            .fsm_clk(io_button_edge.out[0]),
-            .fsm_clk2(io_button_edge.out[1]),
-            .rst(rst),
-            .decrease_timer(edge_detector_game_timer.out)
-        )
-        random_number_generator generator(.slow_clk(slow_clk.value), .refresh(io_button_edge.out[2]))
+
+        random_number_generator generator(.slow_clk(slow_clk.value), .refresh(io_button_edge.out[0]))
     }
     
     bin_to_dec bin_to_dec_converter(#DIGITS(4))
@@ -50,25 +45,31 @@ module alchitry_top (
         
         io_button_cond.in = io_button
         io_button_edge.in = io_button_cond.out
-        game_cu.p1_button_between = io_dip[2][6]
-        game_cu.p1_button_low = io_dip[2][7]
-        game_cu.p1_button_high = io_dip[2][5]
-        game_cu.p2_button_low = io_dip[0][2]
-        game_cu.p2_button_between = io_dip[0][1]
-        game_cu.p2_button_high = io_dip[0][0]
-        game_cu.regfile_rd2 = 1
-        game_cu.rngmodule = generator.out
+        
+        // Debug Buttons to drive FSM
+        game_datapath.debugbutton1 = io_button_edge.out[0]
+        game_datapath.debugbutton2 = io_button_edge.out[1]
+        
+        game_datapath.p1_button_between = io_dip[2][6]
+        game_datapath.p1_button_low = io_dip[2][7]
+        game_datapath.p1_button_high = io_dip[2][5]
+        game_datapath.p2_button_low = io_dip[0][2]
+        game_datapath.p2_button_between = io_dip[0][1]
+        game_datapath.p2_button_high = io_dip[0][0]
+        game_datapath.rngmodule = generator.out
         
         //update 7segments
         seg.values = 4x{{4b0}} // default to all 0 first
-        bin_to_dec_converter.value = game_cu.state_debug_out
+        bin_to_dec_converter.value = game_datapath.debug_out
         seg.values = bin_to_dec_converter.digits
 
         usb_tx = usb_rx         // echo the serial data
-        io_led[2] = game_cu.regfile_ra1
-        io_led[1] = game_cu.regfile_ra2
-        io_led[0] = game_cu.regfile_wa
-        led = game_cu.alufn
+        io_led[2] = game_datapath.low_num_out
+        io_led[1] = game_datapath.timer_out
+        io_led[0] = game_datapath.high_num_out
+        led[2:0] = game_datapath.p1_score_out
+        led[7:5] = game_datapath.p2_score_out
+        led[4:3] = b00
         io_segment = ~seg.seg
         io_select = ~seg.sel
     }

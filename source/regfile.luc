@@ -1,4 +1,4 @@
-module regfile (
+module game_regfiles (
     input clk,  // clock
     input rst,  // reset
     input wa[4], // write address
@@ -17,8 +17,12 @@ module regfile (
     output p2_button_out[32], 
     output lower_bound_out[32], 
     output higher_bound_out[32],
-    output gen_num_out[32],
-    output timer_out[32]
+    output guess_num_out[32],
+    output timer_out[32],
+    output debug_ra1[4],
+    output debug_ra2[4],
+    output debug_wa[4],
+    output debug_result
  
 ) 
 {
@@ -30,7 +34,7 @@ module regfile (
             dff p2_button_press[32](#INIT(0))
             dff low_number[32](#INIT(0))
             dff high_number[32](#INIT(0))
-            dff gen_number[32](#INIT(0))
+            dff guess_number[32](#INIT(0))
             dff timer[32](#INIT(0))
             dff temp_var1[32](#INIT(0))
             dff temp_var2[32](#INIT(0))
@@ -48,7 +52,7 @@ module regfile (
                 d3: p2_button_press.d = data
                 d4: low_number.d = data
                 d5: high_number.d = data
-                d6: gen_number.d = data
+                d6: guess_number.d = data
                 d7: timer.d = data
                 d8: temp_var1.d = data
                 d9: temp_var2.d = data
@@ -64,7 +68,7 @@ module regfile (
             d3 : rd1 = p2_button_press.q
             d4 : rd1 = low_number.q
             d5 : rd1 = high_number.q
-            d6 : rd1 = gen_number.q
+            d6 : rd1 = guess_number.q
             d7 : rd1 = timer.q
             d8 : rd1 = temp_var1.q
             d9 : rd1 = temp_var2.q
@@ -80,7 +84,7 @@ module regfile (
             d3 : rd2 = p2_button_press.q
             d4 : rd2 = low_number.q
             d5 : rd2 = high_number.q
-            d6 : rd2 = gen_number.q
+            d6 : rd2 = guess_number.q
             d7 : rd2 = timer.q
             d8 : rd2 = temp_var1.q
             d9 : rd2 = temp_var2.q
@@ -94,7 +98,11 @@ module regfile (
         p2_button_out = p2_button_press.q
         lower_bound_out = low_number.q
         higher_bound_out = high_number.q
-        gen_num_out = gen_number.q
+        guess_num_out = guess_number.q
         timer_out = timer.q
+        debug_ra1 = ra1
+        debug_ra2 = ra2
+        debug_wa = wa
+        debug_result = temp_var3.q
     }
 }

@@ -8,18 +8,18 @@
   - LOW (below the lower bound)
   - IN-BETWEEN (within the given range)
   - HIGH (above the upper bound)
-- Players have 5 seconds to make their guess
+- Players have 3 seconds to make their guess
 - Correct guesses earn 1 point
-- First player to reach 5 points wins
+- First player to reach 3 points wins
 
 ## Display Information
 The game features 6 seven-segment displays showing:
 1. Lower Bound
 2. Generated Number (revealed after countdown)
 3. Upper Bound
-4. Player 1's Score (0-5)
-5. Countdown Timer (5 seconds)
-6. Player 2's Score (0-5)
+4. Player 1's Score
+5. Countdown Timer (3 seconds)
+6. Player 2's Score
 
 ## Example Gameplay
 If the range shown is 2 to 9:
@@ -28,7 +28,7 @@ If the range shown is 2 to 9:
 - Numbers 10-15 are HIGH
 
 ## Hardware Requirements
-- FPGA Board (specify your board model)
+- FPGA Board
 - 6 Seven-segment displays
 - Input buttons/switches for player controls
 
@@ -46,6 +46,15 @@ If the range shown is 2 to 9:
 - System:
   - Reset button
   - Start game button
+
+## Automatic Tester on Simulation Mode
+1. Clone the datapath-autotester branch
+2. Open the project in Alchitry Labs
+3. Simulate to play
+4. io_dip[2] represents P1 control, [2][7] for Low, [2][6] for In Between, [2][5] for High.
+5. io_dip[0] represents P2 control, [0][2] for Low, [0][1] for In Between, [0][0] for High.
+6. 7 Segments show the timer, led[2:0] for P1 Score, led[7:5] for P2 Score
+7. io_led[2] for Lower Bound Number, io_led[1] for Guess Number, io_led[0] for Higher Bound Number.
 
 ## Setup and Installation
 1. Clone this repository

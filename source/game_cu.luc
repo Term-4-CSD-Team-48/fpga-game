@@ -1,6 +1,6 @@
 module game_cu (
     input clk,
-    input fsm_clk,  // clock
+    //input fsm_clk,  // clock
     //input fsm_clk2,
     input rst,  // reset
     input regfile_rd2[32], //direct reading of regfile data from rd2
@@ -90,7 +90,7 @@ module game_cu (
     //sig advance2
     
     always {
-        advance = fsm_clk
+        //advance = fsm_clk
         //advance2 = fsm_clk2
         debug.d = debug.q
         state_debug_out = debug.q 

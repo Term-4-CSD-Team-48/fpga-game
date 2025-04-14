@@ -126,6 +126,7 @@ module game_datapath#(
         guess_num_out = game_regfiles.guess_num_out
         display_out = game_regfiles.display_out
         
+        // Debugging State Signals
         debug_result = game_regfiles.debug_result
         
         // Debug Signals

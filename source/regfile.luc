@@ -22,8 +22,10 @@ module game_regfiles (
     output higher_bound_out[32],
     output guess_num_out[32],
     output display_out[32],
-    //output display_timer_out[32],
     output timer_out[32],
+    
+    // Debug Signals
+    //output display_timer_out[32],
     output debug_ra1[4],
     output debug_ra2[4],
     output debug_wa[4],
@@ -120,6 +122,8 @@ module game_regfiles (
         higher_bound_out = high_number.q
         guess_num_out = guess_number.q
         timer_out = timer.q
+        
+        // Debug Signals
         debug_ra1 = ra1
         debug_ra2 = ra2
         debug_wa = wa

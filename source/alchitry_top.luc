@@ -89,8 +89,8 @@ module alchitry_top (
         //game_datapath.debugbutton1 = io_button_edge.out[0]
         //game_datapath.debugbutton2 = io_button_edge.out[1]
         
-        game_datapath.p1_button_between = io_dip[2][6]    // Replace io_dip with P1 In Between Button
         game_datapath.p1_button_low = io_dip[2][7]        // Replace io_dip with P1 Low Button
+        game_datapath.p1_button_between = io_dip[2][6]    // Replace io_dip with P1 In Between Button
         game_datapath.p1_button_high = io_dip[2][5]       // Replace io_dip with P1 High Button
         game_datapath.p2_button_low = io_dip[0][2]        // Replace io_dip with P2 Low Button
         game_datapath.p2_button_between = io_dip[0][1]    // Replace io_dip with P2 In Between Button
@@ -104,7 +104,7 @@ module alchitry_top (
 
         usb_tx = usb_rx         // echo the serial data
         io_led[2] = game_datapath.low_num_out            // Replace io_led with 7 Segment for Low Number
-        io_led[1] = game_datapath.display_out          // Replace io_led with 7 Segment for Guess Number
+        io_led[1] = game_datapath.guess_num_out          // Replace io_led with 7 Segment for Guess Number
         io_led[0] = game_datapath.high_num_out           // Replace io_led with 7 Segment for High Number
         led[2:0] = game_datapath.p1_score_out            // Replace led with 7 Segment for P1 Score
         led[7:5] = game_datapath.p2_score_out            // Replace led with 7 Segment for P2 Score

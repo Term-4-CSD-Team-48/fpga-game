@@ -1,7 +1,7 @@
 module game_cu (
     input clk,
-    input fsm_clk,  // clock
-    input fsm_clk2,
+    //input fsm_clk,  // clock
+    //input fsm_clk2,
     input rst,  // reset
     input regfile_rd2[32], //direct reading of regfile data from rd2
     input decrease_timer,
@@ -29,6 +29,9 @@ module game_cu (
     enum GameStates{
         RESET_P1SCORE,
         RESET_P2SCORE,
+        RESET_P1PRESS,
+        RESET_P2PRESS,
+        RESET_DISPLAY,
         RESET_TIMER,
         RESET_LOW,
         RESET_HIGH,
@@ -60,6 +63,12 @@ module game_cu (
         DECREASE_GAME_TIMER,
         CHECK_TIMER,
         BRANCH_CHECK_TIMER,
+        COPY_GEN_DISPLAY,
+        SET_TIMER_DISPLAY,
+        IDLE_DISPLAY_TIMER,
+        DECREASE_DISPLAY_TIMER,
+        CHECK_DISPLAY_TIMER,
+        BRANCH_DISPLAY_TIMER,
         CHECK_P1_BUTTON_PRESS,
         BRANCH_P1_BUTTON_PRESS,
         INCREASE_P1_SCORE,
@@ -87,11 +96,11 @@ module game_cu (
     dff game_fsm[$width(GameStates)](#INIT(GameStates.RESET_P1SCORE), .clk(clk), .rst(rst))
     dff debug[8](.clk(clk), .rst(rst), #INIT(0))
     sig advance 
-    sig advance2
+    //sig advance2
     
     always {
-        advance = fsm_clk
-        advance2 = fsm_clk2
+        //advance = fsm_clk
+        //advance2 = fsm_clk2
         debug.d = debug.q
         state_debug_out = debug.q 
         
@@ -121,10 +130,7 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d0    // P1 Score Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.RESET_P2SCORE
-                    }
+                    game_fsm.d = GameStates.RESET_P2SCORE
                     debug.d = 8d0
                     
                 GameStates.RESET_P2SCORE: 
@@ -133,10 +139,18 @@ module game_cu (
                     bsel = b10        // Bit 0
                     regfile_wa = d1    // P2 Score Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.RESET_TIMER
-                    }
+                    regfile_we = b1
+                    game_fsm.d = GameStates.RESET_DISPLAY
+                    debug.d = 8d1
+                
+                GameStates.RESET_DISPLAY:
+                    alufn = b000000    //ADD 
+                    asel = b10        // Bit 0
+                    bsel = b10        // Bit 0
+                    regfile_wa = d11    // Display Score Reg
+                    wdsel = b00
+                    regfile_we = b1
+                    game_fsm.d = GameStates.RESET_TIMER
                     debug.d = 8d1
                 
                 GameStates.RESET_TIMER: 
@@ -145,11 +159,9 @@ module game_cu (
                     bsel = b10        // Bit 0
                     regfile_wa = d7    // Timer Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.RESET_LOW
-                    }
-                    debug.d = 8d2
+                    regfile_we = b1
+                    game_fsm.d = GameStates.RESET_LOW
+                    debug.d = 8d93
                 
                 GameStates.RESET_LOW: 
                     alufn = b000000    //ADD 
@@ -157,10 +169,8 @@ module game_cu (
                     bsel = b10        // Bit 0
                     regfile_wa = d4    // Low Bound Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.RESET_HIGH
-                    }
+                    regfile_we = b1
+                    game_fsm.d = GameStates.RESET_HIGH
                     debug.d = 8d3
                 
                 GameStates.RESET_HIGH: 
@@ -170,10 +180,7 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d5    // High Bound Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.RESET_GUESS
-                    }
+                    game_fsm.d = GameStates.RESET_GUESS
                     debug.d = 8d4
                 
                 GameStates.RESET_GUESS: 
@@ -183,11 +190,28 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d6    // Guess Number Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.START_TIMER
-                    }
+                    game_fsm.d = GameStates.RESET_P1PRESS
                     debug.d = 8d5
+                
+                GameStates.RESET_P1PRESS: 
+                    alufn = b000000    //ADD 
+                    asel = b10        // Bit 0
+                    bsel = b10        // Bit 0
+                    regfile_wa = d2    // P1 Press Reg
+                    wdsel = b00
+                    regfile_we = b1
+                    game_fsm.d = GameStates.RESET_P2PRESS
+                    debug.d = 8d91
+                
+                GameStates.RESET_P2PRESS: 
+                    alufn = b000000    //ADD 
+                    asel = b10        // Bit 0
+                    bsel = b10        // Bit 0
+                    regfile_wa = d3    // P1 Press Reg
+                    wdsel = b00
+                    regfile_we = b1
+                    game_fsm.d = GameStates.START_TIMER
+                    debug.d = 8d91
                 
                 GameStates.START_TIMER: 
                     alufn = b000000    //ADD 
@@ -204,20 +228,14 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d8    // Store to Temp Reg 1
                     rngsel = b1
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.GENERATE_SECOND
-                    }
+                    game_fsm.d = GameStates.GENERATE_SECOND
                     debug.d = 8d7
                 
                 GameStates.GENERATE_SECOND: 
                     regfile_we = b1
                     regfile_wa = d9    // Store to Temp Reg 2
                     rngsel = b1
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.COMPARE_NUMBERS
-                    }
+                    game_fsm.d = GameStates.COMPARE_NUMBERS
                     debug.d = 8d8
                 
                 
@@ -231,10 +249,7 @@ module game_cu (
                     regfile_wa = d10    // Store to Temp Reg 3
                     wdsel = b00
                     rngsel = b0
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.BRANCH_COMPARE_NUMBERS
-                    }
+                    game_fsm.d = GameStates.BRANCH_COMPARE_NUMBERS
                     debug.d = 8d9
                 
                 GameStates.BRANCH_COMPARE_NUMBERS: 
@@ -254,10 +269,7 @@ module game_cu (
                     regfile_ra1 = d8    // Temp Reg 1, Storing First Number
                     regfile_wa = d4    // Low Bound Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.STORE_HIGH_SECOND
-                    }
+                    game_fsm.d = GameStates.STORE_HIGH_SECOND
                     debug.d = 8d11
                 
                 GameStates.STORE_HIGH_SECOND:
@@ -268,10 +280,7 @@ module game_cu (
                     regfile_ra1 = d9    // Temp Reg 2, Storing Second Number
                     regfile_wa = d5    // High Bound Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.GENERATE_GUESS
-                    }
+                    game_fsm.d = GameStates.GENERATE_GUESS
                     debug.d = 8d12
                 
                 GameStates.STORE_HIGH_FIRST:
@@ -282,10 +291,7 @@ module game_cu (
                     regfile_ra1 = d8    // Temp Reg 1, Storing First Number
                     regfile_wa = d5    // High Bound Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.STORE_LOW_SECOND
-                    }
+                    game_fsm.d = GameStates.STORE_LOW_SECOND
                     debug.d = 8d13
                 
                 GameStates.STORE_LOW_SECOND:
@@ -296,20 +302,14 @@ module game_cu (
                     regfile_ra1 = d9    // Temp Reg 2, Storing Second Number
                     regfile_wa = d4    // Low Bound Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.GENERATE_GUESS
-                    }
+                    game_fsm.d = GameStates.GENERATE_GUESS
                     debug.d = 8d14
                 
                 GameStates.GENERATE_GUESS: 
                     regfile_we = b1
                     regfile_wa = d6    // Store to Guess Reg
                     rngsel = b1
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.CHECK_GUESS_LOW
-                    }
+                    game_fsm.d = GameStates.CHECK_GUESS_LOW
                     debug.d = 8d15
                 
                 GameStates.CHECK_GUESS_LOW:
@@ -322,10 +322,7 @@ module game_cu (
                     regfile_wa = d10    // Temp Reg 3
                     wdsel = b00
                     rngsel = 0
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.BRANCH_GUESS_LOW
-                    }
+                    game_fsm.d = GameStates.BRANCH_GUESS_LOW
                     debug.d = 8d16
                 
                 GameStates.BRANCH_GUESS_LOW: 
@@ -343,10 +340,7 @@ module game_cu (
                     bsel = b10        // Bit 0
                     regfile_we = b1
                     regfile_wa = d10    // Temp Reg 3
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.IDLE
-                    }
+                    game_fsm.d = GameStates.IDLE
                     debug.d = 8d18
                 
                 GameStates.CHECK_GUESS_HIGH:
@@ -359,10 +353,7 @@ module game_cu (
                     regfile_wa = d10    // Temp Reg 3
                     wdsel = b00
                     rngsel = 0
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.BRANCH_GUESS_HIGH
-                    }
+                    game_fsm.d = GameStates.BRANCH_GUESS_HIGH
                     debug.d = 8d19
                 
                 GameStates.BRANCH_GUESS_HIGH: 
@@ -380,10 +371,7 @@ module game_cu (
                     bsel = b11        // Bit 15
                     regfile_we = b1
                     regfile_wa = d10    // Temp Reg 3
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.IDLE
-                    }
+                    game_fsm.d = GameStates.IDLE
                     debug.d = 8d21
                 
                 GameStates.STORE_IN_BETWEEN:    // Set register as bit 2, indicating guess is in between bounds.
@@ -392,14 +380,11 @@ module game_cu (
                     bsel = b01        // Bit 1
                     regfile_we = b1
                     regfile_wa = d10    // Temp Reg 3
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.IDLE
-                    }
+                    game_fsm.d = GameStates.IDLE
                     debug.d = 8d22
                 
                 GameStates.IDLE:
-                    if (advance) {
+                    if (decrease_timer) {
                         game_fsm.d = GameStates.DECREASE_GAME_TIMER
                     } else if (p1_button_low) {
                         game_fsm.d = GameStates.SET_P1_BUTTON_LOW
@@ -423,10 +408,7 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d2    // P1 Button Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.IDLE
-                    }
+                    game_fsm.d = GameStates.IDLE
                     debug.d = 8d24
                 
                 GameStates.SET_P1_BUTTON_HIGH:
@@ -436,10 +418,7 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d2    // P1 Button Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.IDLE
-                    }
+                    game_fsm.d = GameStates.IDLE
                     debug.d = 8d25
                 
                 GameStates.SET_P1_BUTTON_IN_BETWEEN:
@@ -449,10 +428,7 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d2    // P1 Button Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.IDLE
-                    }
+                    game_fsm.d = GameStates.IDLE
                     debug.d = 8d26
                 
                 GameStates.SET_P2_BUTTON_LOW:
@@ -462,10 +438,7 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d3    // P2 Button Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.IDLE
-                    }
+                    game_fsm.d = GameStates.IDLE
                     debug.d = 8d27
                 
                 GameStates.SET_P2_BUTTON_HIGH:
@@ -475,10 +448,7 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d3    // P2 Button Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.IDLE
-                    }
+                    game_fsm.d = GameStates.IDLE
                     debug.d = 8d28
                 
                 GameStates.SET_P2_BUTTON_IN_BETWEEN:
@@ -488,10 +458,7 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d3   // P2 Button Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.IDLE
-                    }
+                    game_fsm.d = GameStates.IDLE
                     debug.d = 8d29
                 
                 GameStates.DECREASE_GAME_TIMER:
@@ -513,20 +480,75 @@ module game_cu (
                     regfile_wa = d8   // Temp Reg to store Result of Comparison
                     regfile_ra1 = d7    // Timer Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.BRANCH_CHECK_TIMER
-                    }
+                    game_fsm.d = GameStates.BRANCH_CHECK_TIMER
                     debug.d = 8d31
                 
                 GameStates.BRANCH_CHECK_TIMER:
                     regfile_ra2 = d8   // Temp Reg 1, storing value of comparison
                     if (regfile_rd2[0]) {    // If timer == 0, check inputs
-                        game_fsm.d = GameStates.CHECK_P1_BUTTON_PRESS
+                        game_fsm.d = GameStates.COPY_GEN_DISPLAY
                     } else {
                         game_fsm.d = GameStates.IDLE
                     }
                     debug.d = 8d32
+                
+                GameStates.COPY_GEN_DISPLAY:
+                    alufn = b000000    //ADD 
+                    asel = b00        
+                    bsel = b10        // Bit 0
+                    regfile_wa = d11    // Display Score Reg
+                    regfile_ra1 = d6    // Generated Num Reg
+                    wdsel = b00
+                    regfile_we = b1
+                    game_fsm.d = GameStates.SET_TIMER_DISPLAY
+                    debug.d = 8d91
+                
+                GameStates.SET_TIMER_DISPLAY:
+                    alufn = b000000    //ADD 
+                    asel = b01        // Bit 1       
+                    bsel = b01        // Bit 1
+                    regfile_wa = d12    // Timer Reg
+                    wdsel = b00
+                    regfile_we = b1
+                    game_fsm.d = GameStates.IDLE_DISPLAY_TIMER
+                    debug.d = 8d92
+                
+                GameStates.IDLE_DISPLAY_TIMER:
+                    if (decrease_timer) {
+                        game_fsm.d = GameStates.DECREASE_DISPLAY_TIMER
+                    }
+                    debug.d = 8d96
+                
+                GameStates.DECREASE_DISPLAY_TIMER:
+                    alufn = b000001    // SUBTRACT
+                    asel = b00
+                    bsel = b01        // Bit 1
+                    regfile_we = b1
+                    regfile_wa = d12   // Timer Reg
+                    regfile_ra1 = d12    // Timer Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.CHECK_DISPLAY_TIMER
+                    debug.d = 8d93
+                
+                GameStates.CHECK_DISPLAY_TIMER:
+                    alufn = b110011    // CMPEQ
+                    asel = b00
+                    bsel = b10        // Bit 0
+                    regfile_we = b1
+                    regfile_wa = d8   // Temp Reg to store Result of Comparison
+                    regfile_ra1 = d12    // Timer Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.BRANCH_DISPLAY_TIMER
+                    debug.d = 8d94
+                
+                GameStates.BRANCH_DISPLAY_TIMER:
+                    regfile_ra2 = d8   // Temp Reg 1, storing value of comparison
+                    if (regfile_rd2[0]) {    // If timer == 0, check inputs
+                        game_fsm.d = GameStates.CHECK_P1_BUTTON_PRESS
+                    } else {
+                        game_fsm.d = GameStates.IDLE_DISPLAY_TIMER
+                    }
+                    debug.d = 8d95
                 
                 GameStates.CHECK_P1_BUTTON_PRESS:
                     alufn = b110011    // CMPEQ
@@ -537,10 +559,7 @@ module game_cu (
                     regfile_ra1 = d2    // P1 Button Count Reg
                     regfile_ra2 = d10    // Temp Reg 3, storing result of guess
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.BRANCH_P1_BUTTON_PRESS
-                    }
+                    game_fsm.d = GameStates.BRANCH_P1_BUTTON_PRESS
                     debug.d = 8d33
                 
                 GameStates.BRANCH_P1_BUTTON_PRESS:
@@ -572,10 +591,7 @@ module game_cu (
                     regfile_ra1 = d3    // P2 Button Count Reg
                     regfile_ra2 = d10    // Temp Reg 3, storing result of guess
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.BRANCH_P2_BUTTON_PRESS
-                    }
+                    game_fsm.d = GameStates.BRANCH_P2_BUTTON_PRESS
                     debug.d = 8d36
                 
                 GameStates.BRANCH_P2_BUTTON_PRESS:
@@ -607,10 +623,7 @@ module game_cu (
                     regfile_ra1 = d0    // P1 Score Reg
                     regfile_ra2 = d1    // P2 Score Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.BRANCH_COMPARE_SCORES
-                    }
+                    game_fsm.d = GameStates.BRANCH_COMPARE_SCORES
                     debug.d = 8d39
                 
                 GameStates.BRANCH_COMPARE_SCORES:
@@ -630,10 +643,7 @@ module game_cu (
                     regfile_wa = d8   // Temp Reg 1 to store Result of Comparison
                     regfile_ra2 = d0    // P1 Score Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.BRANCH_CHECK_P1_SCORE
-                    }
+                    game_fsm.d = GameStates.BRANCH_CHECK_P1_SCORE
                     debug.d = 8d41
                 
                 GameStates.BRANCH_CHECK_P1_SCORE:
@@ -641,7 +651,7 @@ module game_cu (
                     if (regfile_rd2[0]) {    // If P1 Score == 5, game over, go to check results
                         game_fsm.d = GameStates.CHECK_DRAW
                     } else {
-                        game_fsm.d = GameStates.RESET_TIMER
+                        game_fsm.d = GameStates.RESET_DISPLAY
                     }
                     debug.d = 8d42
                 
@@ -653,10 +663,7 @@ module game_cu (
                     regfile_wa = d8   // Temp Reg 1 to store Result of Comparison
                     regfile_ra2 = d1    // P2 Score Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.BRANCH_CHECK_P2_SCORE
-                    }
+                    game_fsm.d = GameStates.BRANCH_CHECK_P2_SCORE
                     debug.d = 8d43
                 
                 GameStates.BRANCH_CHECK_P2_SCORE:
@@ -664,7 +671,7 @@ module game_cu (
                     if (regfile_rd2[0]) {    // If P2 Score == 5, game over, go to check results
                         game_fsm.d = GameStates.CHECK_DRAW
                     } else {
-                        game_fsm.d = GameStates.RESET_TIMER
+                        game_fsm.d = GameStates.RESET_DISPLAY
                     }
                     debug.d = 8d44
                 
@@ -677,10 +684,7 @@ module game_cu (
                     regfile_ra1 = d0    // P1 Score Reg
                     regfile_ra2 = d1    // P2 Score Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.BRANCH_DRAW
-                    }
+                    game_fsm.d = GameStates.BRANCH_DRAW
                     debug.d = 8d45
                 
                 GameStates.BRANCH_DRAW:
@@ -699,10 +703,7 @@ module game_cu (
                     wdsel = b10                // Draw Signal
                     regfile_we = 1 
                     regfile_wa = d1          // P2 score reg
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.GAMEOVER
-                    }
+                    game_fsm.d = GameStates.GAMEOVER
                     debug.d = 8d47 
                 
                 GameStates.CHECK_WINNER:
@@ -714,10 +715,7 @@ module game_cu (
                     regfile_ra1 = d0    // P1 Score Reg
                     regfile_ra2 = d1    // P2 Score Reg
                     wdsel = b00
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.BRANCH_WINNER
-                    }
+                    game_fsm.d = GameStates.BRANCH_WINNER
                     debug.d = 8d48
                 
                 GameStates.BRANCH_WINNER:
@@ -733,40 +731,28 @@ module game_cu (
                     regfile_we = 1
                     regfile_wa = d1     // P2 score reg
                     wdsel = b01           // winning signal
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.P1_LOSE
-                    }
+                    game_fsm.d = GameStates.P1_LOSE
                     debug.d = 8d50
                 
                 GameStates.P1_LOSE:
                     regfile_we = 1
                     regfile_wa = d0     // P1 score reg
                     wdsel = b11           // losing signal
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.GAMEOVER
-                    }
+                    game_fsm.d = GameStates.GAMEOVER
                     debug.d = 8d51
                 
                 GameStates.P1_WINS:
                     regfile_we = 1
                     regfile_wa = d0     // P1 score reg
                     wdsel = b01           // winning signal
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.P2_LOSE
-                    }
+                    game_fsm.d = GameStates.P2_LOSE
                     debug.d = 8d52
                 
                 GameStates.P2_LOSE:
                     regfile_we = 1
                     regfile_wa = d1     // P2 score reg
                     wdsel = b11           // losing signal
-                    if (advance) {
-                        regfile_we = b1
-                        game_fsm.d = GameStates.GAMEOVER
-                    }
+                    game_fsm.d = GameStates.GAMEOVER
                     debug.d = 8d53
                 
                 GameStates.GAMEOVER:

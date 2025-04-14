@@ -4,8 +4,8 @@ module game_datapath#(
     input clk,  // clock
     input rst,  // reset
     
-    input debugbutton1,
-    input debugbutton2,
+    //input debugbutton1,
+    //input debugbutton2,
     input rngmodule[4],
     input p1_button_low,
     input p1_button_high,
@@ -22,6 +22,7 @@ module game_datapath#(
     output low_num_out[4],
     output high_num_out[4],
     output guess_num_out[4],
+    output display_out[4],
     output timer_out[32],
     output slow_clock_out,
     output debug_out[8],
@@ -64,21 +65,21 @@ module game_datapath#(
     }
     
     always {
-        // bootstrap rd2 output to CU for convenient branching conditions
+        // Bootstrap rd2 output to CU for convenient branching conditions
         game_cu.regfile_rd2 = game_regfiles.rd2
         debug_out = game_cu.state_debug_out
         
-        // Debugging Stuffs
-        game_cu.fsm_clk = debugbutton1
-        game_cu.fsm_clk2 = debugbutton2
+        // Debugging Signals
+        //game_cu.fsm_clk = debugbutton1
+        //game_cu.fsm_clk2 = debugbutton2
         
         // asel mux
         case(game_cu.asel){
             b00  : input_alu_a = game_regfiles.rd1
             b01  : input_alu_a = 1 
             b10  : input_alu_a = 0
-            b11  : input_alu_a = 5
-            default : //b10 unused
+            b11  : input_alu_a = 3    // Change this value to set the timer and max score
+            default :
                 input_alu_a = 0
         }
         
@@ -123,6 +124,7 @@ module game_datapath#(
         low_num_out = game_regfiles.lower_bound_out
         high_num_out = game_regfiles.higher_bound_out
         guess_num_out = game_regfiles.guess_num_out
+        display_out = game_regfiles.display_out
         
         debug_result = game_regfiles.debug_result
         

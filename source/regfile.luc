@@ -21,6 +21,8 @@ module game_regfiles (
     output lower_bound_out[32], 
     output higher_bound_out[32],
     output guess_num_out[32],
+    output display_out[32],
+    //output display_timer_out[32],
     output timer_out[32],
     output debug_ra1[4],
     output debug_ra2[4],
@@ -44,6 +46,8 @@ module game_regfiles (
             dff temp_var1[32](#INIT(0))
             dff temp_var2[32](#INIT(0))
             dff temp_var3[32](#INIT(0))
+            dff display[32](#INIT(0))
+            dff display_timer[32](#INIT(0))
         }
     }
     
@@ -67,6 +71,8 @@ module game_regfiles (
                 d8: temp_var1.d = data
                 d9: temp_var2.d = data
                 d10: temp_var3.d = data
+                d11: display.d = data
+                d12: display_timer.d = data
             }
         }
         
@@ -83,6 +89,8 @@ module game_regfiles (
             d8 : rd1 = temp_var1.q
             d9 : rd1 = temp_var2.q
             d10 : rd1 = temp_var3.q
+            d11: rd1 = display.q
+            d12: rd1 = display_timer.q
             default : rd1 = 0
         }
         
@@ -99,6 +107,8 @@ module game_regfiles (
             d8 : rd2 = temp_var1.q
             d9 : rd2 = temp_var2.q
             d10 : rd2 = temp_var3.q
+            d11: rd2 = display.q
+            d12: rd2 = display_timer.q
             default : rd2 = 0
         }
         
@@ -114,5 +124,7 @@ module game_regfiles (
         debug_ra2 = ra2
         debug_wa = wa
         debug_result = temp_var3.q
+        display_out = display.q
+        //display_timer_out = display_timer.q
     }
 }

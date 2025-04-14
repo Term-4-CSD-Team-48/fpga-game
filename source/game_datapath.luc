@@ -22,6 +22,7 @@ module game_datapath#(
     output low_num_out[4],
     output high_num_out[4],
     output guess_num_out[4],
+    output display_out[4],
     output timer_out[32],
     output slow_clock_out,
     output debug_out[8],
@@ -123,6 +124,7 @@ module game_datapath#(
         low_num_out = game_regfiles.lower_bound_out
         high_num_out = game_regfiles.higher_bound_out
         guess_num_out = game_regfiles.guess_num_out
+        display_out = game_regfiles.display_out
         
         debug_result = game_regfiles.debug_result
         

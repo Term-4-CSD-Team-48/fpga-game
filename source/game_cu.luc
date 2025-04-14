@@ -29,6 +29,7 @@ module game_cu (
         RESET_P2SCORE,
         RESET_P1PRESS,
         RESET_P2PRESS,
+        RESET_DISPLAY,
         RESET_TIMER,
         RESET_LOW,
         RESET_HIGH,
@@ -60,6 +61,12 @@ module game_cu (
         DECREASE_GAME_TIMER,
         CHECK_TIMER,
         BRANCH_CHECK_TIMER,
+        COPY_GEN_DISPLAY,
+        SET_TIMER_DISPLAY,
+        IDLE_DISPLAY_TIMER,
+        DECREASE_DISPLAY_TIMER,
+        CHECK_DISPLAY_TIMER,
+        BRANCH_DISPLAY_TIMER,
         CHECK_P1_BUTTON_PRESS,
         BRANCH_P1_BUTTON_PRESS,
         INCREASE_P1_SCORE,
@@ -129,6 +136,16 @@ module game_cu (
                     asel = b10        // Bit 0
                     bsel = b10        // Bit 0
                     regfile_wa = d1    // P2 Score Reg
+                    wdsel = b00
+                    regfile_we = b1
+                    game_fsm.d = GameStates.RESET_DISPLAY
+                    debug.d = 8d1
+                
+                GameStates.RESET_DISPLAY:
+                    alufn = b000000    //ADD 
+                    asel = b10        // Bit 0
+                    bsel = b10        // Bit 0
+                    regfile_wa = d11    // Display Score Reg
                     wdsel = b00
                     regfile_we = b1
                     game_fsm.d = GameStates.RESET_TIMER
@@ -467,11 +484,69 @@ module game_cu (
                 GameStates.BRANCH_CHECK_TIMER:
                     regfile_ra2 = d8   // Temp Reg 1, storing value of comparison
                     if (regfile_rd2[0]) {    // If timer == 0, check inputs
-                        game_fsm.d = GameStates.CHECK_P1_BUTTON_PRESS
+                        game_fsm.d = GameStates.COPY_GEN_DISPLAY
                     } else {
                         game_fsm.d = GameStates.IDLE
                     }
                     debug.d = 8d32
+                
+                GameStates.COPY_GEN_DISPLAY:
+                    alufn = b000000    //ADD 
+                    asel = b00        
+                    bsel = b10        // Bit 0
+                    regfile_wa = d11    // Display Score Reg
+                    regfile_ra1 = d6    // Generated Num Reg
+                    wdsel = b00
+                    regfile_we = b1
+                    game_fsm.d = GameStates.SET_TIMER_DISPLAY
+                    debug.d = 8d91
+                
+                GameStates.SET_TIMER_DISPLAY:
+                    alufn = b000000    //ADD 
+                    asel = b01        // Bit 1       
+                    bsel = b01        // Bit 1
+                    regfile_wa = d12    // Timer Reg
+                    wdsel = b00
+                    regfile_we = b1
+                    game_fsm.d = GameStates.IDLE_DISPLAY_TIMER
+                    debug.d = 8d92
+                
+                GameStates.IDLE_DISPLAY_TIMER:
+                    if (decrease_timer) {
+                        game_fsm.d = GameStates.DECREASE_DISPLAY_TIMER
+                    }
+                    debug.d = 8d96
+                
+                GameStates.DECREASE_DISPLAY_TIMER:
+                    alufn = b000001    // SUBTRACT
+                    asel = b00
+                    bsel = b01        // Bit 1
+                    regfile_we = b1
+                    regfile_wa = d12   // Timer Reg
+                    regfile_ra1 = d12    // Timer Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.CHECK_DISPLAY_TIMER
+                    debug.d = 8d93
+                
+                GameStates.CHECK_DISPLAY_TIMER:
+                    alufn = b110011    // CMPEQ
+                    asel = b00
+                    bsel = b10        // Bit 0
+                    regfile_we = b1
+                    regfile_wa = d8   // Temp Reg to store Result of Comparison
+                    regfile_ra1 = d12    // Timer Reg
+                    wdsel = b00
+                    game_fsm.d = GameStates.BRANCH_DISPLAY_TIMER
+                    debug.d = 8d94
+                
+                GameStates.BRANCH_DISPLAY_TIMER:
+                    regfile_ra2 = d8   // Temp Reg 1, storing value of comparison
+                    if (regfile_rd2[0]) {    // If timer == 0, check inputs
+                        game_fsm.d = GameStates.CHECK_P1_BUTTON_PRESS
+                    } else {
+                        game_fsm.d = GameStates.IDLE_DISPLAY_TIMER
+                    }
+                    debug.d = 8d95
                 
                 GameStates.CHECK_P1_BUTTON_PRESS:
                     alufn = b110011    // CMPEQ
@@ -574,7 +649,7 @@ module game_cu (
                     if (regfile_rd2[0]) {    // If P1 Score == 5, game over, go to check results
                         game_fsm.d = GameStates.CHECK_DRAW
                     } else {
-                        game_fsm.d = GameStates.RESET_TIMER
+                        game_fsm.d = GameStates.RESET_DISPLAY
                     }
                     debug.d = 8d42
                 
@@ -594,7 +669,7 @@ module game_cu (
                     if (regfile_rd2[0]) {    // If P2 Score == 5, game over, go to check results
                         game_fsm.d = GameStates.CHECK_DRAW
                     } else {
-                        game_fsm.d = GameStates.RESET_TIMER
+                        game_fsm.d = GameStates.RESET_DISPLAY
                     }
                     debug.d = 8d44
                 

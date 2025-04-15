@@ -17,6 +17,8 @@ module game_cu (
     output asel[2],
     output bsel[2],
     output wdsel[2],
+    output rngsel[2],
+    output rngout[4],
     output regfile_wa[4],
     output regfile_ra1[4],
     output regfile_ra2[4],
@@ -97,7 +99,7 @@ module game_cu (
         asel = 0 
         bsel = 0
         regfile_we = 0
-        regfile_wa = d8 
+        regfile_wa = d9
         regfile_ra1 = d0
         regfile_ra2 = d0
         wdsel = 0
@@ -674,4 +676,3 @@ module game_cu (
             }
         }
     }
-}

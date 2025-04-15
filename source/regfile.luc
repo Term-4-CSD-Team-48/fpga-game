@@ -5,6 +5,9 @@ module game_regfiles (
     input we, // write enable signal
     input data[32], // data in
     
+    input rngout[4], // RNG Module Output
+    input rngsel, // RNG Storage Selector
+    
     input ra1[4], // read address port 1
     input ra2[4], // read address port 2
     output rd1[32], // read data port 1
@@ -30,6 +33,8 @@ module game_regfiles (
  
 ) 
 {
+    sig out[32]
+    
     .clk(clk) {
         .rst(rst) {
             dff p1_score[32](#INIT(0))
@@ -47,10 +52,15 @@ module game_regfiles (
             dff display_timer[32](#INIT(0))
         }
     }
+    
     always {
-        
+        out = data
         // Write Port
         if (we) {
+            // RNGSEL on 1, write the rng output to regfile
+            if (rngsel) {
+                out = rngout
+            }
             case (wa) {
                 d0: p1_score.d = data
                 d1: p2_score.d = data

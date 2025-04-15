@@ -13,13 +13,13 @@ module random_number_generator #(
         input wire refresh,
         output reg [(SIZE)-1:0] out
     );
-    localparam _MP_SEED_1537356435 = ROOT_SEED;
+    localparam _MP_SEED_681441861 = ROOT_SEED;
     logic M_pn_gen_rst;
     logic M_pn_gen_next;
     logic [31:0] M_pn_gen_num;
     
     pn_gen #(
-        .SEED(_MP_SEED_1537356435)
+        .SEED(_MP_SEED_681441861)
     ) pn_gen (
         .clk(clk),
         .seed(seed),

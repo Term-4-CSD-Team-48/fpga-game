@@ -19,24 +19,24 @@ module alchitry_top (
     logic [5:0][3:0] M_sse_char;
     logic [5:0][6:0] M_sse_segs;
     
-    genvar idx_0_352960499;
+    genvar idx_0_740083804;
     
     generate
-        for (idx_0_352960499 = 0; idx_0_352960499 < 6; idx_0_352960499 = idx_0_352960499 + 1) begin: forLoop_idx_0_352960499
+        for (idx_0_740083804 = 0; idx_0_740083804 < 6; idx_0_740083804 = idx_0_740083804 + 1) begin: forLoop_idx_0_740083804
             seven_segment_encoder sse (
-                .L_char(M_sse_char[idx_0_352960499]),
-                .segs(M_sse_segs[idx_0_352960499])
+                .L_char(M_sse_char[idx_0_740083804]),
+                .segs(M_sse_segs[idx_0_740083804])
             );
         end
     endgenerate
     
     
-    localparam _MP_STAGES_957967578 = 3'h4;
+    localparam _MP_STAGES_2106321628 = 3'h4;
     logic M_reset_cond_in;
     logic M_reset_cond_out;
     
     reset_conditioner #(
-        .STAGES(_MP_STAGES_957967578)
+        .STAGES(_MP_STAGES_2106321628)
     ) reset_cond (
         .clk(clk),
         .in(M_reset_cond_in),
@@ -44,30 +44,30 @@ module alchitry_top (
     );
     
     
-    localparam logic [5:0][26:0] _MP_CLK_FREQ_271139032 = {{27'h5f5e100, 27'h5f5e100, 27'h5f5e100, 27'h5f5e100, 27'h5f5e100, 27'h5f5e100}};
-    localparam _MP_MIN_DELAY_271139032 = 5'h14;
-    localparam _MP_NUM_SYNC_271139032 = 2'h2;
+    localparam logic [5:0][26:0] _MP_CLK_FREQ_1220978393 = {{27'h5f5e100, 27'h5f5e100, 27'h5f5e100, 27'h5f5e100, 27'h5f5e100, 27'h5f5e100}};
+    localparam _MP_MIN_DELAY_1220978393 = 5'h14;
+    localparam _MP_NUM_SYNC_1220978393 = 2'h2;
     logic [5:0] M_io_button_cond_in;
     logic [5:0] M_io_button_cond_out;
     
-    genvar idx_0_271139032;
+    genvar idx_0_1220978393;
     
     generate
-        for (idx_0_271139032 = 0; idx_0_271139032 < 6; idx_0_271139032 = idx_0_271139032 + 1) begin: forLoop_idx_0_271139032
+        for (idx_0_1220978393 = 0; idx_0_1220978393 < 6; idx_0_1220978393 = idx_0_1220978393 + 1) begin: forLoop_idx_0_1220978393
             button_conditioner #(
-                .CLK_FREQ(_MP_CLK_FREQ_271139032[idx_0_271139032]),
-                .MIN_DELAY(_MP_MIN_DELAY_271139032),
-                .NUM_SYNC(_MP_NUM_SYNC_271139032)
+                .CLK_FREQ(_MP_CLK_FREQ_1220978393[idx_0_1220978393]),
+                .MIN_DELAY(_MP_MIN_DELAY_1220978393),
+                .NUM_SYNC(_MP_NUM_SYNC_1220978393)
             ) io_button_cond (
                 .clk(clk),
-                .in(M_io_button_cond_in[idx_0_271139032]),
-                .out(M_io_button_cond_out[idx_0_271139032])
+                .in(M_io_button_cond_in[idx_0_1220978393]),
+                .out(M_io_button_cond_out[idx_0_1220978393])
             );
         end
     endgenerate
     
     
-    localparam _MP_SLOW_CLOCK_DIV_721487797 = 5'h1a;
+    localparam _MP_SLOW_CLOCK_DIV_522282458 = 5'h1a;
     logic [3:0] M_game_datapath_rngmodule;
     logic [3:0] M_game_datapath_rngmodule2;
     logic M_game_datapath_p1_button_low;
@@ -95,7 +95,7 @@ module alchitry_top (
     logic [31:0] M_game_datapath_debug_result;
     
     game_datapath #(
-        .SLOW_CLOCK_DIV(_MP_SLOW_CLOCK_DIV_721487797)
+        .SLOW_CLOCK_DIV(_MP_SLOW_CLOCK_DIV_522282458)
     ) game_datapath (
         .clk(clk),
         .rst(rst),
@@ -130,14 +130,14 @@ module alchitry_top (
     logic [10:0] D_segment_counter_d, D_segment_counter_q = 0;
     logic [2:0] D_select_segment_d, D_select_segment_q = 0;
     logic [31:0] D_rng_seed_d, D_rng_seed_q = 0;
-    localparam _MP_RISE_315679824 = 1'h1;
-    localparam _MP_FALL_315679824 = 1'h0;
+    localparam _MP_RISE_57059397 = 1'h1;
+    localparam _MP_FALL_57059397 = 1'h0;
     logic M_segment_slow_clock_edge_in;
     logic M_segment_slow_clock_edge_out;
     
     edge_detector #(
-        .RISE(_MP_RISE_315679824),
-        .FALL(_MP_FALL_315679824)
+        .RISE(_MP_RISE_57059397),
+        .FALL(_MP_FALL_57059397)
     ) segment_slow_clock_edge (
         .clk(clk),
         .in(M_segment_slow_clock_edge_in),
@@ -145,35 +145,35 @@ module alchitry_top (
     );
     
     
-    localparam logic [5:0][0:0] _MP_RISE_1536046951 = {{1'h1, 1'h1, 1'h1, 1'h1, 1'h1, 1'h1}};
-    localparam logic [5:0][0:0] _MP_FALL_1536046951 = {{1'h0, 1'h0, 1'h0, 1'h0, 1'h0, 1'h0}};
+    localparam logic [5:0][0:0] _MP_RISE_46709871 = {{1'h1, 1'h1, 1'h1, 1'h1, 1'h1, 1'h1}};
+    localparam logic [5:0][0:0] _MP_FALL_46709871 = {{1'h0, 1'h0, 1'h0, 1'h0, 1'h0, 1'h0}};
     logic [5:0] M_io_button_edge_in;
     logic [5:0] M_io_button_edge_out;
     
-    genvar idx_0_1536046951;
+    genvar idx_0_46709871;
     
     generate
-        for (idx_0_1536046951 = 0; idx_0_1536046951 < 6; idx_0_1536046951 = idx_0_1536046951 + 1) begin: forLoop_idx_0_1536046951
+        for (idx_0_46709871 = 0; idx_0_46709871 < 6; idx_0_46709871 = idx_0_46709871 + 1) begin: forLoop_idx_0_46709871
             edge_detector #(
-                .RISE(_MP_RISE_1536046951[idx_0_1536046951]),
-                .FALL(_MP_FALL_1536046951[idx_0_1536046951])
+                .RISE(_MP_RISE_46709871[idx_0_46709871]),
+                .FALL(_MP_FALL_46709871[idx_0_46709871])
             ) io_button_edge (
                 .clk(clk),
-                .in(M_io_button_edge_in[idx_0_1536046951]),
-                .out(M_io_button_edge_out[idx_0_1536046951])
+                .in(M_io_button_edge_in[idx_0_46709871]),
+                .out(M_io_button_edge_out[idx_0_46709871])
             );
         end
     endgenerate
     
     
-    localparam _MP_SIZE_767945927 = 3'h4;
-    localparam _MP_ROOT_SEED_767945927 = 33'h19430f418;
+    localparam _MP_SIZE_1612507031 = 3'h4;
+    localparam _MP_ROOT_SEED_1612507031 = 33'h19430f418;
     logic [31:0] M_generator_seed;
     logic [3:0] M_generator_out;
     
     random_number_generator #(
-        .SIZE(_MP_SIZE_767945927),
-        .ROOT_SEED(_MP_ROOT_SEED_767945927)
+        .SIZE(_MP_SIZE_1612507031),
+        .ROOT_SEED(_MP_ROOT_SEED_1612507031)
     ) generator (
         .refresh(1'h1),
         .clk(clk),
@@ -182,14 +182,14 @@ module alchitry_top (
     );
     
     
-    localparam _MP_SIZE_995992159 = 3'h4;
-    localparam _MP_ROOT_SEED_995992159 = 33'h15218a6df;
+    localparam _MP_SIZE_408146145 = 3'h4;
+    localparam _MP_ROOT_SEED_408146145 = 33'h15218a6df;
     logic [31:0] M_generator2_seed;
     logic [3:0] M_generator2_out;
     
     random_number_generator #(
-        .SIZE(_MP_SIZE_995992159),
-        .ROOT_SEED(_MP_ROOT_SEED_995992159)
+        .SIZE(_MP_SIZE_408146145),
+        .ROOT_SEED(_MP_ROOT_SEED_408146145)
     ) generator2 (
         .refresh(1'h1),
         .clk(clk),

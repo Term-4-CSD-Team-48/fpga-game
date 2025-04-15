@@ -15,8 +15,6 @@ module alchitry_top (
     seven_segment_encoder sse[6]
     .clk(clk) {
         reset_conditioner reset_cond
-        
-        button_conditioner io_button_cond[6](#CLK_FREQ(6x{{CLK_FREQ}})) 
          
         .rst(rst) {
             game_datapath game_datapath(#SLOW_CLOCK_DIV(SLOW_CLOCK_DIV))
@@ -29,6 +27,7 @@ module alchitry_top (
         
         edge_detector segment_slow_clock_edge(#RISE(1), #FALL(0)) // used with dff segment_counter not counter sl
         
+        button_conditioner io_button_cond[6](#CLK_FREQ(6x{{CLK_FREQ}})) 
         edge_detector io_button_edge[6](#RISE(6x{{1}}), #FALL(6x{{0}}))
 
         random_number_generator generator(#ROOT_SEED(6781203480), .refresh(1))

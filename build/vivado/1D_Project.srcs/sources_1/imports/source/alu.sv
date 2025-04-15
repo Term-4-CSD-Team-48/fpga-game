@@ -12,17 +12,17 @@ module alu #(
         input wire [5:0] alufn,
         output reg [31:0] out
     );
-    localparam _MP_SIZE_181851874 = SIZE;
-    logic [(_MP_SIZE_181851874)-1:0] M_adder_a;
-    logic [(_MP_SIZE_181851874)-1:0] M_adder_b;
+    localparam _MP_SIZE_226835718 = SIZE;
+    logic [(_MP_SIZE_226835718)-1:0] M_adder_a;
+    logic [(_MP_SIZE_226835718)-1:0] M_adder_b;
     logic [5:0] M_adder_alufn_signal;
-    logic [(_MP_SIZE_181851874)-1:0] M_adder_out;
+    logic [(_MP_SIZE_226835718)-1:0] M_adder_out;
     logic M_adder_z;
     logic M_adder_v;
     logic M_adder_n;
     
     adder #(
-        .SIZE(_MP_SIZE_181851874)
+        .SIZE(_MP_SIZE_226835718)
     ) adder (
         .a(M_adder_a),
         .b(M_adder_b),
@@ -49,14 +49,14 @@ module alu #(
     );
     
     
-    localparam _MP_SIZE_444844839 = SIZE;
-    logic [(_MP_SIZE_444844839)-1:0] M_boolean_a;
-    logic [(_MP_SIZE_444844839)-1:0] M_boolean_b;
+    localparam _MP_SIZE_50913853 = SIZE;
+    logic [(_MP_SIZE_50913853)-1:0] M_boolean_a;
+    logic [(_MP_SIZE_50913853)-1:0] M_boolean_b;
     logic [5:0] M_boolean_alufn;
-    logic [(_MP_SIZE_444844839)-1:0] M_boolean_bool;
+    logic [(_MP_SIZE_50913853)-1:0] M_boolean_bool;
     
     boolean #(
-        .SIZE(_MP_SIZE_444844839)
+        .SIZE(_MP_SIZE_50913853)
     ) boolean (
         .a(M_boolean_a),
         .b(M_boolean_b),
@@ -65,16 +65,16 @@ module alu #(
     );
     
     
-    localparam _MP_SIZE_2129940900 = SIZE;
-    localparam _MP_SHIFTERS_2129940900 = 3'h5;
-    logic [(_MP_SIZE_2129940900)-1:0] M_shifter_a;
+    localparam _MP_SIZE_1037717850 = SIZE;
+    localparam _MP_SHIFTERS_1037717850 = 3'h5;
+    logic [(_MP_SIZE_1037717850)-1:0] M_shifter_a;
     logic [4:0] M_shifter_b;
     logic [5:0] M_shifter_alufn;
-    logic [(_MP_SIZE_2129940900)-1:0] M_shifter_shift;
+    logic [(_MP_SIZE_1037717850)-1:0] M_shifter_shift;
     
     shifter #(
-        .SIZE(_MP_SIZE_2129940900),
-        .SHIFTERS(_MP_SHIFTERS_2129940900)
+        .SIZE(_MP_SIZE_1037717850),
+        .SHIFTERS(_MP_SHIFTERS_1037717850)
     ) shifter (
         .a(M_shifter_a),
         .b(M_shifter_b),
@@ -83,13 +83,13 @@ module alu #(
     );
     
     
-    localparam _MP_SIZE_1316064742 = SIZE;
-    logic [(_MP_SIZE_1316064742)-1:0] M_multiplier_a;
-    logic [(_MP_SIZE_1316064742)-1:0] M_multiplier_b;
-    logic [(_MP_SIZE_1316064742)-1:0] M_multiplier_mul;
+    localparam _MP_SIZE_1605706999 = SIZE;
+    logic [(_MP_SIZE_1605706999)-1:0] M_multiplier_a;
+    logic [(_MP_SIZE_1605706999)-1:0] M_multiplier_b;
+    logic [(_MP_SIZE_1605706999)-1:0] M_multiplier_mul;
     
     multiplier #(
-        .SIZE(_MP_SIZE_1316064742)
+        .SIZE(_MP_SIZE_1605706999)
     ) multiplier (
         .a(M_multiplier_a),
         .b(M_multiplier_b),

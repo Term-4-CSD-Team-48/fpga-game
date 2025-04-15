@@ -37,14 +37,14 @@ module game_datapath #(
     );
     logic [31:0] input_alu_a;
     logic [31:0] input_alu_b;
-    localparam _MP_SIZE_49249681 = 6'h20;
+    localparam _MP_SIZE_1017008776 = 6'h20;
     logic [31:0] M_game_alu_a;
     logic [31:0] M_game_alu_b;
     logic [5:0] M_game_alu_alufn;
     logic [31:0] M_game_alu_out;
     
     alu #(
-        .SIZE(_MP_SIZE_49249681)
+        .SIZE(_MP_SIZE_1017008776)
     ) game_alu (
         .a(M_game_alu_a),
         .b(M_game_alu_b),
@@ -53,17 +53,17 @@ module game_datapath #(
     );
     
     
-    localparam _MP_SIZE_601139849 = 1'h1;
-    localparam _MP_DIV_601139849 = SLOW_CLOCK_DIV;
-    localparam _MP_TOP_601139849 = 1'h0;
-    localparam _MP_UP_601139849 = 1'h1;
+    localparam _MP_SIZE_1606499735 = 1'h1;
+    localparam _MP_DIV_1606499735 = SLOW_CLOCK_DIV;
+    localparam _MP_TOP_1606499735 = 1'h0;
+    localparam _MP_UP_1606499735 = 1'h1;
     logic [0:0] M_game_timer_clock_value;
     
     counter #(
-        .SIZE(_MP_SIZE_601139849),
-        .DIV(_MP_DIV_601139849),
-        .TOP(_MP_TOP_601139849),
-        .UP(_MP_UP_601139849)
+        .SIZE(_MP_SIZE_1606499735),
+        .DIV(_MP_DIV_1606499735),
+        .TOP(_MP_TOP_1606499735),
+        .UP(_MP_UP_1606499735)
     ) game_timer_clock (
         .rst(rst),
         .clk(clk),
@@ -71,13 +71,13 @@ module game_datapath #(
     );
     
     
-    localparam _MP_RISE_572741073 = 1'h1;
-    localparam _MP_FALL_572741073 = 1'h0;
+    localparam _MP_RISE_1338576844 = 1'h1;
+    localparam _MP_FALL_1338576844 = 1'h0;
     logic M_edge_detector_game_timer_out;
     
     edge_detector #(
-        .RISE(_MP_RISE_572741073),
-        .FALL(_MP_FALL_572741073)
+        .RISE(_MP_RISE_1338576844),
+        .FALL(_MP_FALL_1338576844)
     ) edge_detector_game_timer (
         .in(M_game_timer_clock_value),
         .clk(clk),

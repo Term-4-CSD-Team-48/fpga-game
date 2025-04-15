@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date         : Wed Apr 16 00:33:18 2025
+| Date         : Wed Apr 16 00:58:37 2025
 | Host         : XlightNtrEnx running 64-bit major release  (build 9200)
 | Command      : report_methodology -file alchitry_top_methodology_drc_routed.rpt -pb alchitry_top_methodology_drc_routed.pb -rpx alchitry_top_methodology_drc_routed.rpx
 | Design       : alchitry_top
@@ -23,11 +23,11 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max checks: <unlimited>
-             Checks found: 97
+             Checks found: 92
 +-----------+----------+-------------------------------+--------+
 | Rule      | Severity | Description                   | Checks |
 +-----------+----------+-------------------------------+--------+
-| TIMING-16 | Warning  | Large setup violation         | 48     |
+| TIMING-16 | Warning  | Large setup violation         | 43     |
 | TIMING-18 | Warning  | Missing input or output delay | 49     |
 +-----------+----------+-------------------------------+--------+
 
@@ -35,242 +35,217 @@ Table of Contents
 -----------------
 TIMING-16#1 Warning
 Large setup violation  
-There is a large setup violation of -1.027 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_display_q_reg[27]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.007 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_high_number_q_reg[27]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#2 Warning
 Large setup violation  
-There is a large setup violation of -1.028 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_low_number_q_reg[23]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.012 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p1_score_q_reg[29]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#3 Warning
 Large setup violation  
-There is a large setup violation of -1.035 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_high_number_q_reg[26]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.012 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_timer_q_reg[30]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#4 Warning
 Large setup violation  
-There is a large setup violation of -1.059 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p2_button_press_q_reg[30]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.013 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_timer_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#5 Warning
 Large setup violation  
-There is a large setup violation of -1.074 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_timer_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.037 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var1_q_reg[30]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#6 Warning
 Large setup violation  
-There is a large setup violation of -1.080 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var1_q_reg[27]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.040 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var2_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#7 Warning
 Large setup violation  
-There is a large setup violation of -1.086 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p1_button_press_q_reg[30]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.049 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_high_number_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#8 Warning
 Large setup violation  
-There is a large setup violation of -1.087 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var1_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.057 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var3_q_reg[27]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#9 Warning
 Large setup violation  
-There is a large setup violation of -1.091 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p2_score_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.058 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_display_q_reg[30]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#10 Warning
 Large setup violation  
-There is a large setup violation of -1.092 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_display_timer_q_reg[28]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.070 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p1_button_press_q_reg[27]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#11 Warning
 Large setup violation  
-There is a large setup violation of -1.092 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var2_q_reg[30]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.086 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p1_score_q_reg[28]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#12 Warning
 Large setup violation  
-There is a large setup violation of -1.095 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p2_button_press_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.088 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_display_timer_q_reg[29]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#13 Warning
 Large setup violation  
-There is a large setup violation of -1.101 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_display_timer_q_reg[30]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.103 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var2_q_reg[28]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#14 Warning
 Large setup violation  
-There is a large setup violation of -1.101 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p2_score_q_reg[27]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.120 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p1_score_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#15 Warning
 Large setup violation  
-There is a large setup violation of -1.103 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var3_q_reg[28]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.121 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p2_button_press_q_reg[27]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#16 Warning
 Large setup violation  
-There is a large setup violation of -1.107 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_low_number_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.121 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p2_button_press_q_reg[29]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#17 Warning
 Large setup violation  
-There is a large setup violation of -1.108 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var2_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.129 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_display_timer_q_reg[30]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#18 Warning
 Large setup violation  
-There is a large setup violation of -1.110 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_guess_number_q_reg[26]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.141 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p1_score_q_reg[30]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#19 Warning
 Large setup violation  
-There is a large setup violation of -1.112 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_high_number_q_reg[23]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.147 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_guess_number_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#20 Warning
 Large setup violation  
-There is a large setup violation of -1.115 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p1_button_press_q_reg[27]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.149 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p2_score_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#21 Warning
 Large setup violation  
-There is a large setup violation of -1.116 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var2_q_reg[26]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.154 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_guess_number_q_reg[30]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#22 Warning
 Large setup violation  
-There is a large setup violation of -1.124 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var3_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.157 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_low_number_q_reg[30]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#23 Warning
 Large setup violation  
-There is a large setup violation of -1.133 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p2_score_q_reg[28]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.157 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p1_button_press_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#24 Warning
 Large setup violation  
-There is a large setup violation of -1.145 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_high_number_q_reg[25]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.181 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p2_button_press_q_reg[30]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#25 Warning
 Large setup violation  
-There is a large setup violation of -1.164 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p1_score_q_reg[28]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.186 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_timer_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#26 Warning
 Large setup violation  
-There is a large setup violation of -1.177 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_display_timer_q_reg[27]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.197 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var3_q_reg[30]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#27 Warning
 Large setup violation  
-There is a large setup violation of -1.180 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p1_button_press_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.200 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p2_button_press_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#28 Warning
 Large setup violation  
-There is a large setup violation of -1.182 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p2_button_press_q_reg[27]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.204 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_display_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#29 Warning
 Large setup violation  
-There is a large setup violation of -1.194 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var2_q_reg[27]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.212 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p2_score_q_reg[30]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#30 Warning
 Large setup violation  
-There is a large setup violation of -1.215 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var1_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.248 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_low_number_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#31 Warning
 Large setup violation  
-There is a large setup violation of -1.220 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_guess_number_q_reg[27]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.443 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var3_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#32 Warning
 Large setup violation  
-There is a large setup violation of -1.245 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_display_q_reg[31]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.482 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p2_button_press_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#33 Warning
 Large setup violation  
-There is a large setup violation of -1.253 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_guess_number_q_reg[28]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.486 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var2_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#34 Warning
 Large setup violation  
-There is a large setup violation of -1.263 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var1_q_reg[28]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.490 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_high_number_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#35 Warning
 Large setup violation  
-There is a large setup violation of -1.282 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var2_q_reg[28]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.498 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_guess_number_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#36 Warning
 Large setup violation  
-There is a large setup violation of -1.415 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_low_number_q_reg[28]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.510 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p1_score_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#37 Warning
 Large setup violation  
-There is a large setup violation of -1.549 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p2_button_press_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.512 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p2_score_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#38 Warning
 Large setup violation  
-There is a large setup violation of -1.570 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_low_number_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.515 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_display_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#39 Warning
 Large setup violation  
-There is a large setup violation of -1.594 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_guess_number_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.516 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var3_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#40 Warning
 Large setup violation  
-There is a large setup violation of -1.596 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p1_score_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.522 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var1_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#41 Warning
 Large setup violation  
-There is a large setup violation of -1.605 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_high_number_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.623 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p1_button_press_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#42 Warning
 Large setup violation  
-There is a large setup violation of -1.607 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_display_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.668 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_low_number_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#43 Warning
 Large setup violation  
-There is a large setup violation of -1.610 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_timer_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#44 Warning
-Large setup violation  
-There is a large setup violation of -1.626 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var3_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#45 Warning
-Large setup violation  
-There is a large setup violation of -1.743 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_display_timer_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#46 Warning
-Large setup violation  
-There is a large setup violation of -1.745 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_temp_var2_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#47 Warning
-Large setup violation  
-There is a large setup violation of -1.760 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p1_button_press_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#48 Warning
-Large setup violation  
-There is a large setup violation of -1.770 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[0]/C (clocked by clk_0) and game_datapath/game_regfiles/D_p2_score_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.674 ns between game_datapath/game_cu/FSM_sequential_D_game_fsm_q_reg[1]/C (clocked by clk_0) and game_datapath/game_regfiles/D_display_timer_q_reg[0]/D (clocked by clk_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-18#1 Warning

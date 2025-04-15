@@ -13,70 +13,70 @@ module shifter #(
         input wire [5:0] alufn,
         output reg [(SIZE)-1:0] shift
     );
-    logic [31:0] R_7bf7f95a_i;
-    logic [31:0] RR_7bf7f95a_i;
-    logic [31:0] R_7aa4d715_i;
-    logic [31:0] RR_7aa4d715_i;
-    localparam _MP_SIZE_848154111 = SIZE;
-    localparam logic [4:0][4:0] _MP_SHIFT_848154111 = {{5'h10, 5'h8, 5'h4, 5'h2, 5'h1}};
-    logic [(SHIFTERS)-1:0][(_MP_SIZE_848154111)-1:0] M_left_shifters_a;
+    logic [31:0] R_19d7af1a_i;
+    logic [31:0] RR_19d7af1a_i;
+    logic [31:0] R_0ce654c9_i;
+    logic [31:0] RR_0ce654c9_i;
+    localparam _MP_SIZE_859769996 = SIZE;
+    localparam logic [4:0][4:0] _MP_SHIFT_859769996 = {{5'h10, 5'h8, 5'h4, 5'h2, 5'h1}};
+    logic [(SHIFTERS)-1:0][(_MP_SIZE_859769996)-1:0] M_left_shifters_a;
     logic [(SHIFTERS)-1:0] M_left_shifters_shift;
     logic [(SHIFTERS)-1:0] M_left_shifters_pad;
-    logic [(SHIFTERS)-1:0][(_MP_SIZE_848154111)-1:0] M_left_shifters_out;
+    logic [(SHIFTERS)-1:0][(_MP_SIZE_859769996)-1:0] M_left_shifters_out;
     
-    genvar idx_0_848154111;
+    genvar idx_0_859769996;
     
     generate
-        for (idx_0_848154111 = 0; idx_0_848154111 < SHIFTERS; idx_0_848154111 = idx_0_848154111 + 1) begin: forLoop_idx_0_848154111
+        for (idx_0_859769996 = 0; idx_0_859769996 < SHIFTERS; idx_0_859769996 = idx_0_859769996 + 1) begin: forLoop_idx_0_859769996
             x_bit_left_shifter #(
-                .SIZE(_MP_SIZE_848154111),
-                .SHIFT(_MP_SHIFT_848154111[idx_0_848154111])
+                .SIZE(_MP_SIZE_859769996),
+                .SHIFT(_MP_SHIFT_859769996[idx_0_859769996])
             ) left_shifters (
-                .a(M_left_shifters_a[idx_0_848154111]),
-                .shift(M_left_shifters_shift[idx_0_848154111]),
-                .pad(M_left_shifters_pad[idx_0_848154111]),
-                .out(M_left_shifters_out[idx_0_848154111])
+                .a(M_left_shifters_a[idx_0_859769996]),
+                .shift(M_left_shifters_shift[idx_0_859769996]),
+                .pad(M_left_shifters_pad[idx_0_859769996]),
+                .out(M_left_shifters_out[idx_0_859769996])
             );
         end
     endgenerate
     
     
-    localparam _MP_SIZE_732110902 = SIZE;
-    localparam logic [4:0][4:0] _MP_SHIFT_732110902 = {{5'h10, 5'h8, 5'h4, 5'h2, 5'h1}};
-    logic [(SHIFTERS)-1:0][(_MP_SIZE_732110902)-1:0] M_right_shifters_a;
+    localparam _MP_SIZE_1822735564 = SIZE;
+    localparam logic [4:0][4:0] _MP_SHIFT_1822735564 = {{5'h10, 5'h8, 5'h4, 5'h2, 5'h1}};
+    logic [(SHIFTERS)-1:0][(_MP_SIZE_1822735564)-1:0] M_right_shifters_a;
     logic [(SHIFTERS)-1:0] M_right_shifters_shift;
     logic [(SHIFTERS)-1:0] M_right_shifters_pad;
-    logic [(SHIFTERS)-1:0][(_MP_SIZE_732110902)-1:0] M_right_shifters_out;
+    logic [(SHIFTERS)-1:0][(_MP_SIZE_1822735564)-1:0] M_right_shifters_out;
     
-    genvar idx_0_732110902;
+    genvar idx_0_1822735564;
     
     generate
-        for (idx_0_732110902 = 0; idx_0_732110902 < SHIFTERS; idx_0_732110902 = idx_0_732110902 + 1) begin: forLoop_idx_0_732110902
+        for (idx_0_1822735564 = 0; idx_0_1822735564 < SHIFTERS; idx_0_1822735564 = idx_0_1822735564 + 1) begin: forLoop_idx_0_1822735564
             x_bit_right_shifter #(
-                .SIZE(_MP_SIZE_732110902),
-                .SHIFT(_MP_SHIFT_732110902[idx_0_732110902])
+                .SIZE(_MP_SIZE_1822735564),
+                .SHIFT(_MP_SHIFT_1822735564[idx_0_1822735564])
             ) right_shifters (
-                .a(M_right_shifters_a[idx_0_732110902]),
-                .shift(M_right_shifters_shift[idx_0_732110902]),
-                .pad(M_right_shifters_pad[idx_0_732110902]),
-                .out(M_right_shifters_out[idx_0_732110902])
+                .a(M_right_shifters_a[idx_0_1822735564]),
+                .shift(M_right_shifters_shift[idx_0_1822735564]),
+                .pad(M_right_shifters_pad[idx_0_1822735564]),
+                .out(M_right_shifters_out[idx_0_1822735564])
             );
         end
     endgenerate
     
     
     always @* begin
-        for (RR_7bf7f95a_i = 0; RR_7bf7f95a_i < SHIFTERS; RR_7bf7f95a_i = RR_7bf7f95a_i + 1) begin
-      R_7bf7f95a_i = (1'h0) + RR_7bf7f95a_i * (1'h1);
-            M_left_shifters_shift[R_7bf7f95a_i] = b[R_7bf7f95a_i];
-            M_right_shifters_shift[R_7bf7f95a_i] = b[R_7bf7f95a_i];
+        for (RR_19d7af1a_i = 0; RR_19d7af1a_i < SHIFTERS; RR_19d7af1a_i = RR_19d7af1a_i + 1) begin
+      R_19d7af1a_i = (1'h0) + RR_19d7af1a_i * (1'h1);
+            M_left_shifters_shift[R_19d7af1a_i] = b[R_19d7af1a_i];
+            M_right_shifters_shift[R_19d7af1a_i] = b[R_19d7af1a_i];
         end
         M_left_shifters_a[1'h0] = a;
         M_right_shifters_a[1'h0] = a;
-        for (RR_7aa4d715_i = 0; RR_7aa4d715_i < SHIFTERS - 1'h1; RR_7aa4d715_i = RR_7aa4d715_i + 1) begin
-      R_7aa4d715_i = (1'h1) + RR_7aa4d715_i * (1'h1);
-            M_left_shifters_a[R_7aa4d715_i] = M_left_shifters_out[R_7aa4d715_i - 1'h1];
-            M_right_shifters_a[R_7aa4d715_i] = M_right_shifters_out[R_7aa4d715_i - 1'h1];
+        for (RR_0ce654c9_i = 0; RR_0ce654c9_i < SHIFTERS - 1'h1; RR_0ce654c9_i = RR_0ce654c9_i + 1) begin
+      R_0ce654c9_i = (1'h1) + RR_0ce654c9_i * (1'h1);
+            M_left_shifters_a[R_0ce654c9_i] = M_left_shifters_out[R_0ce654c9_i - 1'h1];
+            M_right_shifters_a[R_0ce654c9_i] = M_right_shifters_out[R_0ce654c9_i - 1'h1];
         end
         M_left_shifters_pad = 1'h0;
         M_right_shifters_pad = 1'h0;

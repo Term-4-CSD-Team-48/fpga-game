@@ -166,6 +166,12 @@
                     "type": "DiskFile",
                     "path": "source/x_bit_right_shifter.luc"
                 }
+            },
+            {
+                "file": {
+                    "type": "DiskFile",
+                    "path": "source/seven_segment_encoder.luc"
+                }
             }
         ],
         "constraintFiles": [
@@ -177,8 +183,8 @@
             },
             {
                 "file": {
-                    "type": "Component",
-                    "path": "Constraints/io_v1_pulldown.acf"
+                    "type": "DiskFile",
+                    "path": "constraint/custom.acf"
                 }
             }
         ],

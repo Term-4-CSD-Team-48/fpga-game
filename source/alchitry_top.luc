@@ -3,43 +3,47 @@ module alchitry_top (
     input rst_n,            // reset button (active low)
     output led[8],          // 8 user controllable LEDs
     input usb_rx,           // USB->Serial input
-    output usb_tx,           // USB->Serial output
-    output io_led[3][8],     // LEDs on IO Shield
-    input io_button[5],      // 5 buttons on IO Shield
-    input io_dip[3][8],       // DIP switches on IO Shield
-    output io_segment[8],        // 7-segment LEDs on IO Shield
-    output io_select[4]        // Digit select on IO Shield
+    output usb_tx,          // USB->Serial output
+    output segment[6][7],
+    input io_button[6]    
 ) {
 
     sig rst                 // reset signal
     const CLK_FREQ = $is_sim() ? 1000 : 100000000 // put 1000 for sim, 100M for hardware
     const CLOCK_DIVIDER = $is_sim() ? 11 : 26
     const SLOW_CLOCK_DIV = $is_sim() ? 9 : 26
-    const SEVEN_SEG_DIV = $is_sim() ? 3 : 16 // put 3 for sim, 16 for hardware
-
+    
+    const SLOW_CLOCK_SIZE = 11
+    sig slow_clock
+    
+    seven_segment_encoder sse[6]
     .clk(clk) {
         // The reset conditioner is used to synchronize the reset signal to the FPGA
         // clock. This ensures the entire FPGA comes out of reset at the same time.
         reset_conditioner reset_cond
-        button_conditioner io_button_cond[5](#CLK_FREQ(5x{{CLK_FREQ}})) 
+        button_conditioner io_button_cond[6](#CLK_FREQ(6x{{CLK_FREQ}})) 
         counter game_timer_clock(#SIZE(1),#DIV(SLOW_CLOCK_DIV), .rst(rst)) 
         .rst(rst) {
             counter slow_clk(#SIZE(1), #DIV(CLOCK_DIVIDER))
-            multi_seven_seg seg(#DIV(SEVEN_SEG_DIV))
+            dff counter[SLOW_CLOCK_SIZE]
+            dff select[3]
             game_datapath game_datapath(#SLOW_CLOCK_DIV(SLOW_CLOCK_DIV))
         }
         
-        edge_detector io_button_edge[5](#RISE(5x{{1}}), #FALL(5x{{0}}))
+        edge_detector io_button_edge[6](#RISE(6x{{1}}), #FALL(6x{{0}}))
         edge_detector edge_detector_game_timer(#RISE(1), #FALL(0), .in(game_timer_clock.value))
+        edge_detector slow_clock_edge(#RISE(1), #FALL(0)) // used with dff counter not counter slow_clk
 
         random_number_generator generator(.slow_clk(slow_clk.value), .refresh(1))
     }
-    
-    bin_to_dec bin_to_dec_converter(#DIGITS(4))
 
     always {
         reset_cond.in = ~rst_n  // input raw inverted reset signal
         rst = reset_cond.out    // conditioned reset
+        
+        if (&io_button) {
+            rst = 1
+        }
 
         usb_tx = usb_rx         // echo the serial data
         
@@ -50,28 +54,36 @@ module alchitry_top (
         //game_datapath.debugbutton1 = io_button_edge.out[0]
         //game_datapath.debugbutton2 = io_button_edge.out[1]
         
-        game_datapath.p1_button_low = io_dip[2][7]        // Replace io_dip with P1 Low Button
-        game_datapath.p1_button_between = io_dip[2][6]    // Replace io_dip with P1 In Between Button
-        game_datapath.p1_button_high = io_dip[2][5]       // Replace io_dip with P1 High Button
-        game_datapath.p2_button_low = io_dip[0][2]        // Replace io_dip with P2 Low Button
-        game_datapath.p2_button_between = io_dip[0][1]    // Replace io_dip with P2 In Between Button
-        game_datapath.p2_button_high = io_dip[0][0]       // Replace io_dip with P2 High Button
+        game_datapath.p1_button_low = io_button_edge.out[0]        // Replace io_dip with P1 Low Button
+        game_datapath.p1_button_between = io_button_edge.out[1]    // Replace io_dip with P1 In Between Button
+        game_datapath.p1_button_high = io_button_edge.out[2]       // Replace io_dip with P1 High Button
+        game_datapath.p2_button_low = io_button_edge.out[3]        // Replace io_dip with P2 Low Button
+        game_datapath.p2_button_between = io_button_edge.out[4]    // Replace io_dip with P2 In Between Button
+        game_datapath.p2_button_high = io_button_edge.out[5]       // Replace io_dip with P2 High Button
         game_datapath.rngmodule = generator.out
         
-        //update 7segments
-        seg.values = 4x{{4b0}} // default to all 0 first
-        bin_to_dec_converter.value = game_datapath.timer_out
-        seg.values = bin_to_dec_converter.digits
-
+        //update 7segment
+        sse.char[0] = game_datapath.low_num_out            // Replace io_led with 7 Segment for Low Number
+        sse.char[1] = game_datapath.display_out          // Replace io_led with 7 Segment for Guess Number
+        sse.char[2] = game_datapath.high_num_out           // Replace io_led with 7 Segment for High Number
+        sse.char[3] = game_datapath.p1_score_out            // Replace led with 7 Segment for P1 Score
+        sse.char[5] = game_datapath.p2_score_out            // Replace led with 7 Segment for P2 Score
+        sse.char[4] = game_datapath.timer_out           // Replace 7segtimer with Timer 7 Segment
+        counter.d = counter.q + 1
+        slow_clock = counter.q[10]
+        slow_clock_edge.in = slow_clock
+        select.d = select.q
+        segment = 6x{{7h0}}
+        segment[select.q] = sse.segs[select.q]
+        if (slow_clock_edge.out) {
+            if (select.q >= 5) {
+                select.d = 0
+            } else {
+                select.d = select.q + 1
+            }
+        }
+        
         usb_tx = usb_rx         // echo the serial data
-        io_led[2] = game_datapath.low_num_out            // Replace io_led with 7 Segment for Low Number
-        io_led[1] = game_datapath.guess_num_out          // Replace io_led with 7 Segment for Guess Number
-        io_led[0] = game_datapath.high_num_out           // Replace io_led with 7 Segment for High Number
-        led[2:0] = game_datapath.p1_score_out            // Replace led with 7 Segment for P1 Score
-        led[7:5] = game_datapath.p2_score_out            // Replace led with 7 Segment for P2 Score
-        led[4:3] = b00                                   // Can just delete
-        // 7segtimer = game_datapath.timer_out           // Replace 7segtimer with Timer 7 Segment
-        io_segment = ~seg.seg
-        io_select = ~seg.sel
+        led = io_button
     }
 }

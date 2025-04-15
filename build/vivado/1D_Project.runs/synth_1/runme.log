@@ -1,6 +1,6 @@
 
 *** Running vivado
-    with args -log boolean.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source boolean.tcl
+    with args -log alchitry_top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source alchitry_top.tcl
 
 
 
@@ -8,392 +8,263 @@
   **** SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
   **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
   **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-  **** Start of session at: Tue Apr 15 16:44:45 2025
+  **** Start of session at: Tue Apr 15 20:04:21 2025
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 
-source boolean.tcl -notrace
-Command: synth_design -top boolean -part xc7a35tftg256-1
+source alchitry_top.tcl -notrace
+Command: synth_design -top alchitry_top -part xc7a35tftg256-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Device 21-403] Loading part xc7a35tftg256-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 9236
+INFO: [Synth 8-7075] Helper process launched with PID 8464
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1023.266 ; gain = 465.965
+Starting RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 1024.738 ; gain = 468.082
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'boolean' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/boolean.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'mux_4' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/mux_4.sv:7]
-INFO: [Synth 8-226] default block is never used [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/mux_4.sv:15]
-INFO: [Synth 8-6155] done synthesizing module 'mux_4' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/mux_4.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'boolean' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/boolean.sv:7]
-WARNING: [Synth 8-7129] Port alufn[5] in module boolean is either unconnected or has no load
-WARNING: [Synth 8-7129] Port alufn[4] in module boolean is either unconnected or has no load
+INFO: [Synth 8-6157] synthesizing module 'alchitry_top' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/alchitry_top.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'seven_segment_encoder' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/seven_segment_encoder.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/seven_segment_encoder.sv:13]
+INFO: [Synth 8-6155] done synthesizing module 'seven_segment_encoder' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/seven_segment_encoder.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'button_conditioner' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/button_conditioner.sv:7]
+	Parameter CLK_FREQ bound to: 27'b101111101011110000100000000 
+	Parameter MIN_DELAY bound to: 5'b10100 
+	Parameter NUM_SYNC bound to: 2'b10 
+INFO: [Synth 8-6157] synthesizing module 'pipeline' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/pipeline.sv:7]
+	Parameter DEPTH bound to: 2'b10 
+INFO: [Synth 8-6155] done synthesizing module 'pipeline' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/pipeline.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'button_conditioner' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/button_conditioner.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'edge_detector' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/edge_detector.sv:7]
+	Parameter RISE bound to: 1'b1 
+	Parameter FALL bound to: 1'b0 
+INFO: [Synth 8-6155] done synthesizing module 'edge_detector' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/edge_detector.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'reset_conditioner' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/reset_conditioner.sv:7]
+	Parameter STAGES bound to: 3'b100 
+INFO: [Synth 8-6155] done synthesizing module 'reset_conditioner' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/reset_conditioner.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'counter' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/counter.sv:7]
+	Parameter SIZE bound to: 1'b1 
+	Parameter DIV bound to: 5'b11010 
+	Parameter TOP bound to: 1'b0 
+	Parameter UP bound to: 1'b1 
+INFO: [Synth 8-6155] done synthesizing module 'counter' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/counter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'game_datapath' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_datapath.sv:7]
+	Parameter SLOW_CLOCK_DIV bound to: 5'b11010 
+INFO: [Synth 8-6157] synthesizing module 'alu' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/alu.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'alu' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/alu.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'game_cu' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_cu.sv:7]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_cu.sv:117]
+INFO: [Synth 8-6155] done synthesizing module 'game_cu' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_cu.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'game_regfiles' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_regfiles.sv:7]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_regfiles.sv:61]
+INFO: [Synth 8-6155] done synthesizing module 'game_regfiles' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_regfiles.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_datapath.sv:173]
+INFO: [Synth 8-226] default block is never used [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_datapath.sv:191]
+INFO: [Synth 8-6155] done synthesizing module 'game_datapath' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_datapath.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'random_number_generator' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/random_number_generator.sv:7]
+	Parameter SIZE bound to: 3'b100 
+INFO: [Synth 8-6157] synthesizing module 'pn_gen' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/pn_gen.sv:7]
+	Parameter SEED bound to: 33'b110010100001100001111010000011000 
+INFO: [Synth 8-6155] done synthesizing module 'pn_gen' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/pn_gen.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'edge_detector__parameterized0' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/edge_detector.sv:7]
+	Parameter RISE bound to: 1'b1 
+	Parameter FALL bound to: 1'b1 
+INFO: [Synth 8-6155] done synthesizing module 'edge_detector__parameterized0' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/edge_detector.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'random_number_generator' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/random_number_generator.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'alchitry_top' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/alchitry_top.sv:7]
+WARNING: [Synth 8-3917] design alchitry_top has port led[7] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[6] driven by constant 0
+WARNING: [Synth 8-7129] Port regfile_rd2[31] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[30] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[29] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[28] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[27] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[26] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[25] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[24] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[23] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[22] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[21] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[20] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[19] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[18] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[17] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[16] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[15] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[14] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[13] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[12] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[11] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[10] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[9] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[8] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[7] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[6] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[5] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[4] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[3] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[2] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[1] in module game_cu is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1128.539 ; gain = 571.238
+Finished RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1137.625 ; gain = 580.969
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1128.539 ; gain = 571.238
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1137.625 ; gain = 580.969
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1128.539 ; gain = 571.238
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1137.625 ; gain = 580.969
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1128.539 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.035 . Memory (MB): peak = 1137.625 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
 Parsing XDC File [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc]
-WARNING: [Vivado 12-584] No ports matched 'clk'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:1]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:1]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'clk'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:2]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:2]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'clk'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:4]
-CRITICAL WARNING: [Vivado 12-4739] create_clock:No valid object(s) found for '-objects [get_ports clk]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:4]
-Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
-WARNING: [Vivado 12-627] No clocks matched 'clk_0'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:5]
-INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:5]
-CRITICAL WARNING: [Vivado 12-4739] set_clock_groups:No valid object(s) found for '-group [get_clocks -include_generated_clocks clk_0]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:5]
-Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
-CRITICAL WARNING: [Vivado 12-4739] set_clock_groups:No valid object(s) found for '-group '. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:5]
-Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
-CRITICAL WARNING: [Constraints 18-4644] set_clock_groups: All clock groups specified are empty. Please specify atleast one clock group which is not empty. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:5]
-WARNING: [Vivado 12-584] No ports matched 'rst_n'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:7]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:7]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'rst_n'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:8]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:8]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[0]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:10]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:10]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[0]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:11]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:11]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[1]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:13]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:13]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[1]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:14]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:14]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[2]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:16]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:16]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[2]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:17]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:17]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[3]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:19]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:19]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[3]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:20]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:20]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[4]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:22]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:22]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[4]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:23]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:23]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[5]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:25]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:25]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[5]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:26]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:26]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[6]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:28]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:28]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[6]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:29]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:29]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[7]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:31]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:31]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[7]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:32]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:32]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'usb_rx'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:34]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:34]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'usb_rx'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:35]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:35]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'usb_tx'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:37]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:37]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'usb_tx'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:38]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:38]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[2][0]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:40]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:40]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[2][0]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:41]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:41]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[2][1]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:43]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:43]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[2][1]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:44]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:44]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[2][2]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:46]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:46]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[2][2]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:47]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:47]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[2][3]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:49]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:49]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[2][3]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:50]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:50]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[2][4]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:52]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:52]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[2][4]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:53]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:53]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[2][5]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:55]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:55]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[2][5]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:56]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:56]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[2][6]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:58]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:58]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[2][6]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:59]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:59]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[0][0]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:61]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:61]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[0][0]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:62]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:62]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[0][1]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:64]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:64]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[0][1]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:65]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:65]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[0][2]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:67]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:67]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[0][2]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:68]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:68]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[0][3]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:70]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:70]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[0][3]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:71]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:71]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[0][4]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:73]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:73]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[0][4]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:74]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:74]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[0][5]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:76]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:76]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[0][5]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:77]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:77]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[0][6]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:79]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:79]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[0][6]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:80]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:80]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[1][0]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:82]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:82]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[1][0]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:83]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:83]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[1][1]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:85]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:85]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[1][1]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:86]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:86]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[1][2]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:88]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:88]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[1][2]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:89]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:89]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[1][3]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:91]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:91]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[1][3]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:92]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:92]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[1][4]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:94]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:94]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[1][4]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:95]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:95]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[1][5]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:97]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:97]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[1][5]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:98]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:98]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[1][6]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:100]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:100]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[1][6]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:101]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:101]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[3][0]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:103]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:103]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[3][0]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:104]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:104]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[3][1]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:106]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:106]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[3][1]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:107]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:107]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[3][2]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:109]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:109]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[3][2]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:110]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:110]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[3][3]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:112]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:112]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[3][3]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:113]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:113]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[3][4]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:115]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:115]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[3][4]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:116]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:116]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[3][5]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:118]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:118]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[3][5]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:119]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:119]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[3][6]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:121]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:121]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[3][6]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:122]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:122]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[4][0]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:124]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:124]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[4][0]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:125]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:125]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[4][1]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:127]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:127]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[4][1]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:128]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:128]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[4][2]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:130]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:130]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[4][2]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:131]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:131]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[4][3]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:133]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:133]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[4][3]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:134]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:134]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[4][4]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:136]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:136]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[4][4]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:137]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:137]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[4][5]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:139]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:139]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[4][5]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:140]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:140]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[4][6]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:142]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:142]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[4][6]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:143]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:143]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[5][0]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:145]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:145]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[5][0]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:146]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:146]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[5][1]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:148]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:148]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[5][1]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:149]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:149]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'segment[5][2]'. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:151]
-INFO: [Common 17-14] Message 'Vivado 12-584' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:151]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:151]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc:152]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
 Finished Parsing XDC File [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/alchitry_top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/alchitry_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Parsing XDC File [C:/Users/Giant/Desktop/fpga-game/build/constraint/au_props.xdc]
 Finished Parsing XDC File [C:/Users/Giant/Desktop/fpga-game/build/constraint/au_props.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1195.156 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1228.109 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1195.156 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 1228.109 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1195.156 ; gain = 637.855
+Finished Constraint Validation : Time (s): cpu = 00:00:27 ; elapsed = 00:00:30 . Memory (MB): peak = 1228.109 ; gain = 671.453
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tftg256-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1195.156 ; gain = 637.855
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:27 ; elapsed = 00:00:30 . Memory (MB): peak = 1228.109 ; gain = 671.453
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1195.156 ; gain = 637.855
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:27 ; elapsed = 00:00:30 . Memory (MB): peak = 1228.109 ; gain = 671.453
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'D_game_fsm_q_reg' in module 'game_cu'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                iSTATE25 |                          0000000 |                          0000000
+                iSTATE24 |                          0000001 |                          0000001
+                iSTATE17 |                          0000010 |                          1000000
+                 iSTATE3 |                          0000011 |                          0000100
+                 iSTATE1 |                          0000100 |                          0000101
+                iSTATE63 |                          0000101 |                          0000110
+                iSTATE61 |                          0000110 |                          0000111
+                 iSTATE0 |                          0000111 |                          0001000
+                iSTATE21 |                          0001000 |                          0000010
+                iSTATE20 |                          0001001 |                          0000011
+                  iSTATE |                          0001010 |                          0001001
+                iSTATE60 |                          0001011 |                          0001010
+                iSTATE59 |                          0001100 |                          0001011
+                iSTATE43 |                          0001101 |                          0001100
+                iSTATE42 |                          0001110 |                          0001101
+                iSTATE41 |                          0001111 |                          0001110
+                iSTATE35 |                          0010000 |                          0001111
+                iSTATE62 |                          0010001 |                          0010000
+                iSTATE58 |                          0010010 |                          0010001
+                iSTATE55 |                          0010011 |                          0010010
+                iSTATE54 |                          0010100 |                          0010011
+                iSTATE39 |                          0010101 |                          0010100
+                iSTATE38 |                          0010110 |                          0010101
+                iSTATE33 |                          0010111 |                          0010110
+                iSTATE30 |                          0011000 |                          0010111
+                iSTATE36 |                          0011001 |                          0011000
+                iSTATE34 |                          0011010 |                          0011001
+                iSTATE31 |                          0011011 |                          0011010
+                iSTATE37 |                          0011100 |                          0100001
+                iSTATE32 |                          0011101 |                          0100010
+                iSTATE29 |                          0011110 |                          0100011
+                iSTATE19 |                          0011111 |                          0100100
+                iSTATE16 |                          0100000 |                          0100101
+                iSTATE12 |                          0100001 |                          0100110
+                 iSTATE8 |                          0100010 |                          0100111
+                iSTATE15 |                          0100011 |                          0101000
+                iSTATE13 |                          0100100 |                          0101001
+                 iSTATE9 |                          0100101 |                          0101010
+                 iSTATE5 |                          0100110 |                          0101011
+                iSTATE57 |                          0100111 |                          0101100
+                iSTATE56 |                          0101000 |                          0101101
+                iSTATE52 |                          0101001 |                          0101110
+                iSTATE50 |                          0101010 |                          0101111
+                iSTATE10 |                          0101011 |                          0110000
+                 iSTATE6 |                          0101100 |                          0110001
+                iSTATE53 |                          0101101 |                          0110100
+                iSTATE49 |                          0101110 |                          0110101
+                 iSTATE4 |                          0101111 |                          0110010
+                 iSTATE2 |                          0110000 |                          0110011
+                iSTATE47 |                          0110001 |                          0110110
+                iSTATE46 |                          0110010 |                          0110111
+                iSTATE51 |                          0110011 |                          0111000
+                iSTATE48 |                          0110100 |                          0111001
+                iSTATE45 |                          0110101 |                          0111010
+                iSTATE26 |                          0110110 |                          0111101
+                iSTATE23 |                          0110111 |                          0111110
+                iSTATE44 |                          0111000 |                          0111011
+                iSTATE27 |                          0111001 |                          0111100
+                iSTATE22 |                          0111010 |                          0111111
+                iSTATE28 |                          0111011 |                          0011011
+                iSTATE18 |                          0111100 |                          0011100
+                iSTATE14 |                          0111101 |                          0011101
+                 iSTATE7 |                          0111110 |                          0011111
+                iSTATE11 |                          0111111 |                          0011110
+                iSTATE40 |                          1000000 |                          0100000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'D_game_fsm_q_reg' using encoding 'sequential' in module 'game_cu'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1195.156 ; gain = 637.855
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:28 ; elapsed = 00:00:32 . Memory (MB): peak = 1228.109 ; gain = 671.453
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-223] decloning instance 'game_timer_clock' (counter) to 'slow_clk'
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 1     
+	   3 Input   32 Bit       Adders := 1     
+	   2 Input   11 Bit       Adders := 1     
+	   2 Input    3 Bit       Adders := 1     
++---XORs : 
+	   2 Input     32 Bit         XORs := 3     
+	   4 Input     32 Bit         XORs := 1     
+	   2 Input      1 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 17    
+	               11 Bit    Registers := 1     
+	                8 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 6     
+	                1 Bit    Registers := 10    
++---Multipliers : 
+	              32x32  Multipliers := 1     
 +---Muxes : 
-	   4 Input    1 Bit        Muxes := 32    
+	   2 Input   32 Bit        Muxes := 3     
+	   4 Input   32 Bit        Muxes := 2     
+	  65 Input    8 Bit        Muxes := 1     
+	  85 Input    7 Bit        Muxes := 1     
+	   2 Input    7 Bit        Muxes := 6     
+	  65 Input    6 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 4     
+	  65 Input    4 Bit        Muxes := 3     
+	  65 Input    2 Bit        Muxes := 3     
+	   2 Input    2 Bit        Muxes := 3     
+	  65 Input    1 Bit        Muxes := 4     
+	  14 Input    1 Bit        Muxes := 13    
+	   2 Input    1 Bit        Muxes := 4     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -410,28 +281,70 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-WARNING: [Synth 8-7129] Port alufn[5] in module boolean is either unconnected or has no load
-WARNING: [Synth 8-7129] Port alufn[4] in module boolean is either unconnected or has no load
+DSP Report: Generating DSP out_sig0, operation Mode is: A*B.
+DSP Report: operator out_sig0 is absorbed into DSP out_sig0.
+DSP Report: operator out_sig0 is absorbed into DSP out_sig0.
+DSP Report: Generating DSP out_sig0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator out_sig0 is absorbed into DSP out_sig0.
+DSP Report: operator out_sig0 is absorbed into DSP out_sig0.
+DSP Report: Generating DSP out_sig0, operation Mode is: A*B.
+DSP Report: operator out_sig0 is absorbed into DSP out_sig0.
+DSP Report: operator out_sig0 is absorbed into DSP out_sig0.
+DSP Report: Generating DSP out_sig0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator out_sig0 is absorbed into DSP out_sig0.
+DSP Report: operator out_sig0 is absorbed into DSP out_sig0.
+WARNING: [Synth 8-3917] design alchitry_top has port led[7] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[6] driven by constant 0
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1195.156 ; gain = 637.855
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:46 ; elapsed = 00:00:50 . Memory (MB): peak = 1301.250 ; gain = 744.594
+---------------------------------------------------------------------------------
+ Sort Area is  out_sig0_0 : 0 0 : 3101 5879 : Used 1 time 0
+ Sort Area is  out_sig0_0 : 0 1 : 2778 5879 : Used 1 time 0
+ Sort Area is  out_sig0_3 : 0 0 : 2759 5418 : Used 1 time 0
+ Sort Area is  out_sig0_3 : 0 1 : 2659 5418 : Used 1 time 0
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++--------------+------------+---------------+----------------+
+|Module Name   | RTL Object | Depth x Width | Implemented As | 
++--------------+------------+---------------+----------------+
+|game_datapath | game_cu/   | 128x8         | LUT            | 
++--------------+------------+---------------+----------------+
+
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|alu         | A*B            | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|alu         | (PCIN>>17)+A*B | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|alu         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|alu         | (PCIN>>17)+A*B | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1330.141 ; gain = 772.840
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:00 ; elapsed = 00:01:04 . Memory (MB): peak = 1388.672 ; gain = 832.016
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1330.141 ; gain = 772.840
+Finished Timing Optimization : Time (s): cpu = 00:01:09 ; elapsed = 00:01:14 . Memory (MB): peak = 1524.324 ; gain = 967.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1340.219 ; gain = 782.918
+Finished Technology Mapping : Time (s): cpu = 00:01:11 ; elapsed = 00:01:15 . Memory (MB): peak = 1525.383 ; gain = 968.727
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -449,41 +362,51 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1556.051 ; gain = 998.750
+Finished IO Insertion : Time (s): cpu = 00:01:17 ; elapsed = 00:01:22 . Memory (MB): peak = 1639.352 ; gain = 1082.695
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1556.051 ; gain = 998.750
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:17 ; elapsed = 00:01:22 . Memory (MB): peak = 1639.352 ; gain = 1082.695
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1556.051 ; gain = 998.750
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:18 ; elapsed = 00:01:23 . Memory (MB): peak = 1639.352 ; gain = 1082.695
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1556.051 ; gain = 998.750
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:18 ; elapsed = 00:01:23 . Memory (MB): peak = 1639.352 ; gain = 1082.695
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1556.051 ; gain = 998.750
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:18 ; elapsed = 00:01:23 . Memory (MB): peak = 1639.352 ; gain = 1082.695
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1556.051 ; gain = 998.750
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:18 ; elapsed = 00:01:23 . Memory (MB): peak = 1639.352 ; gain = 1082.695
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
 ---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping  | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|alu         | A*B          | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|alu         | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|alu         | PCIN>>17+A*B | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
 
 Report BlackBoxes: 
 +-+--------------+----------+
@@ -492,34 +415,46 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+-----+------+
-|      |Cell |Count |
-+------+-----+------+
-|1     |LUT6 |    32|
-|2     |IBUF |    68|
-|3     |OBUF |    32|
-+------+-----+------+
++------+--------+------+
+|      |Cell    |Count |
++------+--------+------+
+|1     |BUFG    |     1|
+|2     |CARRY4  |    69|
+|3     |DSP48E1 |     3|
+|4     |LUT1    |    29|
+|5     |LUT2    |    89|
+|6     |LUT3    |    82|
+|7     |LUT4    |   101|
+|8     |LUT5    |    64|
+|9     |LUT6    |   458|
+|10    |MUXF7   |     1|
+|11    |FDPE    |     4|
+|12    |FDRE    |   594|
+|13    |IBUF    |     9|
+|14    |OBUF    |    51|
++------+--------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1556.051 ; gain = 998.750
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:18 ; elapsed = 00:01:23 . Memory (MB): peak = 1639.352 ; gain = 1082.695
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 3 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:15 ; elapsed = 00:00:23 . Memory (MB): peak = 1556.051 ; gain = 932.133
-Synthesis Optimization Complete : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1556.051 ; gain = 998.750
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:02 ; elapsed = 00:01:19 . Memory (MB): peak = 1639.352 ; gain = 992.211
+Synthesis Optimization Complete : Time (s): cpu = 00:01:18 ; elapsed = 00:01:23 . Memory (MB): peak = 1639.352 ; gain = 1082.695
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1556.051 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.030 . Memory (MB): peak = 1648.523 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 73 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1556.051 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1652.219 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: 856a879d
+Synth Design complete | Checksum: f33b9dd1
 INFO: [Common 17-83] Releasing license: Synthesis
-19 Infos, 106 Warnings, 104 Critical Warnings and 0 Errors encountered.
+51 Infos, 36 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:27 ; elapsed = 00:00:30 . Memory (MB): peak = 1556.051 ; gain = 1189.953
-INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1556.051 ; gain = 0.000
-INFO: [Common 17-1381] The checkpoint 'C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.runs/synth_1/boolean.dcp' has been generated.
-INFO: [Vivado 12-24828] Executing command : report_utilization -file boolean_utilization_synth.rpt -pb boolean_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Apr 15 16:45:20 2025...
+synth_design: Time (s): cpu = 00:01:26 ; elapsed = 00:01:36 . Memory (MB): peak = 1652.219 ; gain = 1286.707
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1652.219 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.runs/synth_1/alchitry_top.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file alchitry_top_utilization_synth.rpt -pb alchitry_top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Tue Apr 15 20:06:07 2025...

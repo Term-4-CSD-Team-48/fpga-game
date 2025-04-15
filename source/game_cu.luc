@@ -88,7 +88,8 @@ module game_cu (
         P2_LOSE,
         P2_WINS,
         P1_LOSE,
-        GAMEOVER
+        GAMEOVER,
+        RESET_START
     }
 
     dff game_fsm[$width(GameStates)](#INIT(GameStates.RESET_P1SCORE), .clk(clk), .rst(rst))
@@ -138,8 +139,13 @@ module game_cu (
                     regfile_wa = d1    // P2 Score Reg
                     wdsel = b00
                     regfile_we = b1
-                    game_fsm.d = GameStates.RESET_DISPLAY
+                    game_fsm.d = GameStates.RESET_START
                     debug.d = 8d1
+                
+                GameStates.RESET_START:
+                    if (p1_button_between) {
+                        game_fsm.d = GameStates.RESET_DISPLAY
+                    }
                 
                 GameStates.RESET_DISPLAY:
                     alufn = b000000    //ADD 
@@ -148,9 +154,7 @@ module game_cu (
                     regfile_wa = d11    // Display Score Reg
                     wdsel = b00
                     regfile_we = b1
-                    if (p1_button_between) {
-                        game_fsm.d = GameStates.RESET_TIMER
-                    }
+                    game_fsm.d = GameStates.RESET_TIMER
                     debug.d = 8d1
                 
                 GameStates.RESET_TIMER: 
@@ -651,7 +655,7 @@ module game_cu (
                     if (regfile_rd2[0]) {    // If P1 Score == 5, game over, go to check results
                         game_fsm.d = GameStates.CHECK_DRAW
                     } else {
-                        game_fsm.d = GameStates.RESET_DISPLAY
+                        game_fsm.d = GameStates.RESET_START
                     }
                     debug.d = 8d42
                 
@@ -671,7 +675,7 @@ module game_cu (
                     if (regfile_rd2[0]) {    // If P2 Score == 5, game over, go to check results
                         game_fsm.d = GameStates.CHECK_DRAW
                     } else {
-                        game_fsm.d = GameStates.RESET_DISPLAY
+                        game_fsm.d = GameStates.RESET_START
                     }
                     debug.d = 8d44
                 

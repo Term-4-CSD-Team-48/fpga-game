@@ -50,7 +50,7 @@ module alu (
                 out_sig = a < b 
             6h37: // CMPLE
                 out_sig = a <= b
-            6b111111:
+            6hFF:
                 out_sig = a / b
             
             default:

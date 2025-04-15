@@ -1,19 +1,22 @@
 module random_number_generator#(
-    SIZE = 4
+    SIZE = 4,
+    ROOT_SEED ~ 1 // AWe modify prof's one to take a seed instead of encapsulating seed
 ) (
     input clk,  // clock
-    input slow_clk,
+    //input slow_clk,
+    input seed[32], // We modify prof's one to take a seed instead of encapsulating seed
     input refresh,
     output out[SIZE]
 ) {
     
-    dff seed[32](#INIT(0), .clk(clk))
-    pn_gen pn_gen(.clk(clk), .seed(seed.q)) 
-   
-    edge_detector edge_detector(#RISE(1), #FALL(1), .clk(clk), .in(slow_clk))
+    //dff seed[32](#INIT(0), .clk(clk))
+    pn_gen pn_gen(#SEED(ROOT_SEED), .clk(clk), .seed(seed)) 
+    // We're not using edge detector any since we're just passing 1 into 
+    // refresh. pn_gen.rst takes precedence over pn_gen.next.
+    // This is our modification to prof's one
+    //edge_detector edge_detector(#RISE(1), #FALL(1), .clk(clk), .in(slow_clk))
     
     always {
-        seed.d = seed.q + 1 
         pn_gen.rst = 0
         pn_gen.next = 0
         
@@ -21,9 +24,9 @@ module random_number_generator#(
             pn_gen.rst = 1 // capture seed, generate fresh sequence
         }
         
-        if (edge_detector.out){
-            pn_gen.next = 1
-        }
+        //if (edge_detector.out){
+            //pn_gen.next = 1
+        //}
         
         out = pn_gen.num[SIZE-1:0]
     }

@@ -1,18 +1,27 @@
 #-----------------------------------------------------------
-# Vivado v2023.2 (64-bit)
-# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
-# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
-# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Tue Apr 15 21:18:24 2025
-# Process ID: 5536
-# Current directory: C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.runs/synth_1
-# Command line: vivado.exe -log alchitry_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source alchitry_top.tcl
-# Log file: C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.runs/synth_1/alchitry_top.vds
-# Journal file: C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.runs/synth_1\vivado.jou
-# Running On: MSI, OS: Windows, CPU Frequency: 2304 MHz, CPU Physical cores: 8, Host memory: 16866 MB
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Wed Apr 16 00:29:36 2025
+# Process ID         : 21736
+# Current directory  : C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.runs/synth_1
+# Command line       : vivado.exe -log alchitry_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source alchitry_top.tcl
+# Log file           : C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.runs/synth_1/alchitry_top.vds
+# Journal file       : C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.runs/synth_1\vivado.jou
+# Running On         : XlightNtrEnx
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26100
+# Processor Detail   : AMD Ryzen 5 PRO 7530U with Radeon Graphics     
+# CPU Frequency      : 1996 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 15886 MB
+# Swap memory        : 16642 MB
+# Total Virtual      : 32529 MB
+# Available Virtual  : 14954 MB
 #-----------------------------------------------------------
 source alchitry_top.tcl -notrace
-create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 467.887 ; gain = 183.895
 Command: synth_design -top alchitry_top -part xc7a35tftg256-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
@@ -20,67 +29,357 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tftg256-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 17572
+INFO: [Synth 8-7075] Helper process launched with PID 7696
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1300.043 ; gain = 438.906
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1026.641 ; gain = 468.352
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'alchitry_top' [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/alchitry_top.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'seven_segment_encoder' [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/seven_segment_encoder.sv:7]
-INFO: [Synth 8-226] default block is never used [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/seven_segment_encoder.sv:13]
-INFO: [Synth 8-6155] done synthesizing module 'seven_segment_encoder' (0#1) [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/seven_segment_encoder.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'button_conditioner' [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/button_conditioner.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'alchitry_top' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/alchitry_top.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'seven_segment_encoder' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/seven_segment_encoder.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/seven_segment_encoder.sv:13]
+INFO: [Synth 8-6155] done synthesizing module 'seven_segment_encoder' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/seven_segment_encoder.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'button_conditioner' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/button_conditioner.sv:7]
 	Parameter CLK_FREQ bound to: 27'b101111101011110000100000000 
 	Parameter MIN_DELAY bound to: 5'b10100 
 	Parameter NUM_SYNC bound to: 2'b10 
-INFO: [Synth 8-6157] synthesizing module 'pipeline' [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/pipeline.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'pipeline' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/pipeline.sv:7]
 	Parameter DEPTH bound to: 2'b10 
-INFO: [Synth 8-6155] done synthesizing module 'pipeline' (0#1) [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/pipeline.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'button_conditioner' (0#1) [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/button_conditioner.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'edge_detector' [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/edge_detector.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'pipeline' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/pipeline.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'button_conditioner' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/button_conditioner.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'edge_detector' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/edge_detector.sv:7]
 	Parameter RISE bound to: 1'b1 
 	Parameter FALL bound to: 1'b0 
-INFO: [Synth 8-6155] done synthesizing module 'edge_detector' (0#1) [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/edge_detector.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'reset_conditioner' [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/reset_conditioner.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'edge_detector' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/edge_detector.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'reset_conditioner' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/reset_conditioner.sv:7]
 	Parameter STAGES bound to: 3'b100 
-INFO: [Synth 8-6155] done synthesizing module 'reset_conditioner' (0#1) [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/reset_conditioner.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'counter' [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/counter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'reset_conditioner' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/reset_conditioner.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'game_datapath' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_datapath.sv:7]
+	Parameter SLOW_CLOCK_DIV bound to: 5'b11010 
+INFO: [Synth 8-6157] synthesizing module 'alu' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/alu.sv:7]
+	Parameter SIZE bound to: 6'b100000 
+INFO: [Synth 8-6157] synthesizing module 'adder' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/adder.sv:7]
+	Parameter SIZE bound to: 6'b100000 
+INFO: [Synth 8-6157] synthesizing module 'rca' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/rca.sv:7]
+	Parameter SIZE bound to: 6'b100000 
+INFO: [Synth 8-6157] synthesizing module 'fa' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/fa.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'fa' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/fa.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'rca' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/rca.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'adder' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/adder.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'compare' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/compare.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'mux_4' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/mux_4.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/mux_4.sv:15]
+INFO: [Synth 8-6155] done synthesizing module 'mux_4' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/mux_4.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'compare' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/compare.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'boolean' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/boolean.sv:7]
+	Parameter SIZE bound to: 6'b100000 
+INFO: [Synth 8-6155] done synthesizing module 'boolean' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/boolean.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'shifter' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/shifter.sv:7]
+	Parameter SIZE bound to: 6'b100000 
+	Parameter SHIFTERS bound to: 3'b101 
+INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+	Parameter SIZE bound to: 6'b100000 
+	Parameter SHIFT bound to: 5'b00001 
+INFO: [Synth 8-6157] synthesizing module 'mux_2' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/mux_2.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/mux_2.sv:14]
+INFO: [Synth 8-6155] done synthesizing module 'mux_2' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/mux_2.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized0' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+	Parameter SIZE bound to: 6'b100000 
+	Parameter SHIFT bound to: 5'b00010 
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized0' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized1' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+	Parameter SIZE bound to: 6'b100000 
+	Parameter SHIFT bound to: 5'b00100 
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized1' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized2' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+	Parameter SIZE bound to: 6'b100000 
+	Parameter SHIFT bound to: 5'b01000 
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized2' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized3' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+	Parameter SIZE bound to: 6'b100000 
+	Parameter SHIFT bound to: 5'b10000 
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized3' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_right_shifter' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+	Parameter SIZE bound to: 6'b100000 
+	Parameter SHIFT bound to: 5'b00001 
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_shifter' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_right_shifter__parameterized0' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+	Parameter SIZE bound to: 6'b100000 
+	Parameter SHIFT bound to: 5'b00010 
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_shifter__parameterized0' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_right_shifter__parameterized1' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+	Parameter SIZE bound to: 6'b100000 
+	Parameter SHIFT bound to: 5'b00100 
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_shifter__parameterized1' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_right_shifter__parameterized2' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+	Parameter SIZE bound to: 6'b100000 
+	Parameter SHIFT bound to: 5'b01000 
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_shifter__parameterized2' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_right_shifter__parameterized3' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+	Parameter SIZE bound to: 6'b100000 
+	Parameter SHIFT bound to: 5'b10000 
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_right_shifter__parameterized3' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_right_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'shifter' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'multiplier' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/multiplier.sv:7]
+	Parameter SIZE bound to: 6'b100000 
+INFO: [Synth 8-6155] done synthesizing module 'multiplier' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/multiplier.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'alu' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/alu.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'counter' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/counter.sv:7]
 	Parameter SIZE bound to: 1'b1 
 	Parameter DIV bound to: 5'b11010 
 	Parameter TOP bound to: 1'b0 
 	Parameter UP bound to: 1'b1 
-INFO: [Synth 8-6155] done synthesizing module 'counter' (0#1) [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/counter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'game_datapath' [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_datapath.sv:7]
-	Parameter SLOW_CLOCK_DIV bound to: 5'b11010 
-INFO: [Synth 8-6157] synthesizing module 'alu' [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/alu.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'alu' (0#1) [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/alu.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'game_cu' [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_cu.sv:7]
-INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_cu.sv:117]
-INFO: [Synth 8-6155] done synthesizing module 'game_cu' (0#1) [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_cu.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'game_regfiles' [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_regfiles.sv:7]
-INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_regfiles.sv:61]
-INFO: [Synth 8-6155] done synthesizing module 'game_regfiles' (0#1) [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_regfiles.sv:7]
-INFO: [Synth 8-226] default block is never used [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_datapath.sv:174]
-INFO: [Synth 8-226] default block is never used [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_datapath.sv:192]
-INFO: [Synth 8-6155] done synthesizing module 'game_datapath' (0#1) [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_datapath.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'random_number_generator' [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/random_number_generator.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'counter' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/counter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'game_cu' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_cu.sv:7]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_cu.sv:107]
+INFO: [Synth 8-6155] done synthesizing module 'game_cu' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_cu.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'game_regfiles' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_regfiles.sv:7]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_regfiles.sv:61]
+INFO: [Synth 8-6155] done synthesizing module 'game_regfiles' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_regfiles.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_datapath.sv:171]
+INFO: [Synth 8-226] default block is never used [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_datapath.sv:189]
+INFO: [Synth 8-6155] done synthesizing module 'game_datapath' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_datapath.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'random_number_generator' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/random_number_generator.sv:7]
 	Parameter SIZE bound to: 3'b100 
-INFO: [Synth 8-6157] synthesizing module 'pn_gen' [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/pn_gen.sv:7]
+	Parameter ROOT_SEED bound to: 33'b110010100001100001111010000011000 
+INFO: [Synth 8-6157] synthesizing module 'pn_gen' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/pn_gen.sv:7]
 	Parameter SEED bound to: 33'b110010100001100001111010000011000 
-INFO: [Synth 8-6155] done synthesizing module 'pn_gen' (0#1) [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/pn_gen.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'edge_detector__parameterized0' [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/edge_detector.sv:7]
-	Parameter RISE bound to: 1'b1 
-	Parameter FALL bound to: 1'b1 
-INFO: [Synth 8-6155] done synthesizing module 'edge_detector__parameterized0' (0#1) [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/edge_detector.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'random_number_generator' (0#1) [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/random_number_generator.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'random_number_generator2' [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/random_number_generator2.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'pn_gen' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/pn_gen.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'random_number_generator' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/random_number_generator.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'random_number_generator__parameterized0' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/random_number_generator.sv:7]
 	Parameter SIZE bound to: 3'b100 
-INFO: [Synth 8-6157] synthesizing module 'pn_gen2' [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/pn_gen2.sv:7]
+	Parameter ROOT_SEED bound to: 33'b101010010000110001010011011011111 
+INFO: [Synth 8-6157] synthesizing module 'pn_gen__parameterized0' [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/pn_gen.sv:7]
 	Parameter SEED bound to: 33'b101010010000110001010011011011111 
-INFO: [Synth 8-6155] done synthesizing module 'pn_gen2' (0#1) [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/pn_gen2.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'random_number_generator2' (0#1) [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/random_number_generator2.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'alchitry_top' (0#1) [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/alchitry_top.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'pn_gen__parameterized0' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/pn_gen.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'random_number_generator__parameterized0' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/random_number_generator.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'alchitry_top' (0#1) [C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/alchitry_top.sv:7]
 WARNING: [Synth 8-3917] design alchitry_top has port led[7] driven by constant 0
 WARNING: [Synth 8-3917] design alchitry_top has port led[6] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[5] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[4] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[3] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[2] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[1] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[0] driven by constant 0
+WARNING: [Synth 8-7129] Port regfile_rd2[31] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[30] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[29] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[28] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[27] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[26] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[25] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[24] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[23] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[22] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[21] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[20] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[19] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[18] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[17] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[16] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[15] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[14] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[13] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[12] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[11] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[10] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[9] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[8] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[7] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[6] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[5] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[4] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[3] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[2] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port regfile_rd2[1] in module game_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port alufn[5] in module shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port alufn[4] in module shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port alufn[3] in module shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port alufn[2] in module shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port alufn[5] in module boolean is either unconnected or has no load
+WARNING: [Synth 8-7129] Port alufn[4] in module boolean is either unconnected or has no load
+WARNING: [Synth 8-7129] Port alufn[5] in module compare is either unconnected or has no load
+WARNING: [Synth 8-7129] Port alufn[4] in module compare is either unconnected or has no load
+WARNING: [Synth 8-7129] Port alufn[3] in module compare is either unconnected or has no load
+WARNING: [Synth 8-7129] Port alufn[0] in module compare is either unconnected or has no load
+WARNING: [Synth 8-7129] Port alufn_signal[5] in module adder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port alufn_signal[4] in module adder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port alufn_signal[3] in module adder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port alufn_signal[2] in module adder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port alufn_signal[1] in module adder is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1155.207 ; gain = 596.918
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1155.207 ; gain = 596.918
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1155.207 ; gain = 596.918
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.055 . Memory (MB): peak = 1155.207 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc]
+Finished Parsing XDC File [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Giant/Desktop/fpga-game/build/constraint/alchitry.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/alchitry_top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/alchitry_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [C:/Users/Giant/Desktop/fpga-game/build/constraint/au_props.xdc]
+Finished Parsing XDC File [C:/Users/Giant/Desktop/fpga-game/build/constraint/au_props.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1247.645 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 1247.645 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1247.645 ; gain = 689.355
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tftg256-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1247.645 ; gain = 689.355
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1247.645 ; gain = 689.355
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'D_game_fsm_q_reg' in module 'game_cu'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 iSTATE1 |                           000000 |                           000000
+                 iSTATE0 |                           000001 |                           000001
+                iSTATE18 |                           000010 |                           110111
+                iSTATE38 |                           000011 |                           000100
+                iSTATE36 |                           000100 |                           000101
+                iSTATE33 |                           000101 |                           000110
+                iSTATE31 |                           000110 |                           000111
+                iSTATE35 |                           000111 |                           001000
+                  iSTATE |                           001000 |                           000010
+                iSTATE54 |                           001001 |                           000011
+                iSTATE34 |                           001010 |                           001001
+                iSTATE30 |                           001011 |                           001010
+                iSTATE29 |                           001100 |                           001011
+                iSTATE17 |                           001101 |                           001100
+                iSTATE16 |                           001110 |                           001101
+                iSTATE15 |                           001111 |                           001110
+                 iSTATE9 |                           010000 |                           001111
+                iSTATE32 |                           010001 |                           010000
+                iSTATE28 |                           010010 |                           010001
+                iSTATE25 |                           010011 |                           010010
+                iSTATE24 |                           010100 |                           010011
+                iSTATE13 |                           010101 |                           010100
+                iSTATE10 |                           010110 |                           010101
+                 iSTATE7 |                           010111 |                           010110
+                 iSTATE4 |                           011000 |                           010111
+                iSTATE11 |                           011001 |                           011000
+                 iSTATE8 |                           011010 |                           011001
+                 iSTATE5 |                           011011 |                           011010
+                iSTATE12 |                           011100 |                           100001
+                 iSTATE6 |                           011101 |                           100010
+                 iSTATE3 |                           011110 |                           100011
+                iSTATE53 |                           011111 |                           100100
+                iSTATE51 |                           100000 |                           100101
+                iSTATE47 |                           100001 |                           100110
+                iSTATE43 |                           100010 |                           100111
+                iSTATE50 |                           100011 |                           101000
+                iSTATE48 |                           100100 |                           101001
+                iSTATE45 |                           100101 |                           101010
+                iSTATE40 |                           100110 |                           101011
+                iSTATE27 |                           100111 |                           101100
+                iSTATE26 |                           101000 |                           101101
+                iSTATE22 |                           101001 |                           101110
+                iSTATE21 |                           101010 |                           101111
+                iSTATE46 |                           101011 |                           110000
+                iSTATE42 |                           101100 |                           110001
+                iSTATE23 |                           101101 |                           110100
+                iSTATE20 |                           101110 |                           110101
+                iSTATE39 |                           101111 |                           110010
+                iSTATE37 |                           110000 |                           110011
+                iSTATE19 |                           110001 |                           110110
+                 iSTATE2 |                           110010 |                           011011
+                iSTATE52 |                           110011 |                           011100
+                iSTATE49 |                           110100 |                           011101
+                iSTATE41 |                           110101 |                           011111
+                iSTATE44 |                           110110 |                           011110
+                iSTATE14 |                           110111 |                           100000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'D_game_fsm_q_reg' using encoding 'sequential' in module 'game_cu'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1247.645 ; gain = 689.355
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   11 Bit       Adders := 1     
+	   2 Input    3 Bit       Adders := 1     
++---XORs : 
+	   2 Input     32 Bit         XORs := 5     
+	   4 Input     32 Bit         XORs := 2     
+	   3 Input      1 Bit         XORs := 1056  
+	   2 Input      1 Bit         XORs := 2     
++---Registers : 
+	               32 Bit    Registers := 21    
+	               11 Bit    Registers := 1     
+	                8 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 6     
+	                1 Bit    Registers := 8     
++---Muxes : 
+	   2 Input   32 Bit        Muxes := 35    
+	   4 Input   32 Bit        Muxes := 3     
+	  56 Input    8 Bit        Muxes := 1     
+	   2 Input    7 Bit        Muxes := 6     
+	  56 Input    6 Bit        Muxes := 1     
+	  74 Input    6 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 1     
+	  56 Input    4 Bit        Muxes := 3     
+	   2 Input    4 Bit        Muxes := 3     
+	   7 Input    3 Bit        Muxes := 1     
+	  56 Input    2 Bit        Muxes := 3     
+	   2 Input    2 Bit        Muxes := 3     
+	   4 Input    1 Bit        Muxes := 33    
+	   2 Input    1 Bit        Muxes := 324   
+	  56 Input    1 Bit        Muxes := 3     
+	  14 Input    1 Bit        Muxes := 13    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3917] design alchitry_top has port led[7] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[6] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[5] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[4] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[3] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[2] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[1] driven by constant 0
+WARNING: [Synth 8-3917] design alchitry_top has port led[0] driven by constant 0
 WARNING: [Synth 8-7129] Port regfile_rd2[31] in module game_cu is either unconnected or has no load
 WARNING: [Synth 8-7129] Port regfile_rd2[30] in module game_cu is either unconnected or has no load
 WARNING: [Synth 8-7129] Port regfile_rd2[29] in module game_cu is either unconnected or has no load
@@ -113,218 +412,19 @@ WARNING: [Synth 8-7129] Port regfile_rd2[3] in module game_cu is either unconnec
 WARNING: [Synth 8-7129] Port regfile_rd2[2] in module game_cu is either unconnected or has no load
 WARNING: [Synth 8-7129] Port regfile_rd2[1] in module game_cu is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1413.551 ; gain = 552.414
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:03 ; elapsed = 00:01:05 . Memory (MB): peak = 1400.641 ; gain = 842.352
 ---------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Handling Custom Attributes
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1413.551 ; gain = 552.414
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1413.551 ; gain = 552.414
----------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 1413.551 ; gain = 0.000
-INFO: [Project 1-570] Preparing netlist for logic optimization
-
-Processing XDC Constraints
-Initializing timing engine
-Parsing XDC File [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/constraint/alchitry.xdc]
-Finished Parsing XDC File [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/constraint/alchitry.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/constraint/alchitry.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/alchitry_top_propImpl.xdc].
-Resolution: To avoid this warning, move constraints listed in [.Xil/alchitry_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
-Parsing XDC File [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/constraint/au_props.xdc]
-Finished Parsing XDC File [C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/constraint/au_props.xdc]
-Completed Processing XDC Constraints
-
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1487.246 ; gain = 0.000
-INFO: [Project 1-111] Unisim Transformation Summary:
-No Unisim elements were transformed.
-
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1487.246 ; gain = 0.000
----------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1487.246 ; gain = 626.109
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Loading Part and Timing Information
----------------------------------------------------------------------------------
-Loading part: xc7a35tftg256-1
----------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1487.246 ; gain = 626.109
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Applying 'set_property' XDC Constraints
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1487.246 ; gain = 626.109
----------------------------------------------------------------------------------
-INFO: [Synth 8-802] inferred FSM for state register 'D_game_fsm_q_reg' in module 'game_cu'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-                iSTATE24 |                           000000 |                          0000000
-                iSTATE23 |                           000001 |                          0000001
-                iSTATE17 |                           000010 |                          1000000
-                 iSTATE2 |                           000011 |                          0000100
-                 iSTATE1 |                           000100 |                          0000101
-                iSTATE54 |                           000101 |                          0000110
-                iSTATE52 |                           000110 |                          0000111
-                 iSTATE0 |                           000111 |                          0001000
-                iSTATE21 |                           001000 |                          0000010
-                iSTATE20 |                           001001 |                          0000011
-                  iSTATE |                           001010 |                          0001001
-                iSTATE51 |                           001011 |                          0001010
-                iSTATE50 |                           001100 |                          0001011
-                iSTATE40 |                           001101 |                          0001100
-                iSTATE39 |                           001110 |                          0001101
-                iSTATE38 |                           001111 |                          0001110
-                iSTATE32 |                           010000 |                          0001111
-                iSTATE53 |                           010001 |                          0010000
-                iSTATE49 |                           010010 |                          0010001
-                iSTATE46 |                           010011 |                          0010010
-                iSTATE45 |                           010100 |                          0010011
-                iSTATE36 |                           010101 |                          0010100
-                iSTATE35 |                           010110 |                          0010101
-                iSTATE30 |                           010111 |                          0010110
-                iSTATE27 |                           011000 |                          0010111
-                iSTATE33 |                           011001 |                          0011000
-                iSTATE31 |                           011010 |                          0011001
-                iSTATE28 |                           011011 |                          0011010
-                iSTATE34 |                           011100 |                          0100001
-                iSTATE29 |                           011101 |                          0100010
-                iSTATE26 |                           011110 |                          0100011
-                iSTATE19 |                           011111 |                          0100100
-                iSTATE16 |                           100000 |                          0100101
-                iSTATE12 |                           100001 |                          0100110
-                 iSTATE8 |                           100010 |                          0100111
-                iSTATE15 |                           100011 |                          0101000
-                iSTATE13 |                           100100 |                          0101001
-                 iSTATE9 |                           100101 |                          0101010
-                 iSTATE5 |                           100110 |                          0101011
-                iSTATE48 |                           100111 |                          0101100
-                iSTATE47 |                           101000 |                          0101101
-                iSTATE43 |                           101001 |                          0101110
-                iSTATE42 |                           101010 |                          0101111
-                iSTATE10 |                           101011 |                          0110000
-                 iSTATE6 |                           101100 |                          0110001
-                iSTATE44 |                           101101 |                          0110100
-                iSTATE41 |                           101110 |                          0110101
-                 iSTATE4 |                           101111 |                          0110010
-                 iSTATE3 |                           110000 |                          0110011
-                iSTATE22 |                           110001 |                          0111111
-                iSTATE25 |                           110010 |                          0011011
-                iSTATE18 |                           110011 |                          0011100
-                iSTATE14 |                           110100 |                          0011101
-                 iSTATE7 |                           110101 |                          0011111
-                iSTATE11 |                           110110 |                          0011110
-                iSTATE37 |                           110111 |                          0100000
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'D_game_fsm_q_reg' using encoding 'sequential' in module 'game_cu'
----------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1487.246 ; gain = 626.109
----------------------------------------------------------------------------------
-INFO: [Synth 8-223] decloning instance 'game_timer_clock' (counter) to 'slow_clk'
----------------------------------------------------------------------------------
-Start RTL Component Statistics 
----------------------------------------------------------------------------------
-Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input   32 Bit       Adders := 1     
-	   3 Input   32 Bit       Adders := 1     
-	   2 Input   11 Bit       Adders := 1     
-	   2 Input    3 Bit       Adders := 1     
-+---XORs : 
-	   2 Input     32 Bit         XORs := 5     
-	   4 Input     32 Bit         XORs := 2     
-	   2 Input      1 Bit         XORs := 1     
-+---Registers : 
-	               32 Bit    Registers := 21    
-	               11 Bit    Registers := 1     
-	                8 Bit    Registers := 1     
-	                4 Bit    Registers := 1     
-	                3 Bit    Registers := 1     
-	                2 Bit    Registers := 6     
-	                1 Bit    Registers := 11    
-+---Multipliers : 
-	              32x32  Multipliers := 1     
-+---Muxes : 
-	  15 Input   32 Bit        Muxes := 1     
-	   4 Input   32 Bit        Muxes := 3     
-	   2 Input   32 Bit        Muxes := 2     
-	  56 Input    8 Bit        Muxes := 1     
-	   2 Input    7 Bit        Muxes := 6     
-	  56 Input    6 Bit        Muxes := 1     
-	  74 Input    6 Bit        Muxes := 1     
-	   2 Input    6 Bit        Muxes := 1     
-	  56 Input    4 Bit        Muxes := 3     
-	   2 Input    4 Bit        Muxes := 3     
-	  56 Input    2 Bit        Muxes := 3     
-	   2 Input    2 Bit        Muxes := 3     
-	  15 Input    1 Bit        Muxes := 3     
-	   7 Input    1 Bit        Muxes := 1     
-	  56 Input    1 Bit        Muxes := 3     
-	  14 Input    1 Bit        Muxes := 13    
-	   2 Input    1 Bit        Muxes := 6     
----------------------------------------------------------------------------------
-Finished RTL Component Statistics 
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Part Resource Summary
----------------------------------------------------------------------------------
-Part Resources:
-DSPs: 90 (col length:60)
-BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
----------------------------------------------------------------------------------
-Finished Part Resource Summary
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Cross Boundary and Area Optimization
----------------------------------------------------------------------------------
-WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-DSP Report: Generating DSP out_sig0, operation Mode is: A*B.
-DSP Report: operator out_sig0 is absorbed into DSP out_sig0.
-DSP Report: operator out_sig0 is absorbed into DSP out_sig0.
-DSP Report: Generating DSP out_sig0, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator out_sig0 is absorbed into DSP out_sig0.
-DSP Report: operator out_sig0 is absorbed into DSP out_sig0.
-DSP Report: Generating DSP out_sig0, operation Mode is: A*B.
-DSP Report: operator out_sig0 is absorbed into DSP out_sig0.
-DSP Report: operator out_sig0 is absorbed into DSP out_sig0.
-DSP Report: Generating DSP out_sig0, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator out_sig0 is absorbed into DSP out_sig0.
-DSP Report: operator out_sig0 is absorbed into DSP out_sig0.
-WARNING: [Synth 8-3917] design alchitry_top has port led[7] driven by constant 0
-WARNING: [Synth 8-3917] design alchitry_top has port led[6] driven by constant 0
----------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:28 . Memory (MB): peak = 1487.246 ; gain = 626.109
----------------------------------------------------------------------------------
- Sort Area is  out_sig0_0 : 0 0 : 3101 5879 : Used 1 time 0
- Sort Area is  out_sig0_0 : 0 1 : 2778 5879 : Used 1 time 0
- Sort Area is  out_sig0_3 : 0 0 : 2759 5418 : Used 1 time 0
- Sort Area is  out_sig0_3 : 0 1 : 2659 5418 : Used 1 time 0
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 
 ROM: Preliminary Mapping Report
-+--------------+------------+---------------+----------------+
-|Module Name   | RTL Object | Depth x Width | Implemented As | 
-+--------------+------------+---------------+----------------+
-|game_datapath | game_cu/   | 64x8          | LUT            | 
-+--------------+------------+---------------+----------------+
++------------+------------+---------------+----------------+
+|Module Name | RTL Object | Depth x Width | Implemented As | 
++------------+------------+---------------+----------------+
+|game_cu     | D_debug_q0 | 64x8          | LUT            | 
++------------+------------+---------------+----------------+
 
-
-DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
-+------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Module Name | DSP Mapping    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
-+------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|alu         | A*B            | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|alu         | (PCIN>>17)+A*B | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|alu         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|alu         | (PCIN>>17)+A*B | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-+------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-
-Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
@@ -332,19 +432,19 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1487.246 ; gain = 626.109
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:08 ; elapsed = 00:01:10 . Memory (MB): peak = 1400.641 ; gain = 842.352
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:36 ; elapsed = 00:00:38 . Memory (MB): peak = 1536.434 ; gain = 675.297
+Finished Timing Optimization : Time (s): cpu = 00:01:26 ; elapsed = 00:01:28 . Memory (MB): peak = 1525.738 ; gain = 967.449
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:37 ; elapsed = 00:00:39 . Memory (MB): peak = 1545.473 ; gain = 684.336
+Finished Technology Mapping : Time (s): cpu = 00:01:27 ; elapsed = 00:01:29 . Memory (MB): peak = 1525.801 ; gain = 967.512
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -362,37 +462,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1545.473 ; gain = 684.336
+Finished IO Insertion : Time (s): cpu = 00:01:31 ; elapsed = 00:01:33 . Memory (MB): peak = 1610.449 ; gain = 1052.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1545.473 ; gain = 684.336
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:31 ; elapsed = 00:01:33 . Memory (MB): peak = 1610.449 ; gain = 1052.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1545.473 ; gain = 684.336
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:31 ; elapsed = 00:01:33 . Memory (MB): peak = 1610.449 ; gain = 1052.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1545.473 ; gain = 684.336
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:31 ; elapsed = 00:01:33 . Memory (MB): peak = 1610.449 ; gain = 1052.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1545.473 ; gain = 684.336
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:31 ; elapsed = 00:01:33 . Memory (MB): peak = 1610.449 ; gain = 1052.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1545.473 ; gain = 684.336
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:31 ; elapsed = 00:01:33 . Memory (MB): peak = 1610.449 ; gain = 1052.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -409,41 +509,41 @@ Report Cell Usage:
 |      |Cell   |Count |
 +------+-------+------+
 |1     |BUFG   |     1|
-|2     |CARRY4 |    62|
-|3     |LUT1   |    52|
-|4     |LUT2   |    60|
-|5     |LUT3   |    20|
-|6     |LUT4   |    56|
-|7     |LUT5   |    89|
-|8     |LUT6   |   425|
-|9     |MUXF7  |    30|
-|10    |FDRE   |   601|
-|11    |FDSE   |     4|
+|2     |CARRY4 |    38|
+|3     |LUT1   |    23|
+|4     |LUT2   |    73|
+|5     |LUT3   |    37|
+|6     |LUT4   |    29|
+|7     |LUT5   |    90|
+|8     |LUT6   |   383|
+|9     |MUXF7  |    28|
+|10    |FDPE   |     4|
+|11    |FDRE   |   595|
 |12    |IBUF   |     9|
 |13    |OBUF   |    51|
 +------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1545.473 ; gain = 684.336
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:31 ; elapsed = 00:01:33 . Memory (MB): peak = 1610.449 ; gain = 1052.160
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 3 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:32 ; elapsed = 00:00:41 . Memory (MB): peak = 1545.473 ; gain = 610.641
-Synthesis Optimization Complete : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1545.473 ; gain = 684.336
+Synthesis finished with 0 errors, 0 critical warnings and 40 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:20 ; elapsed = 00:01:30 . Memory (MB): peak = 1610.449 ; gain = 959.723
+Synthesis Optimization Complete : Time (s): cpu = 00:01:31 ; elapsed = 00:01:33 . Memory (MB): peak = 1610.449 ; gain = 1052.160
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 1557.387 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 92 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1619.668 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 66 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1561.055 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1623.340 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: 292c2e3c
+Synth Design complete | Checksum: c1d7e646
 INFO: [Common 17-83] Releasing license: Synthesis
-55 Infos, 36 Warnings, 0 Critical Warnings and 0 Errors encountered.
+92 Infos, 94 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:45 ; elapsed = 00:00:48 . Memory (MB): peak = 1561.055 ; gain = 1093.168
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1561.055 ; gain = 0.000
-INFO: [Common 17-1381] The checkpoint 'C:/Users/User/Desktop/Term 4/50.002/broken/fpga-game/build/vivado/1D_Project.runs/synth_1/alchitry_top.dcp' has been generated.
-INFO: [runtcl-4] Executing : report_utilization -file alchitry_top_utilization_synth.rpt -pb alchitry_top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Apr 15 21:19:23 2025...
+synth_design: Time (s): cpu = 00:01:34 ; elapsed = 00:01:39 . Memory (MB): peak = 1623.340 ; gain = 1256.344
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1623.340 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.runs/synth_1/alchitry_top.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file alchitry_top_utilization_synth.rpt -pb alchitry_top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Apr 16 00:31:20 2025...

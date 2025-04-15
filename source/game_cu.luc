@@ -85,8 +85,6 @@ module game_cu (
 
     dff game_fsm[$width(GameStates)](#INIT(GameStates.RESET_P1SCORE), .clk(clk), .rst(rst))
     dff debug[8](.clk(clk), .rst(rst), #INIT(0))
-    sig advance 
-    //sig advance2
     
     always {
         //advance = fsm_clk
@@ -106,13 +104,10 @@ module game_cu (
         rngsel = 0
                 
         game_fsm.d = game_fsm.q
-        if (rst){
+        if (rst) {
             game_fsm.d = GameStates.RESET_P1SCORE
-        }
-        else{
-            
+        } else {
             case(game_fsm.q){
-                
                 GameStates.RESET_P1SCORE: 
                     alufn = b000000    //ADD 
                     asel = b10        // Bit 0

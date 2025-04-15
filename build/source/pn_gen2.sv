@@ -4,8 +4,8 @@
     This is a temporary file and any changes made to it will be destroyed.
 */
 
-module pn_gen #(
-        parameter SEED = 33'h19430f418
+module pn_gen2 #(
+        parameter SEED = 33'h15218a6df
     ) (
         input wire clk,
         input wire rst,

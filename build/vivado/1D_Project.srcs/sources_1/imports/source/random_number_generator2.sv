@@ -4,7 +4,7 @@
     This is a temporary file and any changes made to it will be destroyed.
 */
 
-module random_number_generator #(
+module random_number_generator2 #(
         parameter SIZE = 3'h4
     ) (
         input wire clk,
@@ -13,13 +13,13 @@ module random_number_generator #(
         output reg [(SIZE)-1:0] out
     );
     logic [31:0] D_seed_d, D_seed_q = 1'h0;
-    localparam _MP_SEED_431310950 = 33'h19430f418;
+    localparam _MP_SEED_418645194 = 33'h15218a6df;
     logic M_pn_gen_rst;
     logic M_pn_gen_next;
     logic [31:0] M_pn_gen_num;
     
-    pn_gen #(
-        .SEED(_MP_SEED_431310950)
+    pn_gen2 #(
+        .SEED(_MP_SEED_418645194)
     ) pn_gen (
         .clk(clk),
         .seed(D_seed_q),
@@ -29,13 +29,13 @@ module random_number_generator #(
     );
     
     
-    localparam _MP_RISE_541774576 = 1'h1;
-    localparam _MP_FALL_541774576 = 1'h1;
+    localparam _MP_RISE_47895257 = 1'h1;
+    localparam _MP_FALL_47895257 = 1'h1;
     logic M_edge_detector_out;
     
     edge_detector #(
-        .RISE(_MP_RISE_541774576),
-        .FALL(_MP_FALL_541774576)
+        .RISE(_MP_RISE_47895257),
+        .FALL(_MP_FALL_47895257)
     ) edge_detector (
         .clk(clk),
         .in(slow_clk),

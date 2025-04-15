@@ -7,6 +7,7 @@ module game_datapath#(
     //input debugbutton1,
     //input debugbutton2,
     input rngmodule[4],
+    input rngmodule2[4],
     input p1_button_low,
     input p1_button_high,
     input p1_button_between,
@@ -100,17 +101,18 @@ module game_datapath#(
         
         // wdsel mux
         case (game_cu.wdsel){
-            b01 : game_regfiles.data = hFFFF
-            b10 : game_regfiles.data = hF
-            b11 : game_regfiles.data = 0
+            b01 : game_regfiles.data = d4
+            b10 : game_regfiles.data = d3
+            b11 : game_regfiles.data = d0
             default : 
                 game_regfiles.data = game_alu.out
         }
         
         // rngsel mux
         case (game_cu.rngsel){
-            b0 : game_regfiles.data = game_alu.out
-            b1 : game_regfiles.data = rngmodule
+            b01 : game_regfiles.data = game_alu.out
+            b10 : game_regfiles.data = rngmodule
+            b11 : game_regfiles.data = rngmodule2
             default :
                 game_regfiles.data = game_alu.out
         }

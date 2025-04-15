@@ -79,15 +79,6 @@ module game_cu (
         BRANCH_CHECK_P1_SCORE,
         CHECK_P2_SCORE,
         BRANCH_CHECK_P2_SCORE,
-        CHECK_DRAW,
-        BRANCH_DRAW,
-        DRAW,
-        CHECK_WINNER,
-        BRANCH_WINNER,
-        P1_WINS,
-        P2_LOSE,
-        P2_WINS,
-        P1_LOSE,
         GAMEOVER,
         RESET_START
     }
@@ -231,14 +222,14 @@ module game_cu (
                 GameStates.GENERATE_FIRST: 
                     regfile_we = b1
                     regfile_wa = d8    // Store to Temp Reg 1
-                    rngsel = b1
+                    rngsel = b10
                     game_fsm.d = GameStates.GENERATE_SECOND
                     debug.d = 8d7
                 
                 GameStates.GENERATE_SECOND: 
                     regfile_we = b1
                     regfile_wa = d9    // Store to Temp Reg 2
-                    rngsel = b1
+                    rngsel = b11
                     game_fsm.d = GameStates.COMPARE_NUMBERS
                     debug.d = 8d8
                 
@@ -252,7 +243,7 @@ module game_cu (
                     regfile_we = b1
                     regfile_wa = d10    // Store to Temp Reg 3
                     wdsel = b00
-                    rngsel = b0
+                    rngsel = b01
                     game_fsm.d = GameStates.BRANCH_COMPARE_NUMBERS
                     debug.d = 8d9
                 
@@ -312,7 +303,7 @@ module game_cu (
                 GameStates.GENERATE_GUESS: 
                     regfile_we = b1
                     regfile_wa = d6    // Store to Guess Reg
-                    rngsel = b1
+                    rngsel = b10
                     game_fsm.d = GameStates.CHECK_GUESS_LOW
                     debug.d = 8d15
                 
@@ -325,7 +316,7 @@ module game_cu (
                     regfile_ra2 = d4    // Low Bound Reg
                     regfile_wa = d10    // Temp Reg 3
                     wdsel = b00
-                    rngsel = 0
+                    rngsel = b01
                     game_fsm.d = GameStates.BRANCH_GUESS_LOW
                     debug.d = 8d16
                 
@@ -356,7 +347,7 @@ module game_cu (
                     regfile_ra2 = d6    // Guess Reg
                     regfile_wa = d10    // Temp Reg 3
                     wdsel = b00
-                    rngsel = 0
+                    rngsel = b01
                     game_fsm.d = GameStates.BRANCH_GUESS_HIGH
                     debug.d = 8d19
                 
@@ -653,7 +644,7 @@ module game_cu (
                 GameStates.BRANCH_CHECK_P1_SCORE:
                     regfile_ra2 = d8   // Temp Reg 1, storing value of comparison
                     if (regfile_rd2[0]) {    // If P1 Score == 5, game over, go to check results
-                        game_fsm.d = GameStates.CHECK_DRAW
+                        game_fsm.d = GameStates.GAMEOVER
                     } else {
                         game_fsm.d = GameStates.RESET_START
                     }
@@ -673,91 +664,11 @@ module game_cu (
                 GameStates.BRANCH_CHECK_P2_SCORE:
                     regfile_ra2 = d8   // Temp Reg 1, storing value of comparison
                     if (regfile_rd2[0]) {    // If P2 Score == 5, game over, go to check results
-                        game_fsm.d = GameStates.CHECK_DRAW
+                        game_fsm.d = GameStates.GAMEOVER
                     } else {
                         game_fsm.d = GameStates.RESET_START
                     }
                     debug.d = 8d44
-                
-                GameStates.CHECK_DRAW:
-                    alufn = b110011    // CMPEQ
-                    asel = b00
-                    bsel = b00        
-                    regfile_we = b1
-                    regfile_wa = d8   // Temp Reg 1 to store Result of Comparison
-                    regfile_ra1 = d0    // P1 Score Reg
-                    regfile_ra2 = d1    // P2 Score Reg
-                    wdsel = b00
-                    game_fsm.d = GameStates.BRANCH_DRAW
-                    debug.d = 8d45
-                
-                GameStates.BRANCH_DRAW:
-                    regfile_ra2 = d8   // Temp Reg 1, storing value of comparison
-                    if (regfile_rd2[0]) {    // If P1 Score == P2 Score, draw
-                        wdsel = b10
-                        regfile_we = b1
-                        regfile_wa = b0        // P1 Score Register
-                        game_fsm.d = GameStates.DRAW
-                    } else {
-                        game_fsm.d = GameStates.CHECK_WINNER
-                    }
-                    debug.d = 8d46
-                
-                GameStates.DRAW:
-                    wdsel = b10                // Draw Signal
-                    regfile_we = 1 
-                    regfile_wa = d1          // P2 score reg
-                    game_fsm.d = GameStates.GAMEOVER
-                    debug.d = 8d47 
-                
-                GameStates.CHECK_WINNER:
-                    alufn = b110101    // CMPLT, Check if P1 Score < P2 Score
-                    asel = b00
-                    bsel = b00        
-                    regfile_we = b1
-                    regfile_wa = d8   // Temp Reg 1 to store Result of Comparison
-                    regfile_ra1 = d0    // P1 Score Reg
-                    regfile_ra2 = d1    // P2 Score Reg
-                    wdsel = b00
-                    game_fsm.d = GameStates.BRANCH_WINNER
-                    debug.d = 8d48
-                
-                GameStates.BRANCH_WINNER:
-                    regfile_ra2 = d8   // Temp Reg 1, storing value of comparison
-                    if (regfile_rd2[0]) {    // If P2 Wins
-                        game_fsm.d = GameStates.P2_WINS
-                    } else {
-                        game_fsm.d = GameStates.P1_WINS
-                    }
-                    debug.d = 8d49
-                
-                GameStates.P2_WINS:
-                    regfile_we = 1
-                    regfile_wa = d1     // P2 score reg
-                    wdsel = b01           // winning signal
-                    game_fsm.d = GameStates.P1_LOSE
-                    debug.d = 8d50
-                
-                GameStates.P1_LOSE:
-                    regfile_we = 1
-                    regfile_wa = d0     // P1 score reg
-                    wdsel = b11           // losing signal
-                    game_fsm.d = GameStates.GAMEOVER
-                    debug.d = 8d51
-                
-                GameStates.P1_WINS:
-                    regfile_we = 1
-                    regfile_wa = d0     // P1 score reg
-                    wdsel = b01           // winning signal
-                    game_fsm.d = GameStates.P2_LOSE
-                    debug.d = 8d52
-                
-                GameStates.P2_LOSE:
-                    regfile_we = 1
-                    regfile_wa = d1     // P2 score reg
-                    wdsel = b11           // losing signal
-                    game_fsm.d = GameStates.GAMEOVER
-                    debug.d = 8d53
                 
                 GameStates.GAMEOVER:
                     game_fsm.d = GameStates.GAMEOVER

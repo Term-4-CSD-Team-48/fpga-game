@@ -35,6 +35,7 @@ module alchitry_top (
         edge_detector segment_slow_clock_edge(#RISE(1), #FALL(0)) // used with dff segment_counter not counter slow_clk
 
         random_number_generator generator(.slow_clk(0), .refresh(1))
+        random_number_generator2 generator2(.slow_clk(0), .refresh(1))
     }
 
     always {
@@ -61,6 +62,7 @@ module alchitry_top (
         game_datapath.p2_button_between = io_button_edge.out[4]    // Replace io_dip with P2 In Between Button
         game_datapath.p2_button_high = io_button_edge.out[5]       // Replace io_dip with P2 High Button
         game_datapath.rngmodule = generator.out
+        game_datapath.rngmodule2 = generator2.out
         
         //update 7segment
         sse.char[0] = game_datapath.low_num_out            // Replace io_led with 7 Segment for Low Number

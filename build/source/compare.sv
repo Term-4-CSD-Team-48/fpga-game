@@ -11,27 +11,23 @@ module compare (
         input wire [5:0] alufn,
         output reg cmp
     );
-    logic M_mux_4_s0;
-    logic M_mux_4_s1;
-    logic [3:0] M_mux_4_in;
-    logic M_mux_4_out;
-    
-    mux_4 mux_4 (
-        .s0(M_mux_4_s0),
-        .s1(M_mux_4_s1),
-        .in(M_mux_4_in),
-        .out(M_mux_4_out)
-    );
-    
-    
     always @* begin
-        M_mux_4_s0 = alufn[1'h1];
-        M_mux_4_s1 = alufn[2'h2];
-        M_mux_4_in[1'h0] = 1'h0;
-        M_mux_4_in[1'h1] = z;
-        M_mux_4_in[2'h2] = n ^ v;
-        M_mux_4_in[2'h3] = (n ^ v) | z;
-        cmp = M_mux_4_out;
+        cmp = 1'h0;
+        
+        case (alufn[2'h2:1'h1])
+            1'h0: begin
+                cmp = 1'h0;
+            end
+            1'h1: begin
+                cmp = z;
+            end
+            2'h2: begin
+                cmp = n ^ v;
+            end
+            2'h3: begin
+                cmp = (n ^ v) | z;
+            end
+        endcase
     end
     
     

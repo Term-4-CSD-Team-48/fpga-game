@@ -10,27 +10,26 @@ module rca #(
         input wire [(SIZE)-1:0] a,
         input wire [(SIZE)-1:0] b,
         input wire cin,
-        output reg cout,
         output reg [(SIZE)-1:0] s
     );
-    logic [31:0] R_611debb3_i;
-    logic [31:0] RR_611debb3_i;
+    logic [31:0] R_4513d929_i;
+    logic [31:0] RR_4513d929_i;
     logic [(SIZE)-1:0] M_fa_a;
     logic [(SIZE)-1:0] M_fa_b;
     logic [(SIZE)-1:0] M_fa_cin;
     logic [(SIZE)-1:0] M_fa_s;
     logic [(SIZE)-1:0] M_fa_cout;
     
-    genvar idx_0_1206419180;
+    genvar idx_0_484246332;
     
     generate
-        for (idx_0_1206419180 = 0; idx_0_1206419180 < SIZE; idx_0_1206419180 = idx_0_1206419180 + 1) begin: forLoop_idx_0_1206419180
+        for (idx_0_484246332 = 0; idx_0_484246332 < SIZE; idx_0_484246332 = idx_0_484246332 + 1) begin: forLoop_idx_0_484246332
             fa fa (
-                .a(M_fa_a[idx_0_1206419180]),
-                .b(M_fa_b[idx_0_1206419180]),
-                .cin(M_fa_cin[idx_0_1206419180]),
-                .s(M_fa_s[idx_0_1206419180]),
-                .cout(M_fa_cout[idx_0_1206419180])
+                .a(M_fa_a[idx_0_484246332]),
+                .b(M_fa_b[idx_0_484246332]),
+                .cin(M_fa_cin[idx_0_484246332]),
+                .s(M_fa_s[idx_0_484246332]),
+                .cout(M_fa_cout[idx_0_484246332])
             );
         end
     endgenerate
@@ -41,11 +40,10 @@ module rca #(
         M_fa_b = b;
         M_fa_cin = 1'h0;
         M_fa_cin[1'h0] = cin;
-        for (RR_611debb3_i = 0; RR_611debb3_i < SIZE - 1'h1; RR_611debb3_i = RR_611debb3_i + 1) begin
-      R_611debb3_i = (1'h1) + RR_611debb3_i * (1'h1);
-            M_fa_cin[R_611debb3_i] = M_fa_cout[R_611debb3_i - 1'h1];
+        for (RR_4513d929_i = 0; RR_4513d929_i < SIZE - 1'h1; RR_4513d929_i = RR_4513d929_i + 1) begin
+      R_4513d929_i = (1'h1) + RR_4513d929_i * (1'h1);
+            M_fa_cin[R_4513d929_i] = M_fa_cout[R_4513d929_i - 1'h1];
         end
-        cout = M_fa_cout[SIZE - 1'h1];
         s = M_fa_s;
     end
     

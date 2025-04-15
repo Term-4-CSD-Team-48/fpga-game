@@ -17,15 +17,15 @@ module boolean #(
     logic [(SIZE)-1:0][3:0] M_mux_4_in;
     logic [(SIZE)-1:0] M_mux_4_out;
     
-    genvar idx_0_1141170005;
+    genvar idx_0_1168769752;
     
     generate
-        for (idx_0_1141170005 = 0; idx_0_1141170005 < SIZE; idx_0_1141170005 = idx_0_1141170005 + 1) begin: forLoop_idx_0_1141170005
+        for (idx_0_1168769752 = 0; idx_0_1168769752 < SIZE; idx_0_1168769752 = idx_0_1168769752 + 1) begin: forLoop_idx_0_1168769752
             mux_4 mux_4 (
-                .s0(M_mux_4_s0[idx_0_1141170005]),
-                .s1(M_mux_4_s1[idx_0_1141170005]),
-                .in(M_mux_4_in[idx_0_1141170005]),
-                .out(M_mux_4_out[idx_0_1141170005])
+                .s0(M_mux_4_s0[idx_0_1168769752]),
+                .s1(M_mux_4_s1[idx_0_1168769752]),
+                .in(M_mux_4_in[idx_0_1168769752]),
+                .out(M_mux_4_out[idx_0_1168769752])
             );
         end
     endgenerate

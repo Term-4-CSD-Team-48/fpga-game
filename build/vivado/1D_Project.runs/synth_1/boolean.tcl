@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.runs/synth_1/alchitry_top.tcl"
+  variable script "C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.runs/synth_1/boolean.tcl"
   variable category "vivado_synth"
 }
 
@@ -70,30 +70,8 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib -sv {
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/adder.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/alu.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/boolean.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/button_conditioner.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/compare.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/counter.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/edge_detector.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/fa.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_cu.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_datapath.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/game_regfiles.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/multiplier.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/mux_2.sv
   C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/mux_4.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/pipeline.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/pn_gen.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/random_number_generator.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/rca.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/reset_conditioner.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/seven_segment_encoder.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/shifter.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_left_shifter.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/x_bit_right_shifter.sv
-  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/alchitry_top.sv
+  C:/Users/Giant/Desktop/fpga-game/build/vivado/1D_Project.srcs/sources_1/imports/source/boolean.sv
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -114,7 +92,7 @@ set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
-synth_design -top alchitry_top -part xc7a35tftg256-1
+synth_design -top boolean -part xc7a35tftg256-1
 OPTRACE "synth_design" END { }
 if { [get_msg_config -count -severity {CRITICAL WARNING}] > 0 } {
  send_msg_id runtcl-6 info "Synthesis results are not added to the cache due to CRITICAL_WARNING"
@@ -124,10 +102,10 @@ if { [get_msg_config -count -severity {CRITICAL WARNING}] > 0 } {
 OPTRACE "write_checkpoint" START { CHECKPOINT }
 # disable binary constraint mode for synth run checkpoints
 set_param constraints.enableBinaryConstraints false
-write_checkpoint -force -noxdef alchitry_top.dcp
+write_checkpoint -force -noxdef boolean.dcp
 OPTRACE "write_checkpoint" END { }
 OPTRACE "synth reports" START { REPORT }
-generate_parallel_reports -reports { "report_utilization -file alchitry_top_utilization_synth.rpt -pb alchitry_top_utilization_synth.pb"  } 
+generate_parallel_reports -reports { "report_utilization -file boolean_utilization_synth.rpt -pb boolean_utilization_synth.pb"  } 
 OPTRACE "synth reports" END { }
 file delete __synthesis_is_running__
 close [open __synthesis_is_complete__ w]

@@ -13,8 +13,8 @@ module alchitry_top (
     const CLOCK_DIVIDER = $is_sim() ? 11 : 26
     const SLOW_CLOCK_DIV = $is_sim() ? 9 : 26
     
-    const SLOW_CLOCK_SIZE = 11
-    sig slow_clock
+
+    sig segment_slow_clock
     
     seven_segment_encoder sse[6]
     .clk(clk) {
@@ -25,16 +25,16 @@ module alchitry_top (
         counter game_timer_clock(#SIZE(1),#DIV(SLOW_CLOCK_DIV), .rst(rst)) 
         .rst(rst) {
             counter slow_clk(#SIZE(1), #DIV(CLOCK_DIVIDER))
-            dff counter[SLOW_CLOCK_SIZE]
+            dff segment_counter[11]
             dff select[3]
             game_datapath game_datapath(#SLOW_CLOCK_DIV(SLOW_CLOCK_DIV))
         }
         
         edge_detector io_button_edge[6](#RISE(6x{{1}}), #FALL(6x{{0}}))
         edge_detector edge_detector_game_timer(#RISE(1), #FALL(0), .in(game_timer_clock.value))
-        edge_detector slow_clock_edge(#RISE(1), #FALL(0)) // used with dff counter not counter slow_clk
+        edge_detector segment_slow_clock_edge(#RISE(1), #FALL(0)) // used with dff segment_counter not counter slow_clk
 
-        random_number_generator generator(.slow_clk(slow_clk.value), .refresh(1))
+        random_number_generator generator(.slow_clk(0), .refresh(1))
     }
 
     always {
@@ -68,14 +68,14 @@ module alchitry_top (
         sse.char[2] = game_datapath.high_num_out           // Replace io_led with 7 Segment for High Number
         sse.char[3] = game_datapath.p1_score_out            // Replace led with 7 Segment for P1 Score
         sse.char[5] = game_datapath.p2_score_out            // Replace led with 7 Segment for P2 Score
-        sse.char[4] = game_datapath.timer_out           // Replace 7segtimer with Timer 7 Segment
-        counter.d = counter.q + 1
-        slow_clock = counter.q[10]
-        slow_clock_edge.in = slow_clock
+        sse.char[4] = game_datapath.timer_out[3:0]           // Replace 7segtimer with Timer 7 Segment
+        segment_counter.d = segment_counter.q + 1
+        segment_slow_clock = segment_counter.q[10]
+        segment_slow_clock_edge.in = segment_slow_clock
         select.d = select.q
         segment = 6x{{7h0}}
         segment[select.q] = sse.segs[select.q]
-        if (slow_clock_edge.out) {
+        if (segment_slow_clock_edge.out) {
             if (select.q >= 5) {
                 select.d = 0
             } else {

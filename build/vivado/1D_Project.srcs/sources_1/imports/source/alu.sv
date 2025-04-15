@@ -4,181 +4,75 @@
     This is a temporary file and any changes made to it will be destroyed.
 */
 
-module alu #(
-        parameter SIZE = 6'h20
-    ) (
-        input wire [(SIZE)-1:0] a,
-        input wire [(SIZE)-1:0] b,
+module alu (
+        input wire [31:0] a,
+        input wire [31:0] b,
         input wire [5:0] alufn,
-        output reg [(SIZE)-1:0] out,
+        output reg [31:0] out,
         output reg z,
         output reg v,
         output reg n
     );
-    logic [31:0] R_16a5b4b0_i;
-    logic [31:0] RR_16a5b4b0_i;
-    logic [31:0] R_32267254_i;
-    logic [31:0] RR_32267254_i;
-    localparam _MP_SIZE_103066342 = SIZE;
-    logic [(_MP_SIZE_103066342)-1:0] M_adder_a;
-    logic [(_MP_SIZE_103066342)-1:0] M_adder_b;
-    logic [5:0] M_adder_alufn_signal;
-    logic [(_MP_SIZE_103066342)-1:0] M_adder_out;
-    logic M_adder_z;
-    logic M_adder_v;
-    logic M_adder_n;
-    
-    adder #(
-        .SIZE(_MP_SIZE_103066342)
-    ) adder (
-        .a(M_adder_a),
-        .b(M_adder_b),
-        .alufn_signal(M_adder_alufn_signal),
-        .out(M_adder_out),
-        .z(M_adder_z),
-        .v(M_adder_v),
-        .n(M_adder_n)
-    );
-    
-    
-    logic M_compare_z;
-    logic M_compare_v;
-    logic M_compare_n;
-    logic [5:0] M_compare_alufn;
-    logic M_compare_cmp;
-    
-    compare compare (
-        .z(M_compare_z),
-        .v(M_compare_v),
-        .n(M_compare_n),
-        .alufn(M_compare_alufn),
-        .cmp(M_compare_cmp)
-    );
-    
-    
-    localparam _MP_SIZE_106296775 = SIZE;
-    logic [(_MP_SIZE_106296775)-1:0] M_boolean_a;
-    logic [(_MP_SIZE_106296775)-1:0] M_boolean_b;
-    logic [5:0] M_boolean_alufn;
-    logic [(_MP_SIZE_106296775)-1:0] M_boolean_bool;
-    
-    boolean #(
-        .SIZE(_MP_SIZE_106296775)
-    ) boolean (
-        .a(M_boolean_a),
-        .b(M_boolean_b),
-        .alufn(M_boolean_alufn),
-        .bool(M_boolean_bool)
-    );
-    
-    
-    localparam _MP_SIZE_792156578 = SIZE;
-    localparam _MP_SHIFTERS_792156578 = 3'h5;
-    logic [(_MP_SIZE_792156578)-1:0] M_shifter_a;
-    logic [4:0] M_shifter_b;
-    logic [5:0] M_shifter_alufn;
-    logic [(_MP_SIZE_792156578)-1:0] M_shifter_shift;
-    
-    shifter #(
-        .SIZE(_MP_SIZE_792156578),
-        .SHIFTERS(_MP_SHIFTERS_792156578)
-    ) shifter (
-        .a(M_shifter_a),
-        .b(M_shifter_b),
-        .alufn(M_shifter_alufn),
-        .shift(M_shifter_shift)
-    );
-    
-    
-    localparam _MP_SIZE_236885848 = SIZE;
-    logic [(_MP_SIZE_236885848)-1:0] M_multiplier_a;
-    logic [(_MP_SIZE_236885848)-1:0] M_multiplier_b;
-    logic [(_MP_SIZE_236885848)-1:0] M_multiplier_mul;
-    
-    multiplier #(
-        .SIZE(_MP_SIZE_236885848)
-    ) multiplier (
-        .a(M_multiplier_a),
-        .b(M_multiplier_b),
-        .mul(M_multiplier_mul)
-    );
-    
-    
-    logic [(SIZE)-1:0] M_mux_2_s0;
-    logic [(SIZE)-1:0][1:0] M_mux_2_in;
-    logic [(SIZE)-1:0] M_mux_2_out;
-    
-    genvar idx_0_865188082;
-    
-    generate
-        for (idx_0_865188082 = 0; idx_0_865188082 < SIZE; idx_0_865188082 = idx_0_865188082 + 1) begin: forLoop_idx_0_865188082
-            mux_2 mux_2 (
-                .s0(M_mux_2_s0[idx_0_865188082]),
-                .in(M_mux_2_in[idx_0_865188082]),
-                .out(M_mux_2_out[idx_0_865188082])
-            );
-        end
-    endgenerate
-    
-    
-    logic [(SIZE)-1:0] M_mux_4_s0;
-    logic [(SIZE)-1:0] M_mux_4_s1;
-    logic [(SIZE)-1:0][3:0] M_mux_4_in;
-    logic [(SIZE)-1:0] M_mux_4_out;
-    
-    genvar idx_0_1352581587;
-    
-    generate
-        for (idx_0_1352581587 = 0; idx_0_1352581587 < SIZE; idx_0_1352581587 = idx_0_1352581587 + 1) begin: forLoop_idx_0_1352581587
-            mux_4 mux_4 (
-                .s0(M_mux_4_s0[idx_0_1352581587]),
-                .s1(M_mux_4_s1[idx_0_1352581587]),
-                .in(M_mux_4_in[idx_0_1352581587]),
-                .out(M_mux_4_out[idx_0_1352581587])
-            );
-        end
-    endgenerate
-    
-    
+    logic [31:0] out_sig;
     always @* begin
-        M_adder_a = a;
-        M_adder_b = b;
-        M_adder_alufn_signal = alufn;
-        M_compare_z = M_adder_z;
-        M_compare_v = M_adder_v;
-        M_compare_n = M_adder_n;
-        M_compare_alufn = alufn;
-        M_boolean_a = a;
-        M_boolean_b = b;
-        M_boolean_alufn = alufn;
-        M_shifter_a = a;
-        M_shifter_b = b[3'h4:1'h0];
-        M_shifter_alufn = alufn;
-        M_multiplier_a = a;
-        M_multiplier_b = b;
-        for (RR_16a5b4b0_i = 0; RR_16a5b4b0_i < SIZE; RR_16a5b4b0_i = RR_16a5b4b0_i + 1) begin
-      R_16a5b4b0_i = (1'h0) + RR_16a5b4b0_i * (1'h1);
-            M_mux_2_in[R_16a5b4b0_i][1'h0] = M_adder_out[R_16a5b4b0_i];
-            M_mux_2_in[R_16a5b4b0_i][1'h1] = M_multiplier_mul[R_16a5b4b0_i];
-        end
-        M_mux_2_s0 = {SIZE{alufn[1'h1]}};
-        for (RR_32267254_i = 0; RR_32267254_i < SIZE; RR_32267254_i = RR_32267254_i + 1) begin
-      R_32267254_i = (1'h0) + RR_32267254_i * (1'h1);
-            M_mux_4_in[R_32267254_i][1'h0] = M_mux_2_out[R_32267254_i];
-            M_mux_4_in[R_32267254_i][1'h1] = M_boolean_bool[R_32267254_i];
-            M_mux_4_in[R_32267254_i][2'h2] = M_shifter_shift[R_32267254_i];
-            M_mux_4_in[R_32267254_i][2'h3] = 1'h0;
-        end
-        M_mux_4_in[1'h0][2'h3] = M_compare_cmp;
-        M_mux_4_s0 = {SIZE{alufn[3'h4]}};
-        M_mux_4_s1 = {SIZE{alufn[3'h5]}};
-        out = M_mux_4_out;
-        if (alufn == 6'h3f) begin
-            out = a / b;
-        end
-        z = M_adder_z;
-        v = M_adder_v;
-        n = M_adder_n;
+        z = 1'h0;
+        v = 1'h0;
+        n = 1'h0;
+        
+        case (alufn)
+            6'h0: begin
+                out_sig = a + b;
+                z = ~(|out_sig);
+                v = (a[5'h1f] & (b[5'h1f] ^ alufn[1'h0]) & !out_sig[5'h1f]) | (!a[5'h1f] & !(b[5'h1f] ^ alufn[1'h0]) & out_sig[5'h1f]);
+                n = out_sig[5'h1f];
+            end
+            6'h1: begin
+                out_sig = a - b;
+                z = ~(|out_sig);
+                v = (a[5'h1f] & (b[5'h1f] ^ alufn[1'h0]) & !out_sig[5'h1f]) | (!a[5'h1f] & !(b[5'h1f] ^ alufn[1'h0]) & out_sig[5'h1f]);
+                n = out_sig[5'h1f];
+            end
+            6'h2: begin
+                out_sig = a * b;
+            end
+            6'h18: begin
+                out_sig = a & b;
+            end
+            6'h1e: begin
+                out_sig = a | b;
+            end
+            6'h16: begin
+                out_sig = a ^ b;
+            end
+            6'h1a: begin
+                out_sig = a;
+            end
+            6'h20: begin
+                out_sig = a << b[3'h4:1'h0];
+            end
+            6'h21: begin
+                out_sig = a >> b[3'h4:1'h0];
+            end
+            6'h23: begin
+                out_sig = a >>> b[3'h4:1'h0];
+            end
+            6'h33: begin
+                out_sig = a == b;
+            end
+            6'h35: begin
+                out_sig = a < b;
+            end
+            6'h37: begin
+                out_sig = a <= b;
+            end
+            6'h3f: begin
+                out_sig = a / b;
+            end
+            default: begin
+                out_sig = 1'h0;
+            end
+        endcase
+        out = out_sig;
     end
     
     

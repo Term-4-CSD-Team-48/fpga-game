@@ -8,16 +8,16 @@ module x_bit_left_shifter #(
     output out[SIZE]
   ) {
   
-  mux_2 mux_2[SIZE] 
   sig shifted_bits[SIZE]
   
   always {
     shifted_bits = c{a[SIZE - SHIFT - 1:0], SHIFTx{pad}}
-    repeat(i, SIZE, 0, 1) {
-        mux_2.in[i][0] = a[i]
-        mux_2.in[i][1] = shifted_bits[i]
+    out = a
+    case (shift) {
+        0:
+            out = a
+        1:
+            out = shifted_bits
     }
-    mux_2.s0 = SIZEx{shift}
-    out = mux_2.out
   }
 }

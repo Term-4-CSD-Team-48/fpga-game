@@ -90,7 +90,7 @@ module game_cu (
     localparam E_GameStates_P2_WINS = 6'h3d;
     localparam E_GameStates_P1_LOSE = 6'h3e;
     localparam E_GameStates_GAMEOVER = 6'h3f;
-    logic [5:0] D_game_fsm_d, D_game_fsm_q = 6'h3f;
+    logic [5:0] D_game_fsm_d, D_game_fsm_q = 6'h0;
     logic [7:0] D_debug_d, D_debug_q = 1'h0;
     logic advance;
     always @* begin
@@ -110,7 +110,7 @@ module game_cu (
         rngsel = 1'h0;
         D_game_fsm_d = D_game_fsm_q;
         if (rst) begin
-            D_game_fsm_d = 6'h3f;
+            D_game_fsm_d = 6'h0;
         end else begin
             
             case (D_game_fsm_q)
@@ -141,7 +141,9 @@ module game_cu (
                     regfile_wa = 4'hb;
                     wdsel = 2'h0;
                     regfile_we = 1'h1;
-                    D_game_fsm_d = 6'h5;
+                    if (p1_button_between) begin
+                        D_game_fsm_d = 6'h5;
+                    end
                     D_debug_d = 8'h1;
                 end
                 6'h5: begin
@@ -771,7 +773,7 @@ module game_cu (
     
     always @(posedge (clk)) begin
         if ((rst) == 1'b1) begin
-            D_game_fsm_q <= 6'h3f;
+            D_game_fsm_q <= 6'h0;
             D_debug_q <= 1'h0;
         end else begin
             D_game_fsm_q <= D_game_fsm_d;

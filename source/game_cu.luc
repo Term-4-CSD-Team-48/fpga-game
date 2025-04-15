@@ -91,7 +91,7 @@ module game_cu (
         GAMEOVER
     }
 
-    dff game_fsm[$width(GameStates)](#INIT(GameStates.GAMEOVER), .clk(clk), .rst(rst))
+    dff game_fsm[$width(GameStates)](#INIT(GameStates.RESET_P1SCORE), .clk(clk), .rst(rst))
     dff debug[8](.clk(clk), .rst(rst), #INIT(0))
     sig advance 
     //sig advance2
@@ -115,7 +115,7 @@ module game_cu (
                 
         game_fsm.d = game_fsm.q
         if (rst){
-            game_fsm.d = GameStates.GAMEOVER
+            game_fsm.d = GameStates.RESET_P1SCORE
         }
         else{
             
@@ -148,7 +148,9 @@ module game_cu (
                     regfile_wa = d11    // Display Score Reg
                     wdsel = b00
                     regfile_we = b1
-                    game_fsm.d = GameStates.RESET_TIMER
+                    if (p1_button_between) {
+                        game_fsm.d = GameStates.RESET_TIMER
+                    }
                     debug.d = 8d1
                 
                 GameStates.RESET_TIMER: 
@@ -215,7 +217,7 @@ module game_cu (
                     alufn = b000000    //ADD 
                     asel = b11        // Bit 5
                     bsel = b00        
-                    regfile_ra2 = d7    // Timer Reg
+                    regfile_ra2 = 7    // Timer Reg
                     regfile_we = b1
                     regfile_wa = d7    // Store to Timer Reg
                     wdsel = b00

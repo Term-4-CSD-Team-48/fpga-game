@@ -1,72 +1,68 @@
-module alu #(
-    SIZE = 32 : SIZE > 1
-)(
-    input a[SIZE],
-    input b[SIZE],
+module alu (
+    input a[32],
+    input b[32],
     input alufn[6],
-    output out[SIZE],
+    output out[32],
     output z,
     output v,
     output n
 ) {
-    adder adder(#SIZE(SIZE))
-    compare compare
-    boolean boolean(#SIZE(SIZE))
-    shifter shifter(#SIZE(SIZE))
-    multiplier multiplier(#SIZE(SIZE))
-    mux_2 mux_2[SIZE]
-    mux_4 mux_4[SIZE]
     
-        
+    sig out_sig[32]
+    
+    
     always {
-        adder.a = a
-        adder.b = b
-        adder.alufn_signal = alufn
         
-        compare.z = adder.z
-        compare.v = adder.v
-        compare.n = adder.n
-        compare.alufn = alufn
+        z = 0
+        v = 0
+        n = 0
         
-        boolean.a = a
-        boolean.b = b
-        boolean.alufn = alufn
-        
-        shifter.a = a
-        shifter.b = b[4:0]
-        shifter.alufn = alufn
-        
-        multiplier.a = a
-        multiplier.b = b      
-        
-        repeat(i, SIZE, 0, 1) {
-            mux_2.in[i][0] = adder.out[i]
-            mux_2.in[i][1] = multiplier.mul[i]
+        case(alufn){
+            6h00: // ADD
+                out_sig = a + b
+                z = ~|out_sig
+                v = (a[31] & (b[31] ^ alufn[0]) & !out_sig[31]) | (!a[31] & !(b[31] ^ alufn[0]) & out_sig[31]) 
+                n = out_sig[31]
+            6h01: // SUB
+                out_sig = a - b
+                z = ~|out_sig
+                v = (a[31] & (b[31] ^ alufn[0]) & !out_sig[31]) | (!a[31] & !(b[31] ^ alufn[0]) & out_sig[31]) 
+                n = out_sig[31]   
+            6h02: // MUL
+                out_sig = a * b 
+            6h18: // BITWISE AND
+                out_sig = a & b 
+            6h1E: // BITWISE OR 
+                out_sig = a | b 
+            6h16: // BITWISE XOR
+                out_sig = a ^ b 
+            6h1A: // "A"
+                out_sig = a
+            6h20: // SHL 
+                out_sig = a << b[4:0]
+            6h21: // SHR 
+                out_sig = a >> b[4:0]
+            6h23: // SRA 
+                out_sig = a >>> b[4:0]
+            6h33: // CMPEQ 
+                out_sig = a == b 
+            6h35: // CMPLT 
+                out_sig = a < b 
+            6h37: // CMPLE
+                out_sig = a <= b
+            6b111111:
+                out_sig = a / b
+            
+            default:
+                out_sig = 0
+           
+            
         }
-        mux_2.s0 = SIZEx{alufn[1]}
         
-        repeat(i, SIZE, 0, 1) {
-            mux_4.in[i][0] = mux_2.out[i]
-            mux_4.in[i][1] = boolean.bool[i]
-            mux_4.in[i][2] = shifter.shift[i]
-            mux_4.in[i][3] = 0
-        }
-        mux_4.in[0][3] = compare.cmp
-        mux_4.s0 = SIZEx{alufn[4]}
-        mux_4.s1 = SIZEx{alufn[5]}
+
+        out = out_sig
         
-        out =  mux_4.out
         
-        // Additional functionalities
-        // Note that 6b111110 is implemented outside of the alu as it is not 
-        // optimized to have the random number generator inside of the alu
-        // which means the whole thing will not work if rng is inside
-        if (alufn == 6b111111) {
-            out = a / b
-        }
         
-        z = adder.z
-        v = adder.v
-        n = adder.n  
     }
 }

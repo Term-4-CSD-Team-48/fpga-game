@@ -11,53 +11,51 @@ module multiplier #(
         input wire [(SIZE)-1:0] b,
         output reg [(SIZE)-1:0] mul
     );
-    logic [31:0] R_06df1ef7_i;
-    logic [31:0] RR_06df1ef7_i;
-    logic [31:0] R_1a5a81d3_j;
-    logic [31:0] RR_1a5a81d3_j;
-    logic [31:0] R_5c311326_i;
-    logic [31:0] RR_5c311326_i;
+    logic [31:0] R_12e93db3_i;
+    logic [31:0] RR_12e93db3_i;
+    logic [31:0] R_3660a85f_j;
+    logic [31:0] RR_3660a85f_j;
+    logic [31:0] R_012e8bce_i;
+    logic [31:0] RR_012e8bce_i;
     logic [(SIZE)-1:0][(SIZE)-1:0] partials;
-    localparam _MP_SIZE_1946325391 = SIZE;
-    logic [(_MP_SIZE_1946325391)-1:0][(_MP_SIZE_1946325391)-1:0] M_rcas_a;
-    logic [(_MP_SIZE_1946325391)-1:0][(_MP_SIZE_1946325391)-1:0] M_rcas_b;
-    logic [(_MP_SIZE_1946325391)-1:0] M_rcas_cin;
-    logic [(_MP_SIZE_1946325391)-1:0] M_rcas_cout;
-    logic [(_MP_SIZE_1946325391)-1:0][(_MP_SIZE_1946325391)-1:0] M_rcas_s;
+    localparam _MP_SIZE_821776190 = SIZE;
+    logic [(_MP_SIZE_821776190)-1:0][(_MP_SIZE_821776190)-1:0] M_rcas_a;
+    logic [(_MP_SIZE_821776190)-1:0][(_MP_SIZE_821776190)-1:0] M_rcas_b;
+    logic [(_MP_SIZE_821776190)-1:0] M_rcas_cin;
+    logic [(_MP_SIZE_821776190)-1:0][(_MP_SIZE_821776190)-1:0] M_rcas_s;
     
-    genvar idx_0_1946325391;
+    genvar idx_0_821776190;
     
     generate
-        for (idx_0_1946325391 = 0; idx_0_1946325391 < _MP_SIZE_1946325391; idx_0_1946325391 = idx_0_1946325391 + 1) begin: forLoop_idx_0_1946325391
+        for (idx_0_821776190 = 0; idx_0_821776190 < _MP_SIZE_821776190; idx_0_821776190 = idx_0_821776190 + 1) begin: forLoop_idx_0_821776190
             rca #(
-                .SIZE(_MP_SIZE_1946325391)
+                .SIZE(_MP_SIZE_821776190)
             ) rcas (
-                .a(M_rcas_a[idx_0_1946325391]),
-                .b(M_rcas_b[idx_0_1946325391]),
-                .cin(M_rcas_cin[idx_0_1946325391]),
-                .cout(M_rcas_cout[idx_0_1946325391]),
-                .s(M_rcas_s[idx_0_1946325391])
+                .a(M_rcas_a[idx_0_821776190]),
+                .b(M_rcas_b[idx_0_821776190]),
+                .cin(M_rcas_cin[idx_0_821776190]),
+                .s(M_rcas_s[idx_0_821776190])
             );
         end
     endgenerate
     
     
     always @* begin
-        for (RR_06df1ef7_i = 0; RR_06df1ef7_i < SIZE; RR_06df1ef7_i = RR_06df1ef7_i + 1) begin
-      R_06df1ef7_i = (1'h0) + RR_06df1ef7_i * (1'h1);
-            partials[R_06df1ef7_i] = {SIZE{1'h0}};
-            for (RR_1a5a81d3_j = 0; RR_1a5a81d3_j < SIZE - R_06df1ef7_i; RR_1a5a81d3_j = RR_1a5a81d3_j + 1) begin
-        R_1a5a81d3_j = (1'h0) + RR_1a5a81d3_j * (1'h1);
-                if (b[R_06df1ef7_i]) begin
-                    partials[R_06df1ef7_i][R_1a5a81d3_j + R_06df1ef7_i] = a[R_1a5a81d3_j];
+        for (RR_12e93db3_i = 0; RR_12e93db3_i < SIZE; RR_12e93db3_i = RR_12e93db3_i + 1) begin
+      R_12e93db3_i = (1'h0) + RR_12e93db3_i * (1'h1);
+            partials[R_12e93db3_i] = {SIZE{1'h0}};
+            for (RR_3660a85f_j = 0; RR_3660a85f_j < SIZE - R_12e93db3_i; RR_3660a85f_j = RR_3660a85f_j + 1) begin
+        R_3660a85f_j = (1'h0) + RR_3660a85f_j * (1'h1);
+                if (b[R_12e93db3_i]) begin
+                    partials[R_12e93db3_i][R_3660a85f_j + R_12e93db3_i] = a[R_3660a85f_j];
                 end
             end
         end
         M_rcas_cin = 1'h0;
         M_rcas_a = partials;
-        for (RR_5c311326_i = 0; RR_5c311326_i < SIZE - 1'h1; RR_5c311326_i = RR_5c311326_i + 1) begin
-      R_5c311326_i = (1'h1) + RR_5c311326_i * (1'h1);
-            M_rcas_b[R_5c311326_i] = M_rcas_s[R_5c311326_i - 1'h1];
+        for (RR_012e8bce_i = 0; RR_012e8bce_i < SIZE - 1'h1; RR_012e8bce_i = RR_012e8bce_i + 1) begin
+      R_012e8bce_i = (1'h1) + RR_012e8bce_i * (1'h1);
+            M_rcas_b[R_012e8bce_i] = M_rcas_s[R_012e8bce_i - 1'h1];
         end
         M_rcas_b[1'h0] = 1'h0;
         mul = M_rcas_s[SIZE - 1'h1];
